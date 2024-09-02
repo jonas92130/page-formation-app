@@ -1,5 +1,5 @@
 ---
-header: Bienvenue sur page-formation
+header: Bienvenue sur page formation
 logo:
   url: /next.svg
   alt: NextJS
