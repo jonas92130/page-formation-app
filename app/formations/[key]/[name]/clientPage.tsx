@@ -1,13 +1,12 @@
 'use client'
 
+import { FormationsResponseModel } from '@/model/formation'
 import {
   FormationListContainer,
   FormationList,
   FormationTabs,
 } from '@/components/features/formation/list'
-import SearchBar from '@/components/features/searchBar'
-import { FormationsResponseModel } from '@/model/formation'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 interface Props {
   data: FormationsResponseModel
@@ -16,19 +15,13 @@ interface Props {
 function ClientPage(props: Props) {
   const { data } = props
 
-  useEffect(() => {
-    console.log('data:', data)
-  }, [data])
-
   return (
-    <div>
-      <h1>CLIENT</h1>
-      <SearchBar />
+    <main>
       <FormationListContainer data={data}>
         <FormationList />
         <FormationTabs />
       </FormationListContainer>
-    </div>
+    </main>
   )
 }
 

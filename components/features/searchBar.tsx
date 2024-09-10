@@ -19,13 +19,13 @@ import useFilterSearchParams from '@/hook/useFilterSearchParams'
 import useSWR from 'swr'
 import axios from 'axios'
 import { FormationFacetsResponseModel } from '@/model/formation'
-import { FiltreConnector } from '@/lib/filter'
+import { FilterConnector } from '@/lib/filter'
 
 interface Props {}
 
 interface FormDataModel {
   query?: string
-  region?: {
+  lieu?: {
     value: string
     label: string
   }
@@ -41,7 +41,7 @@ function SearchBar(props: Props) {
   const handleSubmit = (data: FormDataModel) => {
     console.log(data)
     const query = data.query ? `query=${data.query}` : ''
-    const city = data.region ? `region=${data.region.value}` : ''
+    const city = data.lieu ? `lieu=${data.lieu.value}` : ''
 
     router.push(`/formations/recherche?${query}&${city}`)
   }
@@ -56,7 +56,7 @@ function SearchBar(props: Props) {
 
   const facets = data?.facets ?? []
   const regionFacets = facets.find(
-    (facet) => facet.name === FiltreConnector.region
+    (facet) => facet.name === FilterConnector.lieu
   )
   const regionOptions =
     regionFacets?.facets.map((facet) => ({
@@ -70,7 +70,7 @@ function SearchBar(props: Props) {
   ]
 
   const queryParams = filterParams.query ?? ''
-  const cityParams = filterParams.region ?? ''
+  const cityParams = filterParams.lieu ?? ''
 
   return (
     <Form {...form}>
@@ -95,7 +95,7 @@ function SearchBar(props: Props) {
         />
         <FormField
           control={form.control}
-          name="region"
+          name="lieu"
           defaultValue={cityParams}
           render={(fields) => (
             <FormItem>
@@ -106,7 +106,7 @@ function SearchBar(props: Props) {
                   onValueChange={fields.field.onChange}
                   value={fields.field.value}
                   isLoading={isLoading}
-                  placeholder="ville, region,..."
+                  placeholder="ville, lieu,..."
                 />
               </FormControl>
               <FormDescription />

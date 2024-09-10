@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 
 export class FranceTravailApiHandler {
   bearerToken: string = ''
@@ -10,7 +10,7 @@ export class FranceTravailApiHandler {
     // this.getBearerToken().then((token) => {
     //   this.bearerToken = token
     // })
-    this.bearerToken = ""
+    this.bearerToken = ''
   }
 
   private async query(options: any) {
@@ -23,19 +23,19 @@ export class FranceTravailApiHandler {
 
       return await response.data
     } catch (error) {
-       console.error('error:', error.response.data)
-       throw error.response.data
-   }
+      console.error('error:', error.response.data)
+      throw error.response.data
+    }
   }
 
   private async queryWithBearerToken(options: any, count = 3) {
     try {
-      console.log("bearerToken:", this.bearerToken)
+      console.log('bearerToken:', this.bearerToken)
       const optionsWithBearerToken = {
         ...options,
         headers: {
           ...options.headers,
-          'Authorization': `Bearer ${this.bearerToken}`,
+          Authorization: `Bearer ${this.bearerToken}`,
         },
       }
 
@@ -52,8 +52,7 @@ export class FranceTravailApiHandler {
 
       return await response.data
     } catch (error) {
-
-      if( error.response.status === 500) {
+      if (error.response.status === 500) {
         if (count > 0) {
           await this.refreshToken()
           return await this.queryWithBearerToken(options, count - 1)
@@ -65,7 +64,7 @@ export class FranceTravailApiHandler {
     }
   }
 
-   async getBearerToken() {
+  async getBearerToken() {
     const clientID = process.env.FT_USER_ID
     const clientSecret = process.env.FT_USER_SECRET
     const response = await this.query({
@@ -92,12 +91,12 @@ export class FranceTravailApiHandler {
     this.bearerToken = await this.getBearerToken()
   }
 
-  async getAvis() {
+  async getAvis(params = {}) {
     const response = await this.queryWithBearerToken({
       url: '/avis',
       method: 'GET',
+      params,
     })
     return response
   }
-   
 }
