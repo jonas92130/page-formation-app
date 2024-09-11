@@ -1,5 +1,6 @@
-export const FiltreConnector = {
-  region: 'nom_departement',
+export const FilterConnector = {
+  lieu: 'nom_departement',
+  domain: 'libelle_nsf_1',
 }
 
 export const createUrlSearchParams = (searchParams: Record<string, string>) => {
@@ -20,9 +21,9 @@ export const createUrlSearchParams = (searchParams: Record<string, string>) => {
       params.append('where', `"${value}"`)
       continue
     }
-    if (!FiltreConnector[key]) continue
+    if (!FilterConnector[key]) continue
 
-    const paramsValue = `${FiltreConnector[key]}:"${value}"`
+    const paramsValue = `${FilterConnector[key]}:"${value}"`
     params.append('refine', paramsValue)
   }
 

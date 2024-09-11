@@ -1,6 +1,5 @@
 import { useSearchParams } from 'next/navigation'
 import { filtersAvailable } from '@/lib/filter'
-import { all } from 'axios'
 
 function useFilterSearchParams() {
   const searchParams = useSearchParams()
