@@ -3,10 +3,23 @@ export const FilterConnector = {
   domain: 'libelle_nsf_1',
 }
 
-export const createUrlSearchParams = (searchParams: Record<string, string>) => {
-  let params = new URLSearchParams()
+export interface QueryMongoParamsModel {
+  skip?: number
+  limit?: number
+  query?: Record<string, any>
+  match?: { $match: Record<string, string> }
+}
 
-  const limit = params.get('limit') ? Number(params.get('limit')) : 20
+export const createQueryMongoParams = (
+  searchParams: Record<string, string>
+) => {
+  const limit = searchParams.limit ? Number(searchParams.limit) : 20
+  let params = {
+    limit: 20,
+    skip: 0,
+  } as QueryMongoParamsModel
+
+  let match = {} as Record<string, string>
 
   for (const [key, value] of Object.entries(searchParams)) {
     if (!value) continue
@@ -14,20 +27,46 @@ export const createUrlSearchParams = (searchParams: Record<string, string>) => {
     if (key === 'pageNumber') {
       console.log('pageNumber:', value)
       const offset = limit * (Number(value) - 1)
-      params.append('offset', offset.toString())
+      params.skip = offset
+    }
+
+    if (key === 'limit') {
+      params.limit = limit
+      continue
     }
 
     if (key === 'query') {
-      params.append('where', `"${value}"`)
+      params.query = {
+        $search: {
+          index: 'default',
+          text: {
+            query: value,
+            path: {
+              wildcard: '*',
+            },
+          },
+        },
+      }
       continue
     }
     if (!FilterConnector[key]) continue
 
-    const paramsValue = `${FilterConnector[key]}:"${value}"`
-    params.append('refine', paramsValue)
+    match[FilterConnector[key]] = value
+  }
+
+  console.log('match:', match)
+
+  params.match = {
+    $match: match,
   }
 
   return params
 }
 
-export const filtersAvailable = ['pageNumber', 'limit', 'query', 'region']
+export const filtersAvailable = [
+  'pageNumber',
+  'limit',
+  'query',
+  'lieu',
+  'domain',
+]

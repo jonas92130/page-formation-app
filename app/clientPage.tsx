@@ -24,16 +24,8 @@ function ClientPage(props: Props) {
           consequuntur laborum, soluta perferendis vel maxime!
         </p>
       </div>
-      <LinkList
-        facetsResponse={props.facets}
-        name="domain"
-        label="Formations par domaine"
-      />
-      <LinkList
-        facetsResponse={props.facets}
-        name="lieu"
-        label="Formation par Localisation"
-      />
+      <LinkList name="domain" label="Formations par domaine" />
+      <LinkList name="lieu" label="Formation par Localisation" />
     </main>
   )
 }

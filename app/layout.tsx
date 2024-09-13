@@ -13,8 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const decodedPath = decodeURIComponent(pathName!)
   const formatedPathName = decodedPath
     .split(hostName ?? '//')[1]
-    .toLowerCase()
-    .trim()
+    ?.toLowerCase()
+    ?.trim()
 
   const indexationRes = await client.queries.indexation({
     relativePath: 'toutes_les_pages.md',

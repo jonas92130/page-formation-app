@@ -2,9 +2,8 @@
 
 import { CPFApiHandler } from '@/back/CPFApiHandler'
 import ClientPage from './clientPage'
-import { createUrlSearchParams } from '@/lib/filter'
-import type { Metadata, ResolvingMetadata } from 'next'
-import client from '@/tina/__generated__/databaseClient'
+import { createQueryMongoParams } from '@/lib/filter'
+import { MongoDBHandler } from '@/back/MongoDBHandler'
 import { headers } from 'next/headers'
 
 type Props = {
@@ -21,11 +20,18 @@ async function Page(props: Props) {
     ...searchParams,
     [decodedKey]: decodedName,
   }
-  const searchParamsUrl = createUrlSearchParams(newParams)
-  const api = new CPFApiHandler()
-  const data = await api.getAll(searchParamsUrl)
 
-  return <ClientPage data={JSON.parse(JSON.stringify(data))} />
+  const paramsFormatted = createQueryMongoParams(newParams)
+  const api = new MongoDBHandler()
+  const results = await api.getFormations(paramsFormatted)
+  const count = await api.getFormationsCount(paramsFormatted)
+
+  const dataFormated = {
+    results,
+    total_count: count[0]?.total_count,
+  }
+
+  return <ClientPage data={JSON.parse(JSON.stringify(dataFormated))} />
 }
 
 export default Page

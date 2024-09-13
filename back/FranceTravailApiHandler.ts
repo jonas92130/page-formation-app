@@ -1,9 +1,12 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 
 export class FranceTravailApiHandler {
   bearerToken: string = ''
   private annoteaAxios = axios.create({
     baseURL: 'https://api.francetravail.io/partenaire/anotea/v1',
+  })
+  private openFormationAxios = axios.create({
+    baseURL: 'https://api.francetravail.io/partenaire/openformation/v1',
   })
 
   constructor() {
@@ -39,7 +42,9 @@ export class FranceTravailApiHandler {
         },
       }
 
-      const response = await this.annoteaAxios.request(optionsWithBearerToken)
+      const currentAxios = this.annoteaAxios
+
+      const response = await currentAxios.request(optionsWithBearerToken)
       if (response.status !== 200) {
         if (response.status === 500) {
           if (count > 0) {
@@ -94,6 +99,24 @@ export class FranceTravailApiHandler {
   async getAvis(params = {}) {
     const response = await this.queryWithBearerToken({
       url: '/avis',
+      method: 'GET',
+      params,
+    })
+    return response
+  }
+
+  async getFormationDetails(id: string, params = {}) {
+    const response = await this.queryWithBearerToken({
+      url: '/formations/' + id,
+      method: 'GET',
+      params,
+    })
+    return response
+  }
+
+  async getOrganismeDetails(siret: string | number, params = {}) {
+    const response = await this.queryWithBearerToken({
+      url: '/organismes-formateurs/' + siret,
       method: 'GET',
       params,
     })

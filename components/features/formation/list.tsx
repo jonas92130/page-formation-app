@@ -1,7 +1,7 @@
 'use client'
 
 import { FormationsResponseModel } from '@/model/formation'
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useEffect } from 'react'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -30,7 +30,7 @@ function List() {
     <div className="px-10 py-4">
       <p>Nombre de formations: {total_count}</p>
       <ul className="mt-2 flex flex-col gap-y-2">
-        {results.map((formation) => (
+        {results?.map((formation) => (
           <li key={formation.numero_formation}>
             <h2 className="text-sm">{formation.intitule_formation}</h2>
           </li>
