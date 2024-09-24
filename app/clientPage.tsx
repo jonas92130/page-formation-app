@@ -1,3 +1,5 @@
+'use client'
+
 import { FormationFacetsResponseModel } from '@/model/formation'
 import LinkList from '@/components/features/linkList'
 import React from 'react'

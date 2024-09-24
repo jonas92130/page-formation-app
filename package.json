@@ -50,6 +50,7 @@
     "tinacms-gitprovider-github": "^2.0.1",
     "typescript": "^5.5.4",
     "upstash-redis-level": "^1.1.1",
+    "vercel": "^37.5.3",
     "zod": "^3.23.8"
   }
 }
