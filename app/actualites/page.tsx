@@ -10,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { BreadcrumbSeparator } from '@/components/ui/breadcrumb'
 
 type CardProps = React.ComponentProps<typeof Card>
 
@@ -33,6 +32,7 @@ export default async function Page({ className, ...props }: CardProps) {
                   </CardHeader>
                   <CardContent className="grid gap-4">
                     <h1>{blog?.node?.description}</h1>
+                    <img src={blog?.node?.image}></img>
                   </CardContent>
                   <CardFooter>
                     <Button className="w-full">
