@@ -28,6 +28,12 @@ export const BlogCollection: Collection = {
       },
     },
     {
+      label: 'Contenu',
+      name: 'content',
+      isBody: true,
+      type: 'rich-text',
+    },
+    {
       type: 'image',
       label: "Image de l'actualité",
       name: 'image',

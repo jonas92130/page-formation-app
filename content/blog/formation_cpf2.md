@@ -1,6 +1,6 @@
 ---
-title: Les Formations à Distance Diplomantes
-date: 2024-11-02T23:00:00.000Z
+title: 'CPF : comment financer ma formation quand mes crédits sont insuffisant'
+date: 2024-10-23T22:00:00.000Z
 description: >-
   Vous ne vous sentez plus à votre place sur votre poste ou vous estimez en
   avoir fait le tour ? Vous souhaitez vous reconvertir mais vous n'avez pas
@@ -13,6 +13,6 @@ image: 'https://s3.tebi.io/page-formation/cpf.jpg'
 
 #### Lorem ipsum dolor sit amet
 
-Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate. Velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, Vutunt in culpa qui officia deserunt mollit anim id est laborum.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

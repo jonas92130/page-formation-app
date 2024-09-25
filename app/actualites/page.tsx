@@ -10,37 +10,38 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import './[id]/style.css'
 
 type CardProps = React.ComponentProps<typeof Card>
 
 export default async function Page({ className, ...props }: CardProps) {
   const { data } = await client.queries.blogConnection()
+
   return (
     <>
-      <CardTitle>Les Actualités liées au CPF</CardTitle>
+      <h1 className="min-[320px]:mb-10 min-[320px]:text-[27px]">
+        Toutes mes actualités
+      </h1>
       <div>
         {data.blogConnection.edges?.map((blog) => {
           return (
             <>
               <div key={blog?.node?.id}>
-                <Card className={cn('w-[380px]', className)} {...props}>
+                <Card className={cn('w-full', className)} {...props}>
                   <CardHeader>
                     <Link href={`/actualites/${blog?.node?._sys.filename}`}>
-                      <CardTitle>{blog?.node?.title}</CardTitle>
+                      <h2>{blog?.node?.title}</h2>
                     </Link>
                     <CardDescription>{blog?.node?.date}</CardDescription>
                   </CardHeader>
                   <CardContent className="grid gap-4">
-                    <h1>{blog?.node?.description}</h1>
+                    <p>{blog?.node?.description}</p>
                     <img src={blog?.node?.image}></img>
                   </CardContent>
                   <CardFooter>
-                    <Button className="w-full">
-                      <Link href={`/actualites/${blog?.node?._sys.filename}`}>
-                        {' '}
-                        En savoir plus
-                      </Link>
-                    </Button>
+                    <Link href={`/actualites/${blog?.node?._sys.filename}`}>
+                      <Button className="w-full"> En savoir plus</Button>
+                    </Link>
                   </CardFooter>
                 </Card>
               </div>
