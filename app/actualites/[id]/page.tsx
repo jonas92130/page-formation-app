@@ -26,12 +26,12 @@ export default async function PostPage({ params }: { params: { id: string } }) {
 
   return (
     <div>
-      <h1 className="min-[320px]:mx-2 min-[320px]:my-5">Mon actualité</h1>
-      <Breadcrumb className="font-italic min-[320px]:mx-4 min-[320px]:my-7">
+      <h1 className="max-[465px]:mx-2 max-[465px]:my-5">Mon actualité</h1>
+      <Breadcrumb className="font-italic max-[465px]:mx-4 max-[465px]:my-7">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink>
-              <Link href="/" className="min-[320px]:text-xs">
+              <Link href="/" className="max-[465px]:text-xs">
                 Home
               </Link>
             </BreadcrumbLink>
@@ -39,35 +39,35 @@ export default async function PostPage({ params }: { params: { id: string } }) {
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbLink>
-              <Link href="/actualites" className="min-[320px]:text-xs">
+              <Link href="/actualites" className="max-[465px]:text-xs">
                 Actualités
               </Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage className="min-[320px]:text-xs">
+            <BreadcrumbPage className="max-[465px]:text-xs">
               Mon actualité
             </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       <div className="bg-primary-400">
-        <h2 className="text-white max-[320px]:text-2xl min-[320px]:my-2 min-[320px]:bg-blue-400 min-[320px]:px-3 min-[320px]:py-10">
+        <h2 className="my-2 bg-blue-400 px-3 py-10 text-2xl text-white">
           {data.data.blog.title}
         </h2>
       </div>
-      <div className="min-[320px]:my-2">
-        <time className="italic min-[320px]:mx-6 min-[320px]:text-xs">
+      <div className="my-2">
+        <time className="mx-6 text-xs italic">
           {format(date, 'dd/MM/yyyy')}
         </time>
       </div>
-      <div className="min-[320px]:p-6">
+      <div className="p-6">
         <img src={data.data.blog.image}></img>
       </div>
-      <div className="min-[320px]:mx-5">
-        <h3 className="text-xl font-bold min-[320px]:mt-3">Les objectifs</h3>
-        <hr className="bg-blue-400 min-[320px]:mb-3 min-[320px]:h-2 min-[320px]:w-9/12 min-[320px]:rounded-lg" />
+      <div className="mx-5">
+        <h3 className="mt-3 text-xl font-bold">Les objectifs</h3>
+        <hr className="mb-3 h-2 w-9/12 rounded-lg bg-blue-400" />
       </div>
       <div className="p-5 text-left">
         <p>{data.data.blog.description}</p>
@@ -75,7 +75,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
           <TinaMarkdown components={{ Cta }} content={data.data.blog.content} />
         </div>
       </div>
-      <div className="flex justify-center min-[320px]:my-5">
+      <div className="my-5 flex justify-center">
         <Link href="/actualites">
           <Button className="bg-blue-400">Voir toutes les actualités</Button>
         </Link>
