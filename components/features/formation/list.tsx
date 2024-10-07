@@ -1,7 +1,7 @@
 'use client'
 
 import { FormationsResponseModel } from '@/model/formation'
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext } from 'react'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
