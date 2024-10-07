@@ -32,7 +32,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
           <BreadcrumbItem>
             <BreadcrumbLink>
               <Link href="/" className="max-[465px]:text-xs">
-                Home
+                Accueil
               </Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
@@ -63,7 +63,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
         </time>
       </div>
       <div className="p-6">
-        <img src={data.data.blog.image}></img>
+        <img src={data.data.blog.image} alt='blog image'></img>
       </div>
       <div className="mx-5">
         <h3 className="mt-3 text-xl font-bold">Les objectifs</h3>

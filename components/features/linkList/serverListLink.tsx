@@ -8,10 +8,11 @@ import { FilterConnector } from '@/lib/filter'
 
 interface Props {
   name: string
+  backgroundColor?: string
 }
 
 async function ServerListLink(props: Props) {
-  const { name } = props
+  const { name, backgroundColor } = props
 
   const api = new MongoDBHandler()
   const filterName = FilterConnector[name] ?? ''
@@ -20,14 +21,21 @@ async function ServerListLink(props: Props) {
   return (
     <>
       {facets.map((facet) => (
-        <li key={facet.value}>
-          <Button variant="link" className="w-fit" asChild>
-            <Link href={`/formations/${name}/${facet.value}`}>
-              {facet.value}
-            </Link>
-          </Button>
-        </li>
+        <div>
+          <li key={facet.value}>
+            <Button
+              variant="link"
+              className={`w-fit rounded-full ${backgroundColor} text-foreground drop-shadow-md`}
+              asChild
+            >
+              <Link href={`/formations/${name}/${facet.value}`}>
+                {facet.value}
+              </Link>
+            </Button>
+          </li>
+        </div>
       ))}
+      <p>+ Afficher toutes les catégories</p>
     </>
   )
 }

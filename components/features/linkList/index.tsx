@@ -1,9 +1,4 @@
-import { FormationFacetsResponseModel } from '@/model/formation'
 import React from 'react'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { FilterConnector } from '@/lib/filter'
-import { Suspense } from 'react'
 import ServerListLink from './serverListLink'
 
 interface Props {
@@ -16,11 +11,11 @@ function LinkList(props: Props) {
 
   return (
     <div className="mt-10">
-      <h2 className="text-2xl font-bold">{label ?? name}</h2>
-      <ul className="flex flex-wrap gap-1">
-        <Suspense fallback={<div>Loading...</div>}>
-          <ServerListLink name={name} />
-        </Suspense>
+      <h3 className="flex justify-center font-bold max-[465px]:text-lg">
+        {label ?? name}
+      </h3>
+      <ul className="flex flex-wrap gap-3">
+        <ServerListLink name={name} backgroundColor="bg-card" />
       </ul>
     </div>
   )

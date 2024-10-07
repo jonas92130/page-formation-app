@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { Card, CardHeader } from '@/components/ui/card'
 import './[id]/style.css'
-import Navbar from './component/page'
+import Navbar from './navbar/page'
 
 type CardProps = React.ComponentProps<typeof Card>
 
