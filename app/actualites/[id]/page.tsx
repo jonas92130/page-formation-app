@@ -10,8 +10,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import './style.css'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { Button } from '@/components/ui/button'
 
 export default async function PostPage({ params }: { params: { id: string } }) {

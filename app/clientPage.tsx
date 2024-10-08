@@ -4,6 +4,8 @@ import React from 'react'
 import SearchBar from '@/components/features/searchBar'
 import Navbar from './test-ui/navbar/page'
 import Formation from './test-ui/formation/page'
+import { TiArrowRight } from 'react-icons/ti'
+import Actu from './actualites/page'
 
 interface Props {
   data: any
@@ -31,23 +33,14 @@ function ClientPage(props: Props) {
             label="Se former de chez soi et à son rythme"
             backgroundColor="bg-primary"
           />
-          <div className="absolute right-6 top-1/2 -translate-y-1/2 pr-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
-            >
-              <path d="M9 18l6-6-6-6" />
-            </svg>
+          <div className="absolute right-6 top-1/2 -translate-y-1/2 pr-2 text-[30px] text-background">
+            <TiArrowRight />
           </div>
         </div>
+
         <LinkList name="domain" label="Quels domaines vous interesses ?" />
-        <LinkList name="lieu" label="Formation par Localisation" />
+        <Actu />
+        {/* <LinkList name="lieu" label="Formation par localisation" /> */}
       </main>
     </>
   )

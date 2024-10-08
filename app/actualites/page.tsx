@@ -1,27 +1,22 @@
+import React from 'react'
 import { client } from '../../tina/__generated__/databaseClient'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { Card, CardHeader } from '@/components/ui/card'
 import './[id]/style.css'
-import Navbar from './navbar/page'
+import { Button } from '@/components/ui/button'
 
 type CardProps = React.ComponentProps<typeof Card>
 
-export default async function Page({ className, ...props }: CardProps) {
+export default async function Actu({ className, ...props }: CardProps) {
   const { data } = await client.queries.blogConnection()
 
   return (
     <>
-      <Navbar />
       <div className="max-w-full">
-        <h1 className="my-10 flex justify-center bg-orange-200 px-5 py-7 max-[465px]:text-xl">
-          Toutes mes actualités
-        </h1>
-        <h2 className="mx-4 my-7 flex justify-start max-[465px]:text-lg">
-          Les Actualités liées au CPF
-        </h2>
+        <h2 className="mx-4 my-5 flex justify-start text-lg">Actualités</h2>
         <div>
-          {data.blogConnection.edges?.map((blog) => {
+          {data.blogConnection.edges?.slice(0, 3).map((blog) => {
             return (
               <>
                 <div key={blog?.node?.id} className="mx-4">
@@ -60,6 +55,10 @@ export default async function Page({ className, ...props }: CardProps) {
             )
           })}
         </div>
+
+        <Button className="items-center rounded-full">
+          Voir toutes les actualités
+        </Button>
       </div>
     </>
   )
