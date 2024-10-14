@@ -11,15 +11,20 @@ interface Props {
 }
 
 async function ServerListLink(props: Props) {
-  const { name } = props
+  const { name, backgroundColor } = props
 
   const api = new MongoDBHandler()
   const filterName = FilterConnector[name] ?? ''
   const facets = await api.getKeyValues(filterName)
   console.log('facets:', facets)
+
   return (
     <>
-      <List facets={facets} backgroundColor={'bg-primary-foreground'} name={name} />
+      <List
+        facets={facets}
+        backgroundColor={`${backgroundColor}`}
+        name={name}
+      />
     </>
   )
 }

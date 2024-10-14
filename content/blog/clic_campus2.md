@@ -1,22 +1,15 @@
 ---
-title: Les formations Clic Campus
+title: Formation clic campus
 category: Formations clic campus
-date: 2024-11-21T23:00:00.000Z
+date: 2024-10-18T22:00:00.000Z
 description: >-
   Comme des milliers d’apprenants ayant déjà utilisé notre plateforme, apprenez
-  plus rapidement avec un
-
-  programme  sur-mesure  incluant :
-
-
-  Des cours particuliers avec un professeur expérimenté qui vous est dédié.
-
-  Des exercices transmis par votre professeur.
-
-  Une plateforme d’apprentissage moderne et personnalisée selon votre niveau, en
-  accès illimité.
+  plus rapidement avec un programme  sur-mesure  incluant : Des cours
+  particuliers avec un professeur expérimenté qui vous est dédié. Des exercices
+  transmis par votre professeur. Une plateforme d’apprentissage moderne et
+  personnalisée selon votre niveau, en accès illimité.
 image: 'https://s3.tebi.io/page-formation/cliccampus.jpg'
-imageAlt: blog image
+imageAlt: clic campus image
 ---
 
 ## Pourquoi se former avec Clic Campus ?

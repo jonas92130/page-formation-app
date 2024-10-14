@@ -1,5 +1,6 @@
 ---
 title: 'CPF : comment financer ma formation quand mes crédits sont insuffisant'
+category: Formations CPF
 date: 2024-10-23T22:00:00.000Z
 description: >-
   Vous ne vous sentez plus à votre place sur votre poste ou vous estimez en

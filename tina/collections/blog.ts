@@ -15,6 +15,11 @@ export const BlogCollection: Collection = {
       type: 'string',
     },
     {
+      name: 'category',
+      label: 'Catégorie',
+      type: 'string',
+    },
+    {
       name: 'date',
       label: 'Date',
       type: 'datetime',
@@ -37,6 +42,11 @@ export const BlogCollection: Collection = {
       type: 'image',
       label: "Image de l'actualité",
       name: 'image',
+    },
+    {
+      name: 'imageAlt',
+      label: 'Image alternative',
+      type: 'string',
     },
   ],
 }

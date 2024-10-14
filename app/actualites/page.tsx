@@ -1,64 +1,51 @@
 import React from 'react'
 import { client } from '../../tina/__generated__/databaseClient'
-import Link from 'next/link'
-import { cn } from '@/lib/utils'
-import { Card, CardHeader } from '@/components/ui/card'
 import './[id]/style.css'
-import { Button } from '@/components/ui/button'
+import ActualityCard from '@/components/features/linkList/actualityCard'
 
-type CardProps = React.ComponentProps<typeof Card>
-
-export default async function Actu({ className, ...props }: CardProps) {
+export default async function Actuality() {
   const { data } = await client.queries.blogConnection()
+
+  const edges = data.blogConnection.edges ?? []
+
+  const caterories = edges.map((blog) => {
+    return blog?.node?.category
+  })
+  const categoryWithoutDoublon = [...new Set(caterories)]
+
+  const blogFilteredByCategory = categoryWithoutDoublon.map((c) => {
+    return {
+      name: c,
+      list: edges.filter((actuality) => actuality?.node?.category === c),
+    }
+  })
 
   return (
     <>
       <div className="max-w-full">
-        <h2 className="mx-4 my-5 flex justify-start text-lg">Actualités</h2>
+        <h2 className="mx-4 my-6 flex justify-start">Actualités</h2>
         <div>
-          {data.blogConnection.edges?.slice(0, 3).map((blog) => {
+          {blogFilteredByCategory.map((content, index) => {
             return (
-              <>
-                <div key={blog?.node?.id} className="mx-4">
-                  <Card
-                    className={cn(
-                      'w-full',
-                      className,
-                      'my-3 flex transform items-center overflow-hidden rounded-[12px] shadow-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-2xl'
-                    )}
-                    {...props}
-                  >
-                    <div className="flex w-full flex-row items-center">
-                      <div className="w-1/3">
-                        <img
-                          src={blog?.node?.image}
-                          alt="Blog Image"
-                          className=""
-                        />
-                      </div>
-
-                      <div className="w-2/3">
-                        <CardHeader className="p-2">
-                          <Link
-                            href={`/actualites/${blog?.node?._sys.filename}`}
-                          >
-                            <h3 className="m-0 line-clamp-2 max-[465px]:text-xs">
-                              {blog?.node?.title}
-                            </h3>
-                          </Link>
-                        </CardHeader>
-                      </div>
+              <div key={index}>
+                <h3 className="mx-4 my-2">{content.name}</h3>
+                {content.list.map((actuality) => {
+                  return (
+                    <div className="mx-4 flex lg:flex-row">
+                      <ActualityCard
+                        key={`${index}`}
+                        filename={`${actuality?.node?._sys.filename}`}
+                        image={`${actuality?.node?.image}`}
+                        title={`${actuality?.node?.title}`}
+                        alt={`${actuality?.node?.imageAlt}`}
+                      />
                     </div>
-                  </Card>
-                </div>
-              </>
+                  )
+                })}
+              </div>
             )
           })}
         </div>
-
-        <Button className="items-center rounded-full">
-          Voir toutes les actualités
-        </Button>
       </div>
     </>
   )

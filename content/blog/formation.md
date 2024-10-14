@@ -1,5 +1,6 @@
 ---
 title: 'Formation en ligne '
+category: Formations à distance
 date: 2024-10-05T22:00:00.000Z
 description: >-
   Vous ne vous sentez plus à votre place sur votre poste ou vous estimez en

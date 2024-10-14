@@ -18,7 +18,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
   const data = await client.queries.blog({
     relativePath: `${params.id}.md`,
   })
-  const date = parseISO(data.data.blog.date)
+  const date = parseISO(`${data.data.blog.date}`)
 
   const Cta = (props) => {
     return <h2>{props.heading1}</h2>
@@ -63,7 +63,7 @@ export default async function PostPage({ params }: { params: { id: string } }) {
         </time>
       </div>
       <div className="p-6">
-        <img src={data.data.blog.image} alt='blog image'></img>
+        <img src={`${data.data.blog.image}`} alt="blog image"></img>
       </div>
       <div className="mx-5">
         <h3 className="mt-3 text-xl font-bold">Les objectifs</h3>

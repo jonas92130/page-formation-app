@@ -1,5 +1,6 @@
 ---
 title: Les Formations à Distance Diplomantes
+category: Formations à distance
 date: 2024-11-02T23:00:00.000Z
 description: >-
   Vous ne vous sentez plus à votre place sur votre poste ou vous estimez en
