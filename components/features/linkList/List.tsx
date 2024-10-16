@@ -22,8 +22,8 @@ export default function List(props: Props) {
       <div
         className={
           showList
-            ? 'mx-5 my-5 flex flex-wrap gap-5 overflow-hidden'
-            : 'mx-5 my-5 flex max-h-[58dvh] flex-wrap gap-5 overflow-hidden'
+            ? 'my-5 flex flex-wrap gap-5 overflow-hidden'
+            : 'my-5 flex max-h-[58dvh] flex-wrap gap-5 overflow-hidden'
         }
       >
         {facets.map((facet) => (
@@ -32,7 +32,7 @@ export default function List(props: Props) {
               <Button
                 variant="link"
                 className={cn(
-                  `h-fit text-ellipsis whitespace-normal break-words rounded-full py-2 text-foreground drop-shadow-md`,
+                  `h-fit text-ellipsis whitespace-normal break-words rounded-full py-2 text-foreground drop-shadow-md lg:p-4`,
                   backgroundColor
                 )}
                 asChild
@@ -52,11 +52,11 @@ export default function List(props: Props) {
       >
         <div>
           {showList ? (
-            <h4 className="flex flex-row items-center gap-x-2">
+            <h4 className="flex flex-row items-center m-0">
               <TiMinus /> Afficher moins de catégories
             </h4>
           ) : (
-            <h4 className="flex flex-row items-center gap-x-2">
+            <h4 className="flex flex-row items-center m-0">
               <TiPlus /> Afficher toutes les catégories
             </h4>
           )}

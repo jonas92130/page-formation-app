@@ -11,13 +11,11 @@ export default async function ActualityHome() {
   return (
     <>
       <div className="">
-        <h2 className="mx-4 my-5 flex justify-start max-[768px]:text-lg">
-          Actualités
-        </h2>
-        <div className="flex min-[320px]:flex-col lg:flex-row">
+        <h3 className="my-5 flex justify-start lg:text-3xl">Actualités</h3>
+        <div className="flex gap-6 min-[320px]:flex-col lg:flex-row">
           {data.blogConnection.edges?.slice(0, 3).map((blog) => {
             return (
-              <div key={blog?.node?.id} className="mx-4">
+              <div key={blog?.node?.id} className="">
                 <ActualityCard
                   filename={`${blog?.node?._sys.filename}`}
                   image={`${blog?.node?.image}`}
@@ -28,7 +26,7 @@ export default async function ActualityHome() {
             )
           })}
         </div>
-        <Button className="ml-[13px] items-center rounded-full" asChild>
+        <Button className="mt-8 items-center rounded-full" asChild>
           <Link href="actualites/">Voir toutes les actualités</Link>
         </Button>
       </div>

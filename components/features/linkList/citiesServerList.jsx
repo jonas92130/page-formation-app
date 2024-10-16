@@ -7,50 +7,96 @@ export default async function CitiesServerList() {
   const { data } = await client.queries.cityConnection()
 
   return (
-    <div>
-      <h3 className="mx-5 my-7 flex text-base">Les formations par ville</h3>
-      <div className="lg:flex lg:flex-wrap">
-        {data.cityConnection.edges?.map((city) => {
-          return (
-            <div
-              className="my-4 flex h-[20dvh] basis-[34%] items-center justify-center bg-center bg-no-repeat text-white"
-              style={{
-                backgroundImage: `url(${city.node.image})`,
-              }}
-            >
-              <h3 className="text-center">{city.node.title}</h3>
-            </div>
-          )
-        })}
+    <div className="bg-white lg:flex-row">
+      <div className="mb-8">
+        <h3 className="mb-3 font-bold lg:text-3xl">Les formations par ville</h3>
       </div>
+      <div className="items-center lg:flex">
+        <div className="lg:w-3/5">
+          <div className="lg:grid lg:grid-cols-2 gap-4">
+            {data.cityConnection.edges?.map((city) => {
+              return (
+                <div
+                  key={city.node.title}
+                  className="relative my-5 h-[21vh] w-full rounded-lg bg-cover bg-center shadow-lg lg:h-[24vh]"
+                  style={{
+                    backgroundImage: `url(${city.node.image})`,
+                  }}
+                >
+                  <div className="absolute inset-0 flex items-center justify-center rounded-lg">
+                    <h3 className="text-2xl font-bold text-white">
+                      {city.node.title}
+                    </h3>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
 
-      <CityLink />
+        <div className="lg:w-3/5">
+          <div className="mb-4 flex justify-center text-sm font-bold lg:mb-6 lg:mt-8 lg:text-lg">
+            <CityLink />
+          </div>
 
-      <Button className="mx-4 my-4 rounded-full px-8">
-        <Link href="/city">Voir toutes les villes</Link>
-      </Button>
+          <div className="relative flex justify-start lg:left-[110px] lg:mt-28">
+            <Button className="rounded-full bg-primary px-8 py-3 font-bold text-white shadow-md">
+              <Link href="/city">Voir toutes les villes</Link>
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
 
 function CityLink() {
   return (
-    <div className="m-2 flex justify-evenly max-[768px]:text-sm">
-      <Link href="" className="font-bold">
-        Lille
-      </Link>
-      <Link href="" className="font-bold">
-        Nantes
-      </Link>
-      <Link href="" className="font-bold">
-        Nice
-      </Link>
-      <Link href="" className="font-bold">
-        Strasbourg
-      </Link>
-      <Link href="" className="font-bold">
-        Rennes
-      </Link>
+    <div>
+      <div className="mb-3 flex gap-2 text-xs lg:text-base lg:gap-4">
+        <Link href="">Lille</Link>
+        <Link href="">Nantes</Link>
+        <Link href="">Nice</Link>
+        <Link href="">Strasbourg</Link>
+        <Link href="">Rennes</Link>
+      </div>
+      <div className="visible max-[465px]:hidden lg:text-base">
+        <div className="mb-3 flex lg:gap-4">
+          <Link href="">Lille</Link>
+          <Link href="">Nantes</Link>
+          <Link href="">Nice</Link>
+          <Link href="">Strasbourg</Link>
+          <Link href="">Rennes</Link>
+        </div>
+        <div className="mb-3 flex lg:gap-4">
+          <Link href="">Lille</Link>
+          <Link href="">Nantes</Link>
+          <Link href="">Nice</Link>
+          <Link href="">Strasbourg</Link>
+          <Link href="">Rennes</Link>
+        </div>
+        <div className="mb-3 flex lg:gap-4">
+          <Link href="">Lille</Link>
+          <Link href="">Nantes</Link>
+          <Link href="">Nice</Link>
+          <Link href="">Strasbourg</Link>
+          <Link href="">Rennes</Link>
+        </div>
+        <div className="mb-3 flex lg:gap-4">
+          <Link href="">Lille</Link>
+          <Link href="">Nantes</Link>
+          <Link href="">Nice</Link>
+          <Link href="">Strasbourg</Link>
+          <Link href="">Rennes</Link>
+        </div>
+        <div className="mb-3 flex lg:gap-4">
+          <Link href="">Lille</Link>
+          <Link href="">Nantes</Link>
+          <Link href="">Nice</Link>
+          <Link href="">Strasbourg</Link>
+          <Link href="">Rennes</Link>
+        </div>
+      </div>
     </div>
   )
 }
