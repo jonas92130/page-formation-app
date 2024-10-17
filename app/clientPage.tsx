@@ -2,10 +2,10 @@ import { FormationFacetsResponseModel } from '@/model/formation'
 import LinkList from '@/components/features/linkList'
 import React from 'react'
 import Formation from './test-ui/formation/formation'
-import { FaArrowRight } from 'react-icons/fa'
 import ActualityHome from './actualites/actualityHome'
 import CitiesServerList from '@/components/features/linkList/citiesServerList'
-import SearchBar from '@/components/searchBar'
+import SearchBar from '@/components/features/Banner'
+import Footer from '@/components/features/footer'
 
 interface Props {
   data: any
@@ -19,10 +19,11 @@ function ClientPage(props: Props) {
 
   return (
     <main>
-      <SearchBar />
-
-      <div className="mx-auto flex flex-col px-2 lg:max-w-[1200px]">
-        <div className="flex justify-center gap-5 min-[320px]:flex-col lg:flex-row">
+      <div>
+        <SearchBar />
+      </div>
+      <div className="mx-auto flex flex-col px-2 lg:max-w-[1094px]">
+        <div className="flex flex-col items-center justify-center gap-5 pt-5 lg:flex-row">
           <Formation
             title="Formations CPF"
             label="Se former avec son compte personnel de formation"
@@ -35,7 +36,6 @@ function ClientPage(props: Props) {
             isArrow={true}
           />
         </div>
-
         <LinkList
           name="domain"
           label="Quels domaines vous interesses ?"
@@ -54,6 +54,7 @@ function ClientPage(props: Props) {
           backgroundColor="bg-secondary/15 text-primary-background"
         />
       </div>
+      <Footer />
     </main>
   )
 }

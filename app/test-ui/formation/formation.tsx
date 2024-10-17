@@ -13,10 +13,10 @@ export default function Formation(props: Props) {
 
   return (
     <div
-      className={`gap-3 rounded-xl ${backgroundColor} flex h-[15dvh] flex-col justify-center p-[15px] text-background lg:w-[50%]`}
+      className={`gap-3 rounded-xl ${backgroundColor} flex h-[15dvh] w-[100%] flex-col justify-center p-[15px] text-background lg:w-[40%]`}
     >
       {isArrow && (
-        <div className="absolute right-7 top-[70%] -translate-y-1/2 pr-2 text-[20px] text-background">
+        <div className="absolute right-80 top-[95%] flex text-[20px] text-background">
           <FaArrowRight />
         </div>
       )}

@@ -5,7 +5,6 @@ import { Document } from 'mongodb'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { TiPlus, TiMinus } from 'react-icons/ti'
-import { cn } from '@/lib/utils'
 
 interface Props {
   facets: Document[]
@@ -18,7 +17,7 @@ export default function List(props: Props) {
   const [showList, setShowList] = useState(false)
 
   return (
-    <>
+    <div>
       <div
         className={
           showList
@@ -29,15 +28,11 @@ export default function List(props: Props) {
         {facets.map((facet) => (
           <div key={facet.value}>
             <li>
-              <Button
-                variant="link"
-                className={cn(
-                  `h-fit text-ellipsis whitespace-normal break-words rounded-full py-2 text-foreground drop-shadow-md lg:p-4`,
-                  backgroundColor
-                )}
-                asChild
-              >
-                <Link href={`/formations/${name}/${facet.value}`}>
+              <Button variant="list" className={backgroundColor}>
+                <Link
+                  href={`/formations/${name}/${facet.value}`}
+                  className="lg:text-base"
+                >
                   {facet.value}
                 </Link>
               </Button>
@@ -47,21 +42,21 @@ export default function List(props: Props) {
       </div>
       <Button
         onClick={() => setShowList(!showList)}
-        className="text-sm text-foreground no-underline"
+        className="p-0 text-sm text-foreground no-underline"
         variant="link"
       >
         <div>
           {showList ? (
-            <h4 className="flex flex-row items-center m-0">
+            <h4 className="m-0 flex flex-row items-center">
               <TiMinus /> Afficher moins de catégories
             </h4>
           ) : (
-            <h4 className="flex flex-row items-center m-0">
+            <h4 className="m-0 flex flex-row items-center">
               <TiPlus /> Afficher toutes les catégories
             </h4>
           )}
         </div>
       </Button>
-    </>
+    </div>
   )
 }

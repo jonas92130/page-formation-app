@@ -7,13 +7,13 @@ export default async function CitiesServerList() {
   const { data } = await client.queries.cityConnection()
 
   return (
-    <div className="bg-white lg:flex-row">
+    <div className="mt-20 bg-white pt-6 lg:flex-row">
       <div className="mb-8">
         <h3 className="mb-3 font-bold lg:text-3xl">Les formations par ville</h3>
       </div>
       <div className="items-center lg:flex">
         <div className="lg:w-3/5">
-          <div className="lg:grid lg:grid-cols-2 gap-4">
+          <div className="gap-4 lg:grid lg:grid-cols-2">
             {data.cityConnection.edges?.map((city) => {
               return (
                 <div
@@ -24,7 +24,7 @@ export default async function CitiesServerList() {
                   }}
                 >
                   <div className="absolute inset-0 flex items-center justify-center rounded-lg">
-                    <h3 className="text-2xl font-bold text-white">
+                    <h3 className="text-3xl font-bold text-white">
                       {city.node.title}
                     </h3>
                   </div>
@@ -53,14 +53,14 @@ export default async function CitiesServerList() {
 function CityLink() {
   return (
     <div>
-      <div className="mb-3 flex gap-2 text-xs lg:text-base lg:gap-4">
+      <div className="mb-3 flex gap-2 text-xs lg:gap-4 lg:text-lg">
         <Link href="">Lille</Link>
         <Link href="">Nantes</Link>
         <Link href="">Nice</Link>
         <Link href="">Strasbourg</Link>
         <Link href="">Rennes</Link>
       </div>
-      <div className="visible max-[465px]:hidden lg:text-base">
+      <div className="visible max-[465px]:hidden lg:text-lg">
         <div className="mb-3 flex lg:gap-4">
           <Link href="">Lille</Link>
           <Link href="">Nantes</Link>

@@ -10,12 +10,12 @@ export default async function ActualityHome() {
 
   return (
     <>
-      <div className="">
+      <div className='mt-20'>
         <h3 className="my-5 flex justify-start lg:text-3xl">Actualités</h3>
-        <div className="flex gap-6 min-[320px]:flex-col lg:flex-row">
+        <div className="flex gap-6 min-[320px]:flex-col lg:flex-row pt-5">
           {data.blogConnection.edges?.slice(0, 3).map((blog) => {
             return (
-              <div key={blog?.node?.id} className="">
+              <div key={blog?.node?.id}>
                 <ActualityCard
                   filename={`${blog?.node?._sys.filename}`}
                   image={`${blog?.node?.image}`}
