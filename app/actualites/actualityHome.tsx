@@ -10,9 +10,9 @@ export default async function ActualityHome() {
 
   return (
     <>
-      <div className='mt-20'>
+      <div className="mt-20">
         <h3 className="my-5 flex justify-start lg:text-3xl">Actualités</h3>
-        <div className="flex gap-6 min-[320px]:flex-col lg:flex-row pt-5">
+        <div className="flex w-full gap-6 pt-5 min-[320px]:flex-col lg:flex-row">
           {data.blogConnection.edges?.slice(0, 3).map((blog) => {
             return (
               <div key={blog?.node?.id}>

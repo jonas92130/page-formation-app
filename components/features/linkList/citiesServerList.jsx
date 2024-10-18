@@ -60,7 +60,7 @@ function CityLink() {
         <Link href="">Strasbourg</Link>
         <Link href="">Rennes</Link>
       </div>
-      <div className="visible max-[465px]:hidden lg:text-lg">
+      <div className="visible text-xs max-[465px]:hidden lg:text-lg">
         <div className="mb-3 flex lg:gap-4">
           <Link href="">Lille</Link>
           <Link href="">Nantes</Link>

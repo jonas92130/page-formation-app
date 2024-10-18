@@ -7,19 +7,19 @@ import Link from 'next/link'
 
 export default function SearchBar() {
   return (
-    <div className="relative flex justify-center lg:pt-[50px]">
+    <div className="relative flex justify-center pb-5 lg:pt-[50px]">
       <div
         className="absolute bottom-0 left-0 right-0 top-0 bg-primary lg:w-[100%]"
-        style={{ clipPath: 'circle(94.5% at 50% 0)' }}
+        style={{ clipPath: 'circle(95% at 50% 0)' }}
       ></div>
-      <div className="visible relative lg:w-1/2 max-[768px]:hidden">
+      <div className="visible relative max-[768px]:hidden lg:w-1/2">
         <img src="/searchbar.png" alt="Search Bar" />
       </div>
-      <div className="relative flex lg:w-1/2 flex-col gap-5">
+      <div className="relative flex w-[80%] flex-col gap-5 lg:w-1/2">
         <h1 className="visible m-0 pt-5 text-background max-[768px]:hidden">
           Comparez, choisissez, progressez.
         </h1>
-        <h3 className="visible mt-2 text-base font-extralight uppercase text-background lg:hidden lg:font-semibold">
+        <h3 className="visible m-0 mt-5 text-base font-extralight uppercase text-background lg:hidden lg:font-semibold">
           388 867 formations,
           <br /> et forcément la vôtre
         </h3>
@@ -61,18 +61,18 @@ export default function SearchBar() {
 
 function Search() {
   return (
-    <div className="flex flex-col gap-5 lg:flex-row">
-      <div className="flex flex-col gap-5">
-        <div className="flex flex-col gap-6 lg:w-[155%] lg:flex-row">
+    <div className="flex w-full flex-col gap-5 lg:flex-row">
+      <div className="flex w-full flex-col gap-5">
+        <div className="flex flex-col gap-6 lg:flex-row">
           <Input
             placeholder="Métier, Cértification, formation"
-            className="placeholder:gray-100 lg:w-[200%] text-xs placeholder:opacity-40"
+            className="placeholder:gray-100 text-xs placeholder:opacity-40"
             type="text"
           />
           <Input
             placeholder="Où ?"
             type="text"
-            className="placeholder:gray-100 lg:w-[200%] text-xs placeholder:opacity-40"
+            className="placeholder:gray-100 text-xs placeholder:opacity-40"
           />
         </div>
         <div className="flex items-center gap-2">
@@ -86,7 +86,7 @@ function Search() {
         </div>
       </div>
       <div className="flex justify-center">
-        <Button className="flex w-fit items-center gap-2 rounded-full bg-secondary py-3 hover:bg-secondary">
+        <Button className="flex w-fit items-center gap-2 px-4 rounded-full bg-secondary py-3 hover:bg-secondary">
           <FaSearch className="text-background" />
           <p className="visible text-sm font-semibold text-white lg:hidden">
             Trouver ma formation
