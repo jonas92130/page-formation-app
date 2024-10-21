@@ -12,14 +12,14 @@ export default function SearchBar() {
         className="absolute bottom-0 left-0 right-0 top-0 bg-primary max-[465px]:mb-[-45px] lg:w-[100%]"
         style={{ clipPath: 'circle(85% at 50% 0)' }}
       ></div>
-      <div className="visible relative max-[768px]:hidden lg:w-1/3">
+      <div className="visible max-[768px]:hidden sm:relative lg:w-1/3">
         <img src="/searchbar.png" alt="Search Bar" />
       </div>
       <div className="relative flex w-[80%] flex-col gap-6 lg:w-2/3">
         <h1 className="visible m-0 pt-5 text-background max-[768px]:hidden">
           Comparez, choisissez, progressez.
         </h1>
-        <h3 className="visible m-0 mt-5 text-base font-extralight uppercase text-background lg:hidden lg:font-semibold">
+        <h3 className="visible m-0 mt-5 text-base font-extralight uppercase text-background min-[768px]:hidden lg:font-semibold">
           388 867 formations,
           <br /> et forcément la vôtre
         </h3>
