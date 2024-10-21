@@ -15,7 +15,7 @@ export default function SearchBar() {
       <div className="visible relative max-[768px]:hidden lg:w-1/3">
         <img src="/searchbar.png" alt="Search Bar" />
       </div>
-      <div className="relative flex w-[87%] flex-col gap-6 lg:w-2/3">
+      <div className="relative flex w-[80%] flex-col gap-6 lg:w-2/3">
         <h1 className="visible m-0 pt-5 text-background max-[768px]:hidden">
           Comparez, choisissez, progressez.
         </h1>
@@ -23,12 +23,12 @@ export default function SearchBar() {
           388 867 formations,
           <br /> et forcément la vôtre
         </h3>
-        <h3 className="visible text-background max-[768px]:hidden">
+        <h3 className="visible m-0 text-background max-[768px]:hidden">
           <span className="text-secondary">388 867 formations</span> à comparer
           pour trouver celle <br /> qui vous correspond vraiment.
         </h3>
         <Search />
-        <div className="visible flex w-[62%] flex-wrap gap-x-2 gap-y-4 max-[768px]:hidden">
+        <div className="visible flex w-[62%] flex-wrap items-center gap-x-6 gap-y-6 pt-4 max-[768px]:hidden">
           <Button variant="list" className="bg-card">
             <Link href="">Agriculture & Peche</Link>
           </Button>
@@ -50,7 +50,7 @@ export default function SearchBar() {
         </div>
 
         <div className="visible flex gap-2 max-[768px]:hidden">
-          <Button variant="list" className="bg-secondary">
+          <Button variant="list" className="bg-secondary text-background">
             <Link href="">Toutes les catégories</Link>
           </Button>
         </div>
@@ -62,7 +62,7 @@ export default function SearchBar() {
 function Search() {
   return (
     <div className="flex w-full flex-col gap-5 lg:flex-row">
-      <div className="flex w-full flex-col gap-7">
+      <div className="flex flex-col gap-7 lg:w-[55%]">
         <div className="flex flex-col gap-6 lg:flex-row">
           <Input
             placeholder="Métier, Cértification, formation"
