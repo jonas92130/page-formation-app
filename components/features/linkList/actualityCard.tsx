@@ -17,7 +17,7 @@ export default async function ActualityCard(props: Props) {
     <>
       <Card
         className={cn(
-          'flex h-28 transform items-center overflow-hidden rounded-[12px] lg:max-w-[50%] lg:w-[80%] shadow-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-lg lg:h-[25vh]'
+          'flex h-28 w-[100%] transform items-center overflow-hidden rounded-[12px] shadow-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-lg md:max-w-[80%] lg:h-[25vh] lg:w-[80%]'
         )}
       >
         <div className="flex h-full w-full items-center">

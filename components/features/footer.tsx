@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div className="mt-16 flex flex-col gap-6 bg-secondary/90 p-5 text-xs text-background lg:p-16 text-base">
+    <div className="mt-16 flex flex-col gap-6 bg-secondary/90 p-5 text-sm text-background lg:p-16">
       <div className="flex flex-col gap-3 lg:flex-row">
         <a href="">Liste des Formations</a>
         <a href="">Liste des Formations à distance</a>

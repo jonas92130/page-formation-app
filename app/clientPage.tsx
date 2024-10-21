@@ -22,7 +22,7 @@ function ClientPage(props: Props) {
       <div>
         <SearchBar />
       </div>
-      <div className="mx-auto flex flex-col px-2 lg:max-w-[1094px]">
+      <div className="mx-auto flex flex-col px-2 lg:max-w-[1400px]">
         <div className="flex flex-col items-center justify-center gap-5 pt-4 lg:flex-row">
           <Formation
             title="Formations CPF"
