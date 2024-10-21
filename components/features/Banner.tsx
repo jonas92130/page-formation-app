@@ -7,15 +7,15 @@ import Link from 'next/link'
 
 export default function SearchBar() {
   return (
-    <div className="relative flex justify-center pb-5 lg:pt-[50px]">
+    <div className="relative flex justify-center pb-12 lg:pt-[50px]">
       <div
-        className="absolute bottom-0 left-0 right-0 top-0 bg-primary lg:w-[100%]"
-        style={{ clipPath: 'circle(95% at 50% 0)' }}
+        className="absolute bottom-0 left-0 right-0 top-0 bg-primary max-[465px]:mb-[-45px] lg:w-[100%]"
+        style={{ clipPath: 'circle(85% at 50% 0)' }}
       ></div>
-      <div className="visible relative max-[768px]:hidden lg:w-1/2">
+      <div className="visible relative max-[768px]:hidden lg:w-1/3">
         <img src="/searchbar.png" alt="Search Bar" />
       </div>
-      <div className="relative flex w-[80%] flex-col gap-5 lg:w-1/2">
+      <div className="relative flex w-[87%] flex-col gap-6 lg:w-2/3">
         <h1 className="visible m-0 pt-5 text-background max-[768px]:hidden">
           Comparez, choisissez, progressez.
         </h1>
@@ -62,7 +62,7 @@ export default function SearchBar() {
 function Search() {
   return (
     <div className="flex w-full flex-col gap-5 lg:flex-row">
-      <div className="flex w-full flex-col gap-5">
+      <div className="flex w-full flex-col gap-7">
         <div className="flex flex-col gap-6 lg:flex-row">
           <Input
             placeholder="Métier, Cértification, formation"
@@ -79,14 +79,14 @@ function Search() {
           <Checkbox id="formation-cpf" />
           <label
             htmlFor="formation-cpf"
-            className="text-xs font-thin text-background"
+            className="text-xs font-thin text-background lg:text-base"
           >
             Formations financées par le CPF
           </label>
         </div>
       </div>
       <div className="flex justify-center">
-        <Button className="flex w-fit items-center gap-2 px-4 rounded-full bg-secondary py-3 hover:bg-secondary">
+        <Button className="flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-3 hover:bg-secondary">
           <FaSearch className="text-background" />
           <p className="visible text-sm font-semibold text-white lg:hidden">
             Trouver ma formation

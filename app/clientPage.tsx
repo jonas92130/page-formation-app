@@ -23,7 +23,7 @@ function ClientPage(props: Props) {
         <SearchBar />
       </div>
       <div className="mx-auto flex flex-col px-2 lg:max-w-[1094px]">
-        <div className="flex flex-col items-center justify-center gap-5 pt-5 lg:flex-row">
+        <div className="flex flex-col items-center justify-center gap-5 pt-4 lg:flex-row">
           <Formation
             title="Formations CPF"
             label="Se former avec son compte personnel de formation"
@@ -45,7 +45,7 @@ function ClientPage(props: Props) {
         <LinkList
           name="domain"
           label="Les domaines professionnels"
-          backgroundColor="bg-primary text-primary-foreground"
+          backgroundColor="bg-primary/85 text-primary-foreground"
         />
         <CitiesServerList />
         <LinkList
