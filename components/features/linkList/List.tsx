@@ -28,7 +28,10 @@ export default function List(props: Props) {
         {facets.map((facet) => (
           <div key={facet.value}>
             <li>
-              <Button variant="list" className={`${backgroundColor} h-auto`}>
+              <Button
+                variant="list"
+                className={`${backgroundColor} px-5 py-6 md:py-7 lg:py-7`}
+              >
                 <Link
                   href={`/formations/${name}/${facet.value}`}
                   className="lg:text-base"
