@@ -7,7 +7,7 @@ export default async function CitiesServerList() {
   const { data } = await client.queries.cityConnection()
 
   return (
-    <div className="mt-20 bg-white pt-6 lg:flex-row">
+    <div className="mt-20 pt-6 lg:flex-row">
       <div className="mb-8">
         <h3 className="mb-3 font-bold lg:text-3xl">Les formations par ville</h3>
       </div>
