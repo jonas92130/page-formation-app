@@ -53,14 +53,14 @@ export default async function CitiesServerList() {
 function CityLink() {
   return (
     <div>
-      <div className="mb-3 flex gap-2 text-xs lg:gap-4 lg:text-lg">
+      <div className="mb-3 flex gap-2 text-sm md:text-lg lg:gap-4 lg:text-xl">
         <Link href="">Lille</Link>
         <Link href="">Nantes</Link>
         <Link href="">Nice</Link>
         <Link href="">Strasbourg</Link>
         <Link href="">Rennes</Link>
       </div>
-      <div className="visible text-xs max-[1020px]:hidden lg:text-lg">
+      <div className="visible text-xs max-[1020px]:hidden lg:text-xl">
         <div className="mb-3 flex gap-2 lg:gap-4">
           <Link href="">Lille</Link>
           <Link href="">Nantes</Link>

@@ -28,29 +28,32 @@ export default function SearchBar() {
           pour trouver celle <br /> qui vous correspond vraiment.
         </h3>
         <Search />
-        <div className="visible flex w-[62%] flex-wrap items-center gap-x-6 gap-y-6 pt-4 max-[768px]:hidden">
-          <Button variant="list" className="bg-card">
+        <div className="visible flex flex-wrap items-center gap-x-6 gap-y-6 pt-4 max-[768px]:hidden lg:w-[62%]">
+          <Button variant="list" className="bg-card px-5 py-6">
             <Link href="">Agriculture & Peche</Link>
           </Button>
-          <Button variant="list" className="bg-card">
+          <Button variant="list" className="bg-card px-5 py-6">
             <Link href="">Anglais</Link>
           </Button>
-          <Button variant="list" className="bg-card">
+          <Button variant="list" className="bg-card px-5 py-6">
             <Link href="">Secrétariat</Link>
           </Button>
-          <Button variant="list" className="bg-card">
+          <Button variant="list" className="bg-card px-5 py-6">
             <Link href="">Esthétique</Link>
           </Button>
-          <Button variant="list" className="bg-card">
+          <Button variant="list" className="bg-card px-5 py-6">
             <Link href="">Anglais</Link>
           </Button>
-          <Button variant="list" className="bg-card">
+          <Button variant="list" className="bg-card px-5 py-6">
             <Link href="">VAE</Link>
           </Button>
         </div>
 
         <div className="visible flex gap-2 max-[768px]:hidden">
-          <Button variant="list" className="bg-secondary text-background">
+          <Button
+            variant="list"
+            className="bg-secondary px-5 py-6 text-background"
+          >
             <Link href="">Toutes les catégories</Link>
           </Button>
         </div>

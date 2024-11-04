@@ -25,7 +25,7 @@ export default async function ActualityHome() {
             )
           })}
         </div>
-        <Button className="mt-8 items-center rounded-full" asChild>
+        <Button className="mt-8 items-center rounded-full p-6" asChild>
           <Link href="actualites/">Voir toutes les actualités</Link>
         </Button>
       </div>

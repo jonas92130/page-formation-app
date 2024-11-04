@@ -51,11 +51,17 @@ export default function List(props: Props) {
         <div>
           {showList ? (
             <h4 className="m-0 flex flex-row items-center">
-              <TiMinus /> Afficher moins de catégories
+              <span className="text-lg font-extrabold">
+                <TiMinus />
+              </span>
+              Afficher moins de catégories
             </h4>
           ) : (
-            <h4 className="m-0 flex flex-row items-center">
-              <TiPlus /> Afficher toutes les catégories
+            <h4 className="m-0 flex flex-row items-center font-bold">
+              <span className="text-lg font-extrabold">
+                <TiPlus />
+              </span>
+              Afficher toutes les catégories
             </h4>
           )}
         </div>
