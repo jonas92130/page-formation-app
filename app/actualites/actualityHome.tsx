@@ -12,7 +12,7 @@ export default async function ActualityHome() {
     <>
       <div className="mt-20">
         <h3 className="my-5 flex justify-start lg:text-3xl">Actualités</h3>
-        <div className="flex items-center justify-center gap-6 pt-5 flex-col md:flex-row lg:flex-row">
+        <div className="flex flex-col items-center justify-center gap-6 pt-5 md:flex-row lg:flex-row lg:gap-16">
           {data.blogConnection.edges?.slice(0, 3).map((blog) => {
             return (
               <ActualityCard

@@ -23,7 +23,7 @@ function ClientPage(props: Props) {
         <SearchBar />
       </div>
       <div className="mx-8 flex flex-col lg:mx-36 lg:max-w-[1400px]">
-        <div className="flex flex-col items-center justify-center gap-24 pt-16 lg:flex-row">
+        <div className="flex flex-col items-center justify-center gap-12 lg:gap-24 pt-16 lg:flex-row">
           <Formation
             title="Formations CPF"
             label="Se former avec son compte personnel de formation"
