@@ -14,8 +14,10 @@ import { AutoComplete } from '../ui/autocomplete'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { useForm } from 'react-hook-form'
+import { Checkbox } from '../ui/checkbox'
 import { useRouter } from 'next/navigation'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
+import { FaSearch } from 'react-icons/fa'
 import useSWR from 'swr'
 import axios from 'axios'
 import { FormationFacetsResponseModel } from '@/model/formation'
@@ -75,46 +77,74 @@ function SearchBar(props: Props) {
   return (
     <Form {...form}>
       <form
-        className="mx-auto mt-8 flex w-fit items-center gap-x-4"
+        className="flex w-full flex-col gap-5 lg:flex-row"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
-        <FormField
-          control={form.control}
-          name="query"
-          defaultValue={queryParams}
-          render={(fields) => (
-            <FormItem>
-              <FormLabel />
-              <FormControl>
-                <Input {...fields.field} placeholder="métier..." />
-              </FormControl>
-              <FormDescription />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="lieu"
-          defaultValue={cityParams}
-          render={(fields) => (
-            <FormItem>
-              <FormLabel />
-              <FormControl>
-                <AutoComplete
-                  options={regionOptionsWithNoValue}
-                  onValueChange={fields.field.onChange}
-                  value={fields.field.value}
-                  isLoading={isLoading}
-                  placeholder="ville, lieu,..."
-                />
-              </FormControl>
-              <FormDescription />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Search</Button>
+        <div className="flex flex-col gap-7 lg:w-[55%]">
+          <div className="flex flex-col gap-6 lg:flex-row">
+            <FormField
+              control={form.control}
+              name="query"
+              defaultValue={queryParams}
+              render={(fields) => (
+                <FormItem>
+                  <FormLabel />
+                  <FormControl>
+                    <Input
+                      {...fields.field}
+                      placeholder="Métier, Certification, formation"
+                      className="placeholder:gray-100 text-xs placeholder:opacity-40"
+                    />
+                  </FormControl>
+                  <FormDescription />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lieu"
+              defaultValue={cityParams}
+              render={(fields) => (
+                <FormItem>
+                  <FormLabel />
+                  <FormControl>
+                    <AutoComplete
+                      options={regionOptionsWithNoValue}
+                      onValueChange={fields.field.onChange}
+                      value={fields.field.value}
+                      isLoading={isLoading}
+                      placeholder="ville, lieu,..."
+                      className="placeholder:gray-100 text-xs placeholder:opacity-40"
+                    />
+                  </FormControl>
+                  <FormDescription />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox id="formation-cpf" />
+            <label
+              htmlFor="formation-cpf"
+              className="text-xs font-thin text-background lg:text-base"
+            >
+              Formations financées par le CPF
+            </label>
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <Button
+            className="flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-3 hover:bg-secondary"
+            type="submit"
+          >
+            <FaSearch className="text-background" />
+            <p className="visible text-sm font-semibold text-white lg:hidden">
+              Trouver ma formation
+            </p>
+          </Button>
+        </div>
       </form>
     </Form>
   )

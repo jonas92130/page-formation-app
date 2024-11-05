@@ -17,6 +17,7 @@ type AutoCompleteProps = {
   isLoading?: boolean
   disabled?: boolean
   placeholder?: string
+  className?: string
 }
 
 export const AutoComplete = ({
@@ -27,6 +28,7 @@ export const AutoComplete = ({
   onValueChange,
   disabled,
   isLoading = false,
+  className,
 }: AutoCompleteProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -86,7 +88,13 @@ export const AutoComplete = ({
   )
 
   return (
-    <CommandPrimitive onKeyDown={handleKeyDown}>
+    <CommandPrimitive
+      onKeyDown={handleKeyDown}
+      className={cn(
+        'text-primary-background w-full rounded-md border border-b-0 bg-card text-base focus:border',
+        className
+      )}
+    >
       <div>
         <CommandInput
           ref={inputRef}
@@ -96,13 +104,13 @@ export const AutoComplete = ({
           onFocus={() => setOpen(true)}
           placeholder={placeholder}
           disabled={disabled}
-          className="text-base"
+          className="border-none outline-none"
         />
       </div>
-      <div className="relative mt-1">
+      <div className="relative border-none outline-none">
         <div
           className={cn(
-            'absolute top-0 z-10 w-full rounded-xl bg-white outline-none animate-in fade-in-0 zoom-in-95',
+            'absolute top-0 z-10 w-full rounded-xl border-none bg-white outline-none animate-in fade-in-0 zoom-in-95',
             isOpen ? 'block' : 'hidden'
           )}
         >
