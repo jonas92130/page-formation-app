@@ -1,26 +1,20 @@
-import { FormationFacetsResponseModel } from '@/model/formation'
 import React from 'react'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { FilterConnector } from '@/lib/filter'
-import { Suspense } from 'react'
 import ServerListLink from './serverListLink'
 
 interface Props {
   name: string
   label?: string
+  backgroundColor: string
 }
 
 function LinkList(props: Props) {
-  const { name, label } = props
+  const { name, label, backgroundColor } = props
 
   return (
-    <div className="mt-10">
-      <h2 className="text-2xl font-bold">{label ?? name}</h2>
-      <ul className="flex flex-wrap gap-1">
-        <Suspense fallback={<div>Loading...</div>}>
-          <ServerListLink name={name} />
-        </Suspense>
+    <div className="mt-20">
+      <h3 className="flex text-base font-bold lg:text-3xl">{label ?? name}</h3>
+      <ul className="flex flex-wrap gap-3">
+        <ServerListLink name={name} backgroundColor={`${backgroundColor}`} />
       </ul>
     </div>
   )

@@ -7,6 +7,8 @@ import { defineConfig, LocalAuthProvider } from 'tinacms'
 import { PageCollection } from './collections/page'
 import { FormationsPagesCollections } from './collections/formationsPage'
 import { IndexationPageCollection } from './collections/indexation'
+import { BlogCollection } from './collections/blog'
+import { CityCollection } from './collections/city'
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
@@ -31,6 +33,8 @@ export default defineConfig({
       PageCollection,
       IndexationPageCollection,
       ...FormationsPagesCollections,
+      BlogCollection,
+      CityCollection,
     ],
   },
 })
