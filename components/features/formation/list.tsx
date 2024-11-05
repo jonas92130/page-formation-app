@@ -5,13 +5,19 @@ import { createContext, useContext } from 'react'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 
 interface Props {
   data: FormationsResponseModel
   children: React.ReactNode
 }
-
-const FormationListContext = createContext<Props | null>(null)
 
 function FormationList(props: Props) {
   const {} = props
@@ -22,19 +28,46 @@ function FormationList(props: Props) {
   )
 }
 
+const FormationListContext = createContext<Props | null>(null)
+
+function FormationCard() {
+  const props = useContext(FormationListContext)
+  const { results } = props!.data
+
+  return (
+    <div>
+      {results?.map((formation) => (
+        <Card key={formation.numero_formation}>
+          <CardHeader>
+            <CardTitle>{formation.intitule_formation}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>{formation.nombre_heures_total_mean}h de formation</p>
+            <p>EUR {formation.frais_ttc_tot_mean}</p>
+            <p>
+              {formation.nom_region}, {formation.code_departement}
+              {/* {formation.code_region} */}
+            </p>
+            <p>Certification RNCP {formation.code_rncp}</p>
+          </CardContent>
+          <CardFooter>
+            <Button>En savoir plus</Button>
+          </CardFooter>
+        </Card>
+      ))}
+    </div>
+  )
+}
+
 function List() {
   const props = useContext(FormationListContext)
-  const { results, total_count } = props!.data
+  const { total_count } = props!.data
 
   return (
     <div className="px-10 py-4">
       <p>Nombre de formations: {total_count}</p>
       <ul className="mt-2 flex flex-col gap-y-2">
-        {results?.map((formation) => (
-          <li key={formation.numero_formation}>
-            <h2 className="text-sm">{formation.intitule_formation}</h2>
-          </li>
-        ))}
+        <FormationCard />
       </ul>
     </div>
   )
@@ -84,4 +117,5 @@ export {
   FormationList as FormationListContainer,
   List as FormationList,
   Tabs as FormationTabs,
+  FormationCard,
 }
