@@ -11,9 +11,9 @@ function ClientPage(props: Props) {
   console.log(data)
   return (
     <>
-      <h1>{data.intitule_formation}</h1>
+      <h1 className='font-bold lg:text-3xl'>{data.intitule_formation}</h1>
       <p>{data.nom_of}</p>
-      <div>
+      <div className='flex gap-5 py-2'>
         <Button>Eligibles CPF</Button>
         <Button>A distance</Button>
       </div>

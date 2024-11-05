@@ -17,14 +17,14 @@ export default function SearchBarBanner() {
         <img src="/searchbar.png" alt="Search Bar" />
       </div>
       <div className="relative flex w-[80%] flex-col gap-6 lg:w-2/3">
-        <h1 className="visible m-0 pt-5 text-background max-[768px]:hidden">
+        <h1 className="lg:block m-0 pt-5 text-background hidden">
           Comparez, choisissez, progressez.
         </h1>
-        <h3 className="visible m-0 mt-5 text-base font-extralight uppercase text-background min-[768px]:hidden lg:font-semibold">
+        <h3 className="block m-0 mt-5 text-base font-extralight uppercase text-background lg:hidden lg:font-semibold">
           388 867 formations,
           <br /> et forcément la vôtre
         </h3>
-        <h3 className="visible m-0 text-background max-[768px]:hidden">
+        <h3 className="lg:block m-0 text-background hidden">
           <span className="text-secondary">388 867 formations</span> à comparer
           pour trouver celle <br /> qui vous correspond vraiment.
         </h3>
