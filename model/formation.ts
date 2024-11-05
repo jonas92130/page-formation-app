@@ -46,6 +46,7 @@ export interface Formation {
   code_region: string
   nbaction_nbheures: number
   coderegion_export: string
+  avis: string
 }
 
 export interface FormationsResponseModel {

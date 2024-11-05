@@ -1,6 +1,7 @@
 export const FilterConnector = {
   lieu: 'nom_departement',
   domain: 'libelle_nsf_1',
+  id: 'numero_formation'
 }
 
 export interface QueryMongoParamsModel {
