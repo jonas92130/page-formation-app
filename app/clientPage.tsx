@@ -4,7 +4,7 @@ import React from 'react'
 import Formation from './test-ui/formation/formation'
 import ActualityHome from './actualites/actualityHome'
 import CitiesServerList from '@/components/features/linkList/citiesServerList'
-import SearchBar from '@/components/features/Banner'
+import SearchBarBanner from '@/app/SearchBarBanner'
 import Footer from '@/components/features/footer'
 
 interface Props {
@@ -20,7 +20,7 @@ function ClientPage(props: Props) {
   return (
     <main className="background-image">
       <div>
-        <SearchBar />
+        <SearchBarBanner />
       </div>
       <div className="mx-8 flex flex-col lg:mx-36 lg:max-w-[1400px]">
         <div className="flex flex-col items-center justify-center gap-12 pt-16 lg:flex-row lg:gap-24">
