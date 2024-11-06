@@ -52,8 +52,9 @@ function FormationsCard() {
               </p>
               <p>{formation.frais_ttc_tot_mean} €</p>
               <p>
-                {formation.nom_departement}, {formation.code_departement}
-                {/* {formation.nom_departement} */}
+                {formation.nom_departement && formation.code_departement
+                  ? ` ${formation.nom_departement}, ${formation.code_departement}`
+                  : null}
               </p>
               <p>Certification RNCP {formation.code_rncp}</p>
             </CardContent>
