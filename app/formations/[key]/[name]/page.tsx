@@ -4,7 +4,8 @@ import { CPFApiHandler } from '@/back/CPFApiHandler'
 import ClientPage from './clientPage'
 import { createQueryMongoParams } from '@/lib/filter'
 import { MongoDBHandler } from '@/back/MongoDBHandler'
-import { headers } from 'next/headers'
+
+import { client } from '@/tina/__generated__/databaseClient'
 
 type Props = {
   searchParams: Record<string, string>
@@ -26,12 +27,25 @@ async function Page(props: Props) {
   const results = await api.getFormations(paramsFormatted)
   const count = await api.getFormationsCount(paramsFormatted)
 
+  const { data } = await client.queries.rssConnection()
+  const currentRss = data.rssConnection.edges?.find(
+    (edge) => `${edge?.node?.name}`.toLowerCase() === decodedName.toLowerCase()
+  )
+  const rssUrl = currentRss?.node?.url
+
+  console.log('rssUrl:', rssUrl)
+
   const dataFormated = {
     results,
     total_count: count[0]?.total_count,
   }
 
-  return <ClientPage data={JSON.parse(JSON.stringify(dataFormated))} />
+  return (
+    <ClientPage
+      data={JSON.parse(JSON.stringify(dataFormated))}
+      rssUrl={rssUrl}
+    />
+  )
 }
 
 export default Page
