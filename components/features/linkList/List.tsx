@@ -30,7 +30,7 @@ export default function List(props: Props) {
             <li>
               <Button
                 variant="list"
-                className={`${backgroundColor} px-5 py-6`}
+                className={`${backgroundColor} p-5`}
               >
                 <Link
                   href={`/formations/${name}/${facet.value}`}
