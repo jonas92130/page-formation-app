@@ -45,7 +45,11 @@ function FormationsCard() {
               <CardTitle>{formation.intitule_formation}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>{formation.nombre_heures_total_mean}h de formation</p>
+              <p>
+                {formation.nombre_heures_total_max > 0
+                  ? `${formation.nombre_heures_total_max}h de formation`
+                  : null}
+              </p>
               <p>{formation.frais_ttc_tot_mean} €</p>
               <p>
                 {formation.nom_departement}, {formation.code_departement}

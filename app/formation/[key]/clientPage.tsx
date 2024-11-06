@@ -21,7 +21,9 @@ function ClientPage(props: Props) {
       </div>
       <Card>
         <CardDescription>
-          Durée : {data.nombre_heures_total_max}h de formation
+          {data.nombre_heures_total_max > 0
+            ? `  Durée : ${data.nombre_heures_total_max}h de formation`
+            : null}
         </CardDescription>
         <CardDescription>Prix : {data.frais_ttc_tot_max}€</CardDescription>
         <CardDescription>
