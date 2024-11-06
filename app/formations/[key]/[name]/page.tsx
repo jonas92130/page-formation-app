@@ -1,11 +1,11 @@
 'use server'
 
-import { CPFApiHandler } from '@/back/CPFApiHandler'
 import ClientPage from './clientPage'
 import { createQueryMongoParams } from '@/lib/filter'
 import { MongoDBHandler } from '@/back/MongoDBHandler'
 
 import { client } from '@/tina/__generated__/databaseClient'
+import RSSFeed from '@/components/rssFeed'
 
 type Props = {
   searchParams: Record<string, string>
@@ -41,10 +41,10 @@ async function Page(props: Props) {
   }
 
   return (
-    <ClientPage
-      data={JSON.parse(JSON.stringify(dataFormated))}
-      rssUrl={rssUrl}
-    />
+    <>
+      <ClientPage data={JSON.parse(JSON.stringify(dataFormated))} />
+      {rssUrl && <RSSFeed url={rssUrl} />}
+    </>
   )
 }
 
