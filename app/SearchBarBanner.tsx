@@ -1,10 +1,15 @@
 import React from 'react'
-import { Input } from '../components/ui/input'
-import { Checkbox } from '../components/ui/checkbox'
-import { FaSearch } from 'react-icons/fa'
 import { Button } from '../components/ui/button'
 import SearchBar from '@/components/features/searchBar'
 import Link from 'next/link'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 
 export default function SearchBarBanner() {
   return (
@@ -17,46 +22,56 @@ export default function SearchBarBanner() {
         <img src="/searchbar.png" alt="Search Bar" />
       </div>
       <div className="relative flex w-[80%] flex-col gap-6 lg:w-2/3">
-        <h1 className="lg:block m-0 pt-5 text-background hidden">
+        <h1 className="m-0 hidden pt-5 text-background lg:block">
           Comparez, choisissez, progressez.
         </h1>
-        <h3 className="block m-0 mt-5 text-base font-extralight uppercase text-background lg:hidden lg:font-semibold">
+        <h3 className="m-0 mt-5 block text-base font-extralight uppercase text-background lg:hidden lg:font-semibold">
           388 867 formations,
           <br /> et forcément la vôtre
         </h3>
-        <h3 className="lg:block m-0 text-background hidden">
+        <h3 className="m-0 hidden text-background lg:block">
           <span className="text-secondary">388 867 formations</span> à comparer
           pour trouver celle <br /> qui vous correspond vraiment.
         </h3>
         <SearchBar />
-        <div className="visible flex flex-wrap items-center gap-x-6 gap-y-6 pt-4 max-[768px]:hidden lg:w-[62%]">
-          <Button variant="list" className="bg-card px-5 py-6">
+        <div className="visible flex flex-wrap items-center gap-x-5 gap-y-6 pt-4 max-[768px]:hidden lg:w-[62%]">
+          <Button variant="list" className="bg-card px-4 py-5">
             <Link href="">Agriculture & Peche</Link>
           </Button>
-          <Button variant="list" className="bg-card px-5 py-6">
+          <Button variant="list" className="bg-card px-4 py-5">
             <Link href="">Anglais</Link>
           </Button>
-          <Button variant="list" className="bg-card px-5 py-6">
+          <Button variant="list" className="bg-card px-4 py-5">
             <Link href="">Secrétariat</Link>
           </Button>
-          <Button variant="list" className="bg-card px-5 py-6">
+          <Button variant="list" className="bg-card px-4 py-5">
             <Link href="">Esthétique</Link>
           </Button>
-          <Button variant="list" className="bg-card px-5 py-6">
+          <Button variant="list" className="bg-card px-4 py-5">
             <Link href="">Anglais</Link>
           </Button>
-          <Button variant="list" className="bg-card px-5 py-6">
+          <Button variant="list" className="bg-card px-4 py-5">
             <Link href="">VAE</Link>
           </Button>
         </div>
 
         <div className="visible flex gap-2 max-[768px]:hidden">
-          <Button
-            variant="list"
-            className="bg-secondary px-5 py-6 text-background"
-          >
-            <Link href="">Toutes les catégories</Link>
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button
+                variant="list"
+                className="bg-secondary px-4 py-5 text-background"
+              >
+                Toutes les catégories
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogTitle>Dialog Titre</DialogTitle>
+              <DialogDescription>
+                Dialog Description
+              </DialogDescription>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </div>
