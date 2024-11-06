@@ -77,11 +77,11 @@ function SearchBar(props: Props) {
   return (
     <Form {...form}>
       <form
-        className="flex w-full flex-col gap-5 lg:flex-row"
+        className="flex w-full flex-col items-baseline gap-5 lg:flex-row"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className="flex flex-col gap-7 lg:w-[55%]">
-          <div className="flex flex-col gap-6 lg:flex-row">
+          <div className="flex flex-col gap-6 lg:flex-row items-center">
             <FormField
               control={form.control}
               name="query"
@@ -93,7 +93,7 @@ function SearchBar(props: Props) {
                     <Input
                       {...fields.field}
                       placeholder="Métier, Certification, formation"
-                      className="placeholder:gray-100 text-xs placeholder:opacity-40"
+                      className="placeholder:gray-100  placeholder:opacity-40"
                     />
                   </FormControl>
                   <FormDescription />
