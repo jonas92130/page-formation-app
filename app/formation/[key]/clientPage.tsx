@@ -80,10 +80,10 @@ function ClientPage(props: Props) {
         >
           <h4 className="text-lg font-bold">Objectif</h4>
           <p>{parse(data.objectif_formation)}</p>
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <FaAngleRight />
             <p className="text-sm font-bold"> Voir plus </p>
-          </div>
+          </div> */}
         </div>
         <Button
           onClick={() => setShowText(!showText)}
