@@ -37,6 +37,7 @@
     "cmdk": "1.0.0",
     "date-fns": "^4.1.0",
     "drawer": "^0.0.2",
+    "html-react-parser": "^5.1.18",
     "lucide-react": "^0.438.0",
     "mongodb": "^6.8.0",
     "mongodb-level": "^0.0.4",
