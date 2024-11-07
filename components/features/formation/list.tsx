@@ -40,17 +40,19 @@ function FormationsCard() {
         <Link href={`/formation/${formation.numero_formation}`}>
           <Card
             key={formation.numero_formation}
-            className="flex flex-col gap-5 border px-5 py-4"
+            className="my-10 flex flex-col gap-5 border p-5"
           >
-            <CardHeader className="p-0">
-              <h1 className="font-bold">{formation.intitule_formation}</h1>
+            <CardContent className="flex flex-col gap-4 p-0">
+              <h1 className="font-bold text-lg">{formation.intitule_formation}</h1>
               {formation.nom_of && (
-                <p className="text-xs font-extralight">
-                  {formation.nom_of}
-                </p>
+                <p className="text-xs font-extralight">{formation.nom_of}</p>
               )}
-            </CardHeader>
-            <CardContent className="flex flex-col gap-2 p-0">
+              <div className="flex gap-5">
+                <Badge className="rounded-md">Eligible CPF</Badge>
+                <Badge className="rounded-md border border-primary bg-background text-primary">
+                  A distance
+                </Badge>
+              </div>
               {formation.nombre_heures_total_max > 0 && (
                 <p className="flex items-center gap-2">
                   <FaRegClock /> {formation.nombre_heures_total_max}h de
@@ -75,7 +77,7 @@ function FormationsCard() {
               )}
             </CardContent>
             <CardFooter className="p-0">
-              <Button className="rounded-full px-12 font-bold">
+              <Button className="rounded-full px-14 font-bold">
                 En savoir plus
               </Button>
             </CardFooter>
@@ -91,9 +93,9 @@ function List() {
   const { total_count } = props!.data
 
   return (
-    <div className="mx-auto flex w-[90%] max-w-[1200px] flex-col gap-8">
-      <div className="flex items-center gap-2">
-        <Badge className="rounded-sm border border-primary bg-background p-2 text-primary">
+    <div className="mx-auto flex w-[90%] max-w-[1200px] flex-col">
+      <div className="flex items-center gap-3 pt-4">
+        <Badge className="rounded-md border border-primary bg-background p-2 text-base text-primary">
           Filtrer
         </Badge>
         <p>
@@ -101,7 +103,7 @@ function List() {
           formations trouvées
         </p>
       </div>
-      <ul className="mt-2 flex flex-col gap-y-2">
+      <ul className="mt-2 flex flex-col">
         <FormationsCard />
       </ul>
     </div>
