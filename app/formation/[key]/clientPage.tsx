@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import { Formation } from '@/model/formation'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
@@ -7,6 +9,8 @@ import { FaAngleRight } from 'react-icons/fa6'
 import { FaRegClock } from 'react-icons/fa6'
 import { FaEuroSign } from 'react-icons/fa6'
 import { FaLocationDot } from 'react-icons/fa6'
+import { TiMinus } from 'react-icons/ti'
+import { Button } from '@/components/ui/button'
 
 type Props = {
   data: Formation
@@ -14,7 +18,8 @@ type Props = {
 
 function ClientPage(props: Props) {
   const { data } = props
-  console.log(data)
+  const [showText, setShowText] = useState(false)
+
   return (
     <div className="background-image">
       <div className="mx-auto flex w-[90%] max-w-[1200px] flex-col gap-8">
@@ -23,10 +28,7 @@ function ClientPage(props: Props) {
             {data.intitule_formation}
           </h1>
           {data.nom_of && (
-            <p className="text-sm font-extralight">
-              {data.nom_of} ASSOCIATION DE GESTION CONSERVATOIRE NATIONAL ARTS
-              METIERS NOUVELLE AQUITAINE
-            </p>
+            <p className="text-sm font-extralight">{data.nom_of}</p>
           )}
         </div>
         <Badges />
@@ -68,12 +70,41 @@ function ClientPage(props: Props) {
             <p className="text-xl">4,3 ⭐️⭐️⭐️⭐️⭐️ 100 avis{data.avis}</p>
           </Card>
         ) : null}
-        <div className="flex flex-col gap-3">
+        <div
+          className={
+            showText
+              ? 'my-5 flex flex-wrap gap-5 overflow-hidden'
+              : 'my-5 flex max-h-[58dvh] flex-wrap gap-5 overflow-hidden'
+          }
+        >
           <h4 className="text-lg font-bold">Objectif</h4>
           <p>{data.objectif_formation}</p>
           <div className="flex items-center">
             <FaAngleRight />
             <p className="text-sm font-bold"> Voir plus </p>
+          </div>
+          <div>
+            <Button
+              onClick={() => setShowText(!showText)}
+              className="p-0 text-sm text-foreground no-underline"
+              variant="link"
+            >
+              {showText ? (
+                <h4 className="m-0 flex flex-row items-center">
+                  <span className="text-lg font-extrabold">
+                    <TiMinus />
+                  </span>
+                  Afficher moins
+                </h4>
+              ) : (
+                <h4 className="m-0 flex flex-row items-center font-bold">
+                  <span className="text-lg font-extrabold">
+                    <TiPlus />
+                  </span>
+                  Afficher plus
+                </h4>
+              )}
+            </Button>
           </div>
         </div>
         <div className="flex flex-col gap-3">
@@ -82,7 +113,7 @@ function ClientPage(props: Props) {
         </div>
 
         <Card className="flex flex-col gap-3 bg-primary/20 px-5 py-4">
-          <h4 className="text-lg font-bold">Points Forts 🔥</h4>
+          <h4 className="m-0 text-lg font-bold">Points Forts 🔥</h4>
           <p className="">{data.points_forts}</p>
         </Card>
       </div>
