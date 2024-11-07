@@ -84,7 +84,6 @@ function ClientPage(props: Props) {
             <FaAngleRight />
             <p className="text-sm font-bold"> Voir plus </p>
           </div>
-          <div></div>
         </div>
         <Button
           onClick={() => setShowText(!showText)}
