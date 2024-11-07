@@ -80,7 +80,7 @@ function SearchBar(props: Props) {
         className="flex w-full flex-col gap-5"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
-        <div className="flex w-full flex-col items-center gap-5 lg:w-[55%] lg:flex-row">
+        <div className="flex flex-col items-center gap-3 lg:w-[55%] lg:flex-row">
           <FormField
             control={form.control}
             name="query"
@@ -122,26 +122,28 @@ function SearchBar(props: Props) {
               </FormItem>
             )}
           />
-        </div>
-        <div className="flex items-center gap-2">
-          <Checkbox id="formation-cpf" />
-          <label
-            htmlFor="formation-cpf"
-            className="text-xs font-thin text-background lg:text-base"
-          >
-            Formations financées par le CPF
-          </label>
-        </div>
-        <div className="flex justify-center">
-          <Button
-            className="flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-3 hover:bg-secondary"
-            type="submit"
-          >
-            <FaSearch className="text-background" />
-            <p className="visible text-sm font-semibold text-white lg:hidden">
-              Trouver ma formation
-            </p>
-          </Button>
+          <div className="gap-5">
+            <div className="flex items-center gap-2">
+              <Checkbox id="formation-cpf" />
+              <label
+                htmlFor="formation-cpf"
+                className="text-xs font-thin text-background lg:text-base"
+              >
+                Formations financées par le CPF
+              </label>
+            </div>
+            <div className="flex justify-center">
+              <Button
+                className="flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-3 hover:bg-secondary"
+                type="submit"
+              >
+                <FaSearch className="text-background" />
+                <p className="visible text-sm font-semibold text-white lg:hidden">
+                  Trouver ma formation
+                </p>
+              </Button>
+            </div>
+          </div>
         </div>
       </form>
     </Form>
