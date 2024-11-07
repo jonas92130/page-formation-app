@@ -41,7 +41,7 @@ function ClientPage(props: Props) {
           Voir des formations similaires
         </p>
         <Card className="flex flex-col gap-2 border px-5 py-4 shadow-sm">
-          {data.nombre_heures_total_max > 0 ? (
+          {data.nombre_heures_total_max > 0 && (
             <p className="flex flex-col gap-1">
               <span className="flex items-center gap-2 font-bold">
                 <FaRegClock />
@@ -49,15 +49,17 @@ function ClientPage(props: Props) {
               </span>
               {data.nombre_heures_total_max}h de formation
             </p>
-          ) : null}
-          <p className="flex flex-col gap-1">
-            <span className="flex items-center gap-2 font-bold">
-              <FaEuroSign />
-              Prix
-            </span>
-            {data.frais_ttc_tot_max} €
-          </p>
-          {data.nom_departement && data.code_departement ? (
+          )}
+          {data.frais_ttc_tot_max && (
+            <p className="flex flex-col gap-1">
+              <span className="flex items-center gap-2 font-bold">
+                <FaEuroSign />
+                Prix
+              </span>
+              {data.frais_ttc_tot_max} €
+            </p>
+          )}
+          {data.nom_departement && data.code_departement && (
             <p className="flex flex-col gap-2">
               <span className="flex items-center gap-2 font-bold">
                 <FaLocationDot />
@@ -65,7 +67,7 @@ function ClientPage(props: Props) {
               </span>
               {data.nom_departement} {data.code_departement}
             </p>
-          ) : null}
+          )}
         </Card>
         {data ? (
           <Card className="bg-primary/20 px-5 py-4">
