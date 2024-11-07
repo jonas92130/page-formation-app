@@ -5,15 +5,14 @@ import { createContext, useContext } from 'react'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
+import { FaAngleRight } from 'react-icons/fa6'
+import { FaRegClock } from 'react-icons/fa6'
+import { FaEuroSign } from 'react-icons/fa6'
+import { FaLocationDot } from 'react-icons/fa6'
+import { FaGraduationCap } from 'react-icons/fa6'
 
 interface Props {
   data: FormationsResponseModel
@@ -39,28 +38,44 @@ function FormationsCard() {
     <div>
       {results?.map((formation) => (
         <Link href={`/formation/${formation.numero_formation}`}>
-          <Card key={formation.numero_formation}>
-            <CardHeader>
-              <CardTitle>{formation.intitule_formation}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {formation.nombre_heures_total_max > 0 && (
-                <p>{formation.nombre_heures_total_max}h de formation</p>
+          <Card
+            key={formation.numero_formation}
+            className="flex flex-col gap-5 border px-5 py-4"
+          >
+            <CardHeader className="p-0">
+              <h1 className="font-bold">{formation.intitule_formation}</h1>
+              {formation.nom_of && (
+                <p className="text-xs font-extralight">
+                  {formation.nom_of}
+                </p>
               )}
-              {formation.frais_ttc_tot_max && (
-                <p>{formation.frais_ttc_tot_mean} €</p>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2 p-0">
+              {formation.nombre_heures_total_max > 0 && (
+                <p className="flex items-center gap-2">
+                  <FaRegClock /> {formation.nombre_heures_total_max}h de
+                  formation
+                </p>
               )}
               {formation.nom_departement && formation.code_departement && (
-                <p>
+                <p className="flex items-center gap-2">
+                  <FaLocationDot />
                   {formation.nom_departement}, {formation.code_departement}
                 </p>
               )}
+              {formation.frais_ttc_tot_max && (
+                <p className="flex items-center gap-2">
+                  <FaEuroSign /> {formation.frais_ttc_tot_mean} €
+                </p>
+              )}
               {formation.code_rncp && (
-                <p>Certification RNCP {formation.code_rncp}</p>
+                <p className="flex items-center gap-2">
+                  <FaGraduationCap /> Certification RNCP : {formation.code_rncp}
+                </p>
               )}
             </CardContent>
-            <CardFooter>
-              <Button className="rounded-full px-10 font-bold">
+            <CardFooter className="p-0">
+              <Button className="rounded-full px-12 font-bold">
                 En savoir plus
               </Button>
             </CardFooter>
@@ -76,13 +91,13 @@ function List() {
   const { total_count } = props!.data
 
   return (
-    <div className="px-10 py-4">
+    <div className="mx-auto flex w-[90%] max-w-[1200px] flex-col gap-8">
       <div className="flex items-center gap-2">
         <Badge className="rounded-sm border border-primary bg-background p-2 text-primary">
           Filtrer
         </Badge>
         <p>
-          <span className="font-bold text-red-500">{total_count}</span>
+          <span className="font-bold text-red-500">{total_count} </span>
           formations trouvées
         </p>
       </div>

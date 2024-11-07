@@ -22,20 +22,14 @@ function ClientPage(props: Props) {
           <h1 className="pt-5 text-xl font-extrabold lg:text-3xl">
             {data.intitule_formation}
           </h1>
-          {data ? (
+          {data.nom_of && (
             <p className="text-sm font-extralight">
               {data.nom_of} ASSOCIATION DE GESTION CONSERVATOIRE NATIONAL ARTS
               METIERS NOUVELLE AQUITAINE
             </p>
-          ) : null}
+          )}
         </div>
-
-        <div className="flex gap-5">
-          <Badge className="rounded-md">Eligible CPF</Badge>
-          <Badge className="rounded-md border border-primary bg-background text-primary">
-            A distance
-          </Badge>
-        </div>
+        <Badges />
         <p className="flex flex-row items-center gap-1 text-base">
           <TiPlus className="text-2xl font-extrabold" />
           Voir des formations similaires
@@ -92,6 +86,17 @@ function ClientPage(props: Props) {
           <p className="">{data.points_forts}</p>
         </Card>
       </div>
+    </div>
+  )
+}
+
+function Badges() {
+  return (
+    <div className="flex gap-5">
+      <Badge className="rounded-md">Eligible CPF</Badge>
+      <Badge className="rounded-md border border-primary bg-background text-primary">
+        A distance
+      </Badge>
     </div>
   )
 }
