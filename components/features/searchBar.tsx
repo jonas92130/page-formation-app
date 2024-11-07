@@ -77,7 +77,7 @@ function SearchBar(props: Props) {
   return (
     <Form {...form}>
       <form
-        className="flex w-full flex-col items-baseline gap-5 lg:flex-row"
+        className="flex w-full flex-col gap-5 lg:flex-row items-center"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
         <div className="flex flex-col gap-7 lg:w-[55%]">

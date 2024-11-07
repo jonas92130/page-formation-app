@@ -1,7 +1,7 @@
 import React from 'react'
 import { Formation } from '@/model/formation'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent, CardDescription } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import { TiPlus } from 'react-icons/ti'
 import { FaAngleRight } from 'react-icons/fa6'
 import { FaRegClock } from 'react-icons/fa6'
@@ -31,7 +31,7 @@ function ClientPage(props: Props) {
         </div>
 
         <div className="flex gap-5">
-          <Badge className="rounded-md">Eligibles CPF</Badge>
+          <Badge className="rounded-md">Eligible CPF</Badge>
           <Badge className="rounded-md border border-primary bg-background text-primary">
             A distance
           </Badge>

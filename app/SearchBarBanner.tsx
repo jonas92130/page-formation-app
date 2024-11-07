@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
@@ -16,7 +15,7 @@ export default function SearchBarBanner() {
     <div className="relative flex justify-center pb-12 lg:pt-[50px]">
       <div
         className="absolute bottom-0 left-0 right-0 top-0 bg-primary max-[465px]:mb-[-45px] lg:w-[100%]"
-        // style={{ clipPath: 'circle(85% at 50% 0)' }}
+        style={{ clipPath: 'circle(85% at 50% 0)' }}
       ></div>
       <div className="visible max-[768px]:hidden sm:relative lg:w-1/3">
         <img src="/searchbar.png" alt="Search Bar" />

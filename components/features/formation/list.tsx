@@ -8,13 +8,12 @@ import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
 import Link from 'next/link'
-import page from '@/app/formation/[key]/page'
+import { Badge } from '@/components/ui/badge'
 
 interface Props {
   data: FormationsResponseModel
@@ -45,18 +44,20 @@ function FormationsCard() {
               <CardTitle>{formation.intitule_formation}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>
-                {formation.nombre_heures_total_max > 0
-                  ? `${formation.nombre_heures_total_max}h de formation`
-                  : null}
-              </p>
-              <p>{formation.frais_ttc_tot_mean} €</p>
-              <p>
-                {formation.nom_departement && formation.code_departement
-                  ? ` ${formation.nom_departement}, ${formation.code_departement}`
-                  : null}
-              </p>
-              <p>Certification RNCP {formation.code_rncp}</p>
+              {formation.nombre_heures_total_max > 0 && (
+                <p>{formation.nombre_heures_total_max}h de formation</p>
+              )}
+              {formation.frais_ttc_tot_max && (
+                <p>{formation.frais_ttc_tot_mean} €</p>
+              )}
+              {formation.nom_departement && formation.code_departement && (
+                <p>
+                  {formation.nom_departement}, {formation.code_departement}
+                </p>
+              )}
+              {formation.code_rncp && (
+                <p>Certification RNCP {formation.code_rncp}</p>
+              )}
             </CardContent>
             <CardFooter>
               <Button className="rounded-full px-10 font-bold">
@@ -76,7 +77,15 @@ function List() {
 
   return (
     <div className="px-10 py-4">
-      <p>Nombre de formations: {total_count}</p>
+      <div className="flex items-center gap-2">
+        <Badge className="rounded-sm border border-primary bg-background p-2 text-primary">
+          Filtrer
+        </Badge>
+        <p>
+          <span className="font-bold text-red-500">{total_count}</span>
+          formations trouvées
+        </p>
+      </div>
       <ul className="mt-2 flex flex-col gap-y-2">
         <FormationsCard />
       </ul>
