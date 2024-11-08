@@ -71,7 +71,7 @@ function ClientPage(props: Props) {
             <p className="text-xl">4,3 ⭐️⭐️⭐️⭐️⭐️ 100 avis{data.avis}</p>
           </Card>
         ) : null}
-        
+
         <div className="mt-8 flex flex-col gap-4">
           <div
             className={
