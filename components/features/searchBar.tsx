@@ -138,7 +138,7 @@ function SearchBar(props: Props) {
                 type="submit"
               >
                 <FaSearch className="text-background" />
-                <p className="visible text-sm font-semibold text-white lg:hidden">
+                <p className="visible px-8 text-sm font-semibold text-white lg:hidden">
                   Trouver ma formation
                 </p>
               </Button>
