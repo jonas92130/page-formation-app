@@ -18,11 +18,12 @@ type Props = {
 
 function ClientPage(props: Props) {
   const { data } = props
-  const [showText, setShowText] = useState(false)
+  const [showObjective, setShowObjective] = useState(false)
+  const [showContent, setShowContent] = useState(false)
 
   return (
     <div className="background-image">
-      <div className="mx-auto flex w-[90%] max-w-[1200px] flex-col gap-6">
+      <div className="mx-auto flex w-[90%] max-w-[1200px] flex-col gap-7">
         <div className="flex flex-col gap-2">
           <h1 className="pt-5 text-xl font-extrabold lg:text-3xl">
             {data.intitule_formation}
@@ -70,34 +71,53 @@ function ClientPage(props: Props) {
             <p className="text-xl">4,3 ⭐️⭐️⭐️⭐️⭐️ 100 avis{data.avis}</p>
           </Card>
         ) : null}
-        <div className="my-8 flex flex-col gap-9">
+        
+        <div className="mt-8 flex flex-col gap-4">
           <div
             className={
-              showText
-                ? 'flex flex-wrap gap-3 overflow-hidden'
-                : 'flex max-h-[30dvh] flex-wrap gap-3 overflow-hidden'
+              showObjective
+                ? 'flex flex-wrap gap-4 overflow-hidden'
+                : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
             }
           >
             <h2 className="m-0 text-lg font-bold">Objectif</h2>
             <p>{parse(data.objectif_formation)}</p>
           </div>
           <Button
-            onClick={() => setShowText(!showText)}
+            onClick={() => setShowObjective(!showObjective)}
             className="p-0 text-sm text-foreground no-underline"
             variant="link"
           >
-            {showText ? <ButtonMinus /> : <ButtonPlus />}
+            {showObjective ? <ButtonMinus /> : <ButtonPlus />}
           </Button>
-          <div className="flex flex-col gap-3">
-            <h2 className="text-lg font-bold">Contenu</h2>
-            <p>{parse(data.contenu_formation)}</p>
-          </div>
-
-          <Card className="flex flex-col gap-3 bg-primary/20 px-5 py-4">
-            <h2 className="m-0 text-lg font-bold">Points Forts 🔥</h2>
-            <p className="">{parse(data.points_forts)}</p>
-          </Card>
         </div>
+
+        <div className="mt-8 flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
+            <div
+              className={
+                showContent
+                  ? 'flex flex-wrap gap-4 overflow-hidden'
+                  : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
+              }
+            >
+              <h2 className="text-lg font-bold">Contenu</h2>
+              <p>{parse(data.contenu_formation)}</p>
+            </div>
+            <Button
+              onClick={() => setShowContent(!showContent)}
+              className="p-0 text-sm text-foreground no-underline"
+              variant="link"
+            >
+              {showContent ? <ButtonMinus /> : <ButtonPlus />}
+            </Button>
+          </div>
+        </div>
+
+        <Card className="flex flex-col gap-3 bg-primary/20 px-5 py-4">
+          <h2 className="m-0 text-lg font-bold">Points Forts 🔥</h2>
+          <p className="">{parse(data.points_forts)}</p>
+        </Card>
       </div>
     </div>
   )
