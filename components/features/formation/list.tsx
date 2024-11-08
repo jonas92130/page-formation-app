@@ -5,7 +5,7 @@ import { createContext, useContext } from 'react'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { FaRegClock } from 'react-icons/fa6'
@@ -43,9 +43,9 @@ function FormationsCard() {
           >
             <CardContent className="flex flex-col gap-3 p-0">
               <div className="flex flex-col gap-2">
-                <h1 className="m-0 text-lg font-bold">
+                <h2 className="m-0 text-lg font-bold">
                   {formation.intitule_formation}
-                </h1>
+                </h2>
                 {formation.nom_of && (
                   <p className="text-xs font-extralight">{formation.nom_of}</p>
                 )}
