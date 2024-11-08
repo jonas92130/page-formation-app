@@ -42,12 +42,17 @@ function FormationsCard() {
             key={formation.numero_formation}
             className="my-10 flex flex-col gap-5 border p-5"
           >
-            <CardContent className="flex flex-col gap-4 p-0">
-              <h1 className="m-0 font-bold text-lg">{formation.intitule_formation}</h1>
-              {formation.nom_of && (
-                <p className="text-xs font-extralight">{formation.nom_of}</p>
-              )}
-              <div className="flex gap-5">
+            <CardContent className="flex flex-col gap-3 p-0">
+              <div className="flex flex-col gap-2">
+                <h1 className="m-0 text-lg font-bold">
+                  {formation.intitule_formation}
+                </h1>
+                {formation.nom_of && (
+                  <p className="text-xs font-extralight">{formation.nom_of}</p>
+                )}
+              </div>
+
+              <div className="flex gap-6 py-3">
                 <Badge className="rounded-md">Eligible CPF</Badge>
                 <Badge className="rounded-md border border-primary bg-background text-primary">
                   A distance
