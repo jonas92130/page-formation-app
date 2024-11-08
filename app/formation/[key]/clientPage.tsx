@@ -78,12 +78,8 @@ function ClientPage(props: Props) {
               : 'my-5 flex max-h-[30dvh] flex-wrap gap-5 overflow-hidden'
           }
         >
-          <h4 className="text-lg font-bold">Objectif</h4>
+          <h2 className="text-lg font-bold">Objectif</h2>
           <p>{parse(data.objectif_formation)}</p>
-          {/* <div className="flex items-center">
-            <FaAngleRight />
-            <p className="text-sm font-bold"> Voir plus </p>
-          </div> */}
         </div>
         <Button
           onClick={() => setShowText(!showText)}
@@ -91,28 +87,28 @@ function ClientPage(props: Props) {
           variant="link"
         >
           {showText ? (
-            <h4 className="m-0 flex flex-row items-center">
+            <h2 className="m-0 flex flex-row items-center">
               <span className="text-lg font-extrabold">
                 <TiMinus />
               </span>
               Afficher moins
-            </h4>
+            </h2>
           ) : (
-            <h4 className="m-0 flex flex-row items-center font-bold">
+            <h2 className="m-0 flex flex-row items-center font-bold">
               <span className="text-lg font-extrabold">
                 <TiPlus />
               </span>
               Afficher plus
-            </h4>
+            </h2>
           )}
         </Button>
         <div className="flex flex-col gap-3">
-          <h4 className="text-lg font-bold">Contenu</h4>
+          <h2 className="text-lg font-bold">Contenu</h2>
           <p>{parse(data.contenu_formation)}</p>
         </div>
 
         <Card className="flex flex-col gap-3 bg-primary/20 px-5 py-4">
-          <h4 className="m-0 text-lg font-bold">Points Forts 🔥</h4>
+          <h2 className="m-0 text-lg font-bold">Points Forts 🔥</h2>
           <p className="">{parse(data.points_forts)}</p>
         </Card>
       </div>
