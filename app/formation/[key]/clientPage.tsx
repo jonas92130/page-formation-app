@@ -72,6 +72,11 @@ function ClientPage(props: Props) {
           </Card>
         ) : null}
 
+        <Card className="flex flex-col gap-3 bg-primary/20 px-5 py-4">
+          <h2 className="m-0 text-lg font-bold">Points Forts 🔥</h2>
+          <div>{parse(data.points_forts)}</div>
+        </Card>
+
         <div className="mt-8 flex flex-col gap-4">
           <div
             className={
@@ -81,7 +86,7 @@ function ClientPage(props: Props) {
             }
           >
             <h2 className="m-0 text-lg font-bold">Objectif</h2>
-            <p>{parse(data.objectif_formation)}</p>
+            <div>{parse(data.objectif_formation)}</div>
           </div>
           <Button
             onClick={() => setShowObjective(!showObjective)}
@@ -102,7 +107,7 @@ function ClientPage(props: Props) {
               }
             >
               <h2 className="text-lg font-bold">Contenu</h2>
-              <p>{parse(data.contenu_formation)}</p>
+              {parse(data.contenu_formation)}
             </div>
             <Button
               onClick={() => setShowContent(!showContent)}
@@ -113,11 +118,6 @@ function ClientPage(props: Props) {
             </Button>
           </div>
         </div>
-
-        <Card className="flex flex-col gap-3 bg-primary/20 px-5 py-4">
-          <h2 className="m-0 text-lg font-bold">Points Forts 🔥</h2>
-          <p className="">{parse(data.points_forts)}</p>
-        </Card>
       </div>
     </div>
   )
@@ -137,12 +137,12 @@ function Badges() {
 function ButtonPlus() {
   return (
     <>
-      <h2 className="m-0 flex flex-row items-center font-bold">
+      <p className="m-0 flex flex-row items-center font-bold">
         <span className="text-lg font-extrabold">
           <TiPlus />
         </span>
         Afficher plus
-      </h2>
+      </p>
     </>
   )
 }
@@ -150,12 +150,12 @@ function ButtonPlus() {
 function ButtonMinus() {
   return (
     <>
-      <h2 className="m-0 flex flex-row items-center font-bold">
+      <p className="m-0 flex flex-row items-center font-bold">
         <span className="text-lg font-extrabold">
           <TiMinus />
         </span>
         Afficher moins
-      </h2>
+      </p>
     </>
   )
 }
