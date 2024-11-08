@@ -70,7 +70,7 @@ function ClientPage(props: Props) {
             <p className="text-xl">4,3 ⭐️⭐️⭐️⭐️⭐️ 100 avis{data.avis}</p>
           </Card>
         ) : null}
-        <div className='flex flex-col my-8 gap-9'>
+        <div className="my-8 flex flex-col gap-9">
           <div
             className={
               showText
@@ -86,21 +86,7 @@ function ClientPage(props: Props) {
             className="p-0 text-sm text-foreground no-underline"
             variant="link"
           >
-            {showText ? (
-              <h2 className="m-0 flex flex-row items-center">
-                <span className="text-lg font-extrabold">
-                  <TiMinus />
-                </span>
-                Afficher moins
-              </h2>
-            ) : (
-              <h2 className="m-0 flex flex-row items-center font-bold">
-                <span className="text-lg font-extrabold">
-                  <TiPlus />
-                </span>
-                Afficher plus
-              </h2>
-            )}
+            {showText ? <ButtonMinus /> : <ButtonPlus />}
           </Button>
           <div className="flex flex-col gap-3">
             <h2 className="text-lg font-bold">Contenu</h2>
@@ -125,6 +111,32 @@ function Badges() {
         A distance
       </Badge>
     </div>
+  )
+}
+
+function ButtonPlus() {
+  return (
+    <>
+      <h2 className="m-0 flex flex-row items-center font-bold">
+        <span className="text-lg font-extrabold">
+          <TiPlus />
+        </span>
+        Afficher plus
+      </h2>
+    </>
+  )
+}
+
+function ButtonMinus() {
+  return (
+    <>
+      <h2 className="m-0 flex flex-row items-center font-bold">
+        <span className="text-lg font-extrabold">
+          <TiMinus />
+        </span>
+        Afficher moins
+      </h2>
+    </>
   )
 }
 
