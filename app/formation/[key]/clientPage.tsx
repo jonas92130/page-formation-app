@@ -97,7 +97,7 @@ function ClientPage(props: Props) {
           </Button>
         </div>
 
-        <div className="mt-8 flex flex-col gap-4">
+        <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-4">
             <div
               className={
