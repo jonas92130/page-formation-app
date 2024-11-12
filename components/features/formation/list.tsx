@@ -74,7 +74,7 @@ function FormationsCard() {
                   <FaEuroSign /> {formation.frais_ttc_tot_mean} €
                 </p>
               )}
-              {formation.code_rncp.length > 0 && (
+              {formation.code_rncp.length && (
                 <p className="flex items-center gap-2">
                   <FaGraduationCap /> Certification RNCP : {formation.code_rncp}
                 </p>
