@@ -18,6 +18,8 @@ type Props = {
 
 function ClientPage(props: Props) {
   const { data } = props
+  const [showMoreObjective, setMoreShowObjective] = useState(false)
+  const [showMoreContent, setMoreShowContent] = useState(false)
   const [showObjective, setShowObjective] = useState(false)
   const [showContent, setShowContent] = useState(false)
 
@@ -77,46 +79,71 @@ function ClientPage(props: Props) {
           <div>{parse(data.points_forts)}</div>
         </Card>
 
-        <div className="mt-8 flex flex-col gap-4">
-          <div
-            className={
-              showObjective
-                ? 'flex flex-wrap gap-4 overflow-hidden'
-                : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-            }
-          >
-            <h2 className="m-0 text-lg font-bold">Objectif</h2>
-            <div>{parse(data.objectif_formation)}</div>
-          </div>
-          <Button
-            onClick={() => setShowObjective(!showObjective)}
-            className="p-0 text-sm text-foreground no-underline"
-            variant="link"
-          >
-            {showObjective ? <ButtonMinus /> : <ButtonPlus />}
-          </Button>
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-4">
-            <div
-              className={
-                showContent
-                  ? 'flex flex-wrap gap-4 overflow-hidden'
-                  : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-              }
+        <div className="mt-8 flex flex-col items-baseline gap-4">
+          <div className="flex">
+            <Button
+              variant="link"
+              onClick={() => {
+                setShowObjective(!showObjective)
+                setShowContent(false)
+              }}
+              className="text"
+            >
+              <h2 className="m-0 text-lg font-bold">Objectif</h2>
+            </Button>
+            <Button
+              variant="link"
+              onClick={() => {
+                setShowContent(!showContent)
+                setShowObjective(false)
+              }}
+              className="text"
             >
               <h2 className="text-lg font-bold">Contenu</h2>
-              {parse(data.contenu_formation)}
-            </div>
-            <Button
-              onClick={() => setShowContent(!showContent)}
-              className="p-0 text-sm text-foreground no-underline"
-              variant="link"
-            >
-              {showContent ? <ButtonMinus /> : <ButtonPlus />}
             </Button>
           </div>
+
+          {showObjective && (
+            <div className="flex flex-col gap-4">
+              <div
+                className={
+                  showMoreObjective
+                    ? 'flex flex-wrap gap-4 overflow-hidden'
+                    : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
+                }
+              >
+                <div>{parse(data.objectif_formation)}</div>
+              </div>
+
+              <Button
+                onClick={() => setMoreShowObjective(!showMoreObjective)}
+                className="p-0 text-sm text-foreground no-underline"
+                variant="link"
+              >
+                {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
+              </Button>
+            </div>
+          )}
+          {showContent && (
+            <div className="flex flex-col gap-4">
+              <div
+                className={
+                  showMoreContent
+                    ? 'flex flex-wrap gap-4 overflow-hidden'
+                    : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
+                }
+              >
+                {parse(data.contenu_formation)}
+              </div>
+              <Button
+                onClick={() => setMoreShowContent(!showMoreContent)}
+                className="p-0 text-sm text-foreground no-underline"
+                variant="link"
+              >
+                {showMoreContent ? <ButtonMinus /> : <ButtonPlus />}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
