@@ -20,7 +20,7 @@ function ClientPage(props: Props) {
   const { data } = props
   const [showMoreObjective, setMoreShowObjective] = useState(false)
   const [showMoreContent, setMoreShowContent] = useState(false)
-  const [showObjective, setShowObjective] = useState(false)
+  const [showObjective, setShowObjective] = useState(true)
   const [showContent, setShowContent] = useState(false)
 
   return (
