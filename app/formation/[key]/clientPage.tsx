@@ -18,20 +18,22 @@ type Props = {
 
 function ClientPage(props: Props) {
   const { data } = props
-  const [showObjective, setShowObjective] = useState(false)
+  const [showMoreObjective, setMoreShowObjective] = useState(false)
+  const [showMoreContent, setMoreShowContent] = useState(false)
+  const [showObjective, setShowObjective] = useState(true)
   const [showContent, setShowContent] = useState(false)
 
   return (
     <div className="background-image">
+      <div className="mb-4 flex flex-col gap-2 bg-primary/60">
+        <h1 className="mx-3 pt-5 text-xl font-extrabold lg:text-3xl">
+          {data.intitule_formation}
+        </h1>
+        {data.nom_of && (
+          <p className="mx-3 pb-3 text-sm font-extralight">{data.nom_of}</p>
+        )}
+      </div>
       <div className="mx-auto flex w-[90%] max-w-[1200px] flex-col gap-7">
-        <div className="flex flex-col gap-2">
-          <h1 className="pt-5 text-xl font-extrabold lg:text-3xl">
-            {data.intitule_formation}
-          </h1>
-          {data.nom_of && (
-            <p className="text-sm font-extralight">{data.nom_of}</p>
-          )}
-        </div>
         <Badges />
         <p className="flex flex-row items-center gap-1 text-base">
           <TiPlus className="text-2xl font-extrabold" />
@@ -41,26 +43,21 @@ function ClientPage(props: Props) {
           {data.nombre_heures_total_max > 0 && (
             <p className="flex flex-col gap-2">
               <span className="flex items-center gap-2 font-bold">
-                <FaRegClock className="text-lg" />
-                Durée
+                🕓 Durée
               </span>
               {data.nombre_heures_total_max}h de formation
             </p>
           )}
           {data.frais_ttc_tot_max && (
             <p className="flex flex-col gap-1">
-              <span className="flex items-center gap-2 font-bold">
-                <FaEuroSign className="text-lg" />
-                Prix
-              </span>
+              <span className="flex items-center gap-2 font-bold">💲 Prix</span>
               {data.frais_ttc_tot_max} €
             </p>
           )}
           {data.nom_departement && data.code_departement && (
             <p className="flex flex-col gap-2">
               <span className="flex items-center gap-2 font-bold">
-                <FaLocationDot className="text-lg" />
-                Localisation
+                📍 Localisation
               </span>
               {data.nom_departement} {data.code_departement}
             </p>
@@ -77,46 +74,72 @@ function ClientPage(props: Props) {
           <div>{parse(data.points_forts)}</div>
         </Card>
 
-        <div className="mt-8 flex flex-col gap-4">
-          <div
-            className={
-              showObjective
-                ? 'flex flex-wrap gap-4 overflow-hidden'
-                : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-            }
-          >
-            <h2 className="m-0 text-lg font-bold">Objectif</h2>
-            <div>{parse(data.objectif_formation)}</div>
-          </div>
-          <Button
-            onClick={() => setShowObjective(!showObjective)}
-            className="p-0 text-sm text-foreground no-underline"
-            variant="link"
-          >
-            {showObjective ? <ButtonMinus /> : <ButtonPlus />}
-          </Button>
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-4">
-            <div
-              className={
-                showContent
-                  ? 'flex flex-wrap gap-4 overflow-hidden'
-                  : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-              }
+        <div className="mt-8 flex flex-col items-baseline gap-4">
+          <div className="flex justify-between">
+            <Button
+              variant="link"
+              onClick={() => {
+                setShowObjective(!showObjective)
+                setShowContent(false)
+              }}
+              className="text"
+            >
+              <h2 className="m-0 text-lg font-bold">Objectif</h2>
+            </Button>
+            <Button
+              variant="link"
+              onClick={() => {
+                setShowContent(!showContent)
+                setShowObjective(false)
+              }}
+              className="text"
             >
               <h2 className="text-lg font-bold">Contenu</h2>
-              {parse(data.contenu_formation)}
-            </div>
-            <Button
-              onClick={() => setShowContent(!showContent)}
-              className="p-0 text-sm text-foreground no-underline"
-              variant="link"
-            >
-              {showContent ? <ButtonMinus /> : <ButtonPlus />}
             </Button>
+            <hr className="border text-card" />
           </div>
+
+          {showObjective && (
+            <div className="flex flex-col gap-4">
+              <div
+                className={
+                  showMoreObjective
+                    ? 'flex flex-wrap gap-4 overflow-hidden'
+                    : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
+                }
+              >
+                <div>{parse(data.objectif_formation)}</div>
+              </div>
+
+              <Button
+                onClick={() => setMoreShowObjective(!showMoreObjective)}
+                className="p-0 text-sm text-foreground no-underline"
+                variant="link"
+              >
+                {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
+              </Button>
+            </div>
+          )}
+          {showContent && (
+            <div className="flex flex-col gap-4">
+              <div
+                className={
+                  showMoreContent
+                    ? 'flex flex-wrap gap-4 overflow-hidden'
+                    : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
+                }
+              >
+                {parse(data.contenu_formation)}
+              </div>
+              <Button
+                onClick={() => setMoreShowContent(!showMoreContent)}
+                className="p-0 text-sm text-foreground no-underline"
+                variant="link"
+              >
+                {showMoreContent ? <ButtonMinus /> : <ButtonPlus />}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -126,8 +149,10 @@ function ClientPage(props: Props) {
 function Badges() {
   return (
     <div className="flex gap-5">
-      <Badge className="rounded-md">Eligible CPF</Badge>
-      <Badge className="rounded-md border border-primary bg-background text-primary">
+      <Badge className="rounded-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+        Eligible CPF
+      </Badge>
+      <Badge className="rounded-md border border-primary bg-background text-primary transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
         A distance
       </Badge>
     </div>
@@ -137,7 +162,7 @@ function Badges() {
 function ButtonPlus() {
   return (
     <>
-      <p className="m-0 flex flex-row items-center font-bold">
+      <p className="m-0 flex flex-row items-center font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
         <span className="text-lg font-extrabold">
           <TiPlus />
         </span>
@@ -150,7 +175,7 @@ function ButtonPlus() {
 function ButtonMinus() {
   return (
     <>
-      <p className="m-0 flex flex-row items-center font-bold">
+      <p className="m-0 flex flex-row items-center font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
         <span className="text-lg font-extrabold">
           <TiMinus />
         </span>
