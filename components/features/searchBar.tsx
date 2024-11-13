@@ -134,7 +134,7 @@ function SearchBar(props: Props) {
             </div>
             <div className="flex justify-center">
               <Button
-                className="flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-3 hover:bg-secondary"
+                className="flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-3 transition-transform duration-300 ease-in-out hover:scale-95 hover:bg-secondary hover:shadow-xl"
                 type="submit"
               >
                 <FaSearch className="text-background" />
