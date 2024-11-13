@@ -19,9 +19,7 @@ function ClientPage(props: Props) {
   return (
     <main>
       <div className="bg-primary p-10">
-        <div className="">
-          <SearchBar />
-        </div>
+        <SearchBar />
       </div>
       <FormationListContainer data={data}>
         <FormationList />
