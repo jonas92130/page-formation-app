@@ -70,7 +70,7 @@ function FormationsCard() {
                   💲 {formation.frais_ttc_tot_mean} €
                 </p>
               )}
-              {formation.code_rncp.length && (
+              {formation.code_rncp && (
                 <p className="flex items-center gap-2">
                   🎓 Certification RNCP : {formation.code_rncp}
                 </p>
