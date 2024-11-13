@@ -5,13 +5,14 @@ import { createContext, useContext } from 'react'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
+import Link from 'next/link'
+import { Badge } from '@/components/ui/badge'
 
 interface Props {
   data: FormationsResponseModel
   children: React.ReactNode
 }
-
-const FormationListContext = createContext<Props | null>(null)
 
 function FormationList(props: Props) {
   const {} = props
@@ -22,19 +23,88 @@ function FormationList(props: Props) {
   )
 }
 
-function List() {
+const FormationListContext = createContext<Props | null>(null)
+
+function FormationsCard() {
   const props = useContext(FormationListContext)
-  const { results, total_count } = props!.data
+  const { results } = props!.data
 
   return (
-    <div className="px-10 py-4">
-      <p>Nombre de formations: {total_count}</p>
-      <ul className="mt-2 flex flex-col gap-y-2">
-        {results?.map((formation) => (
-          <li key={formation.numero_formation}>
-            <h2 className="text-sm">{formation.intitule_formation}</h2>
-          </li>
-        ))}
+    <div>
+      {results?.map((formation) => (
+        <Link href={`/formation/${formation.numero_formation}`}>
+          <Card
+            key={formation.numero_formation}
+            className="my-10 flex flex-col gap-5 border p-5"
+          >
+            <CardContent className="flex flex-col gap-3 p-0">
+              <div className="flex flex-col gap-2">
+                <h2 className="m-0 text-lg font-bold">
+                  {formation.intitule_formation}
+                </h2>
+                {formation.nom_of && (
+                  <p className="text-xs font-extralight">{formation.nom_of}</p>
+                )}
+              </div>
+
+              <div className="flex gap-6 py-3">
+                <Badge className="rounded-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+                  Eligible CPF
+                </Badge>
+                <Badge className="rounded-md border border-primary bg-background text-primary transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+                  A distance
+                </Badge>
+              </div>
+              {formation.nombre_heures_total_max > 0 && (
+                <p className="flex items-center gap-2">
+                  🕓 {formation.nombre_heures_total_max}h de formation
+                </p>
+              )}
+              {formation.nom_departement && formation.code_departement && (
+                <p className="flex items-center gap-2">
+                  📍 {formation.nom_departement}, {formation.code_departement}
+                </p>
+              )}
+              {formation.frais_ttc_tot_max && (
+                <p className="flex items-center gap-2">
+                  💲 {formation.frais_ttc_tot_mean} €
+                </p>
+              )}
+              {formation.code_rncp && (
+                <p className="flex items-center gap-2">
+                  🎓 Certification RNCP : {formation.code_rncp}
+                </p>
+              )}
+            </CardContent>
+            <CardFooter className="p-0">
+              <Button className="rounded-full px-14 font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+                En savoir plus
+              </Button>
+            </CardFooter>
+          </Card>
+        </Link>
+      ))}
+    </div>
+  )
+}
+
+function List() {
+  const props = useContext(FormationListContext)
+  const { total_count } = props!.data
+
+  return (
+    <div className="mx-auto flex w-[90%] max-w-[1200px] flex-col">
+      <div className="flex items-center gap-3 pt-4">
+        <Badge className="rounded-md border border-primary bg-background p-2 text-base text-primary transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+          Filtrer
+        </Badge>
+        <p>
+          <span className="font-bold text-red-500">{total_count} </span>
+          formations trouvées
+        </p>
+      </div>
+      <ul className="mt-2 flex flex-col">
+        <FormationsCard />
       </ul>
     </div>
   )
@@ -84,4 +154,5 @@ export {
   FormationList as FormationListContainer,
   List as FormationList,
   Tabs as FormationTabs,
+  FormationsCard,
 }
