@@ -25,7 +25,7 @@ function ClientPage(props: Props) {
 
   return (
     <div className="background-image">
-      <div className="mb-4 flex flex-col gap-2 bg-secondary">
+      <div className="mb-4 flex flex-col gap-2 bg-primary/60">
         <h1 className="mx-3 pt-5 text-xl font-extrabold lg:text-3xl">
           {data.intitule_formation}
         </h1>
@@ -149,8 +149,10 @@ function ClientPage(props: Props) {
 function Badges() {
   return (
     <div className="flex gap-5">
-      <Badge className="rounded-md">Eligible CPF</Badge>
-      <Badge className="rounded-md border border-primary bg-background text-primary">
+      <Badge className="rounded-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+        Eligible CPF
+      </Badge>
+      <Badge className="rounded-md border border-primary bg-background text-primary transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
         A distance
       </Badge>
     </div>
@@ -160,7 +162,7 @@ function Badges() {
 function ButtonPlus() {
   return (
     <>
-      <p className="m-0 flex flex-row items-center font-bold">
+      <p className="m-0 flex flex-row items-center font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
         <span className="text-lg font-extrabold">
           <TiPlus />
         </span>
@@ -173,7 +175,7 @@ function ButtonPlus() {
 function ButtonMinus() {
   return (
     <>
-      <p className="m-0 flex flex-row items-center font-bold">
+      <p className="m-0 flex flex-row items-center font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
         <span className="text-lg font-extrabold">
           <TiMinus />
         </span>
