@@ -32,7 +32,9 @@ export default function SearchBarBanner() {
           <span className="text-secondary">388 867 formations</span> à comparer
           pour trouver celle <br /> qui vous correspond vraiment.
         </h3>
-        <SearchBar />
+        <div className="">
+          <SearchBar />
+        </div>
         <div className="hidden flex-wrap items-center gap-x-5 gap-y-6 pt-4 lg:flex lg:w-[62%]">
           <Button variant="list" className="bg-card p-5">
             <Link href="">Agriculture & Peche</Link>

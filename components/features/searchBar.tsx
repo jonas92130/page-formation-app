@@ -80,7 +80,7 @@ function SearchBar(props: Props) {
         className="flex w-full flex-col gap-5"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
-        <div className="flex flex-col items-center gap-3 lg:w-[55%] lg:flex-row">
+        <div className="flex flex-col items-center gap-3 lg:flex-row">
           <FormField
             control={form.control}
             name="query"
