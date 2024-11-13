@@ -8,10 +8,6 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
-import { FaRegClock } from 'react-icons/fa6'
-import { FaEuroSign } from 'react-icons/fa6'
-import { FaLocationDot } from 'react-icons/fa6'
-import { FaGraduationCap } from 'react-icons/fa6'
 
 interface Props {
   data: FormationsResponseModel
@@ -52,36 +48,36 @@ function FormationsCard() {
               </div>
 
               <div className="flex gap-6 py-3">
-                <Badge className="rounded-md">Eligible CPF</Badge>
-                <Badge className="rounded-md border border-primary bg-background text-primary">
+                <Badge className="rounded-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+                  Eligible CPF
+                </Badge>
+                <Badge className="rounded-md border border-primary bg-background text-primary transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
                   A distance
                 </Badge>
               </div>
               {formation.nombre_heures_total_max > 0 && (
                 <p className="flex items-center gap-2">
-                  <FaRegClock /> {formation.nombre_heures_total_max}h de
-                  formation
+                  🕓 {formation.nombre_heures_total_max}h de formation
                 </p>
               )}
               {formation.nom_departement && formation.code_departement && (
                 <p className="flex items-center gap-2">
-                  <FaLocationDot />
-                  {formation.nom_departement}, {formation.code_departement}
+                  📍 {formation.nom_departement}, {formation.code_departement}
                 </p>
               )}
               {formation.frais_ttc_tot_max && (
                 <p className="flex items-center gap-2">
-                  <FaEuroSign /> {formation.frais_ttc_tot_mean} €
+                  💲 {formation.frais_ttc_tot_mean} €
                 </p>
               )}
               {formation.code_rncp.length && (
                 <p className="flex items-center gap-2">
-                  <FaGraduationCap /> Certification RNCP : {formation.code_rncp}
+                  🎓 Certification RNCP : {formation.code_rncp}
                 </p>
               )}
             </CardContent>
             <CardFooter className="p-0">
-              <Button className="rounded-full px-14 font-bold">
+              <Button className="rounded-full px-14 font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
                 En savoir plus
               </Button>
             </CardFooter>
