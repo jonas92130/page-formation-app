@@ -5,6 +5,9 @@ import { Formation } from '@/model/formation'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { TiPlus } from 'react-icons/ti'
+import { FaRegClock } from 'react-icons/fa6'
+import { FaEuroSign } from 'react-icons/fa6'
+import { FaLocationDot } from 'react-icons/fa6'
 import { TiMinus } from 'react-icons/ti'
 import { Button } from '@/components/ui/button'
 import parse from 'html-react-parser'
@@ -79,9 +82,11 @@ function ClientPage(props: Props) {
                 setShowObjective(!showObjective)
                 setShowContent(false)
               }}
-              className="text"
+              className="text-inherit no-underline hover:no-underline focus:no-underline active:no-underline"
             >
-              <h2 className="m-0 text-lg font-bold">Objectif</h2>
+              <h2 className="m-0 text-lg font-bold text-foreground">
+                Objectif
+              </h2>
             </Button>
             <Button
               variant="link"
@@ -89,55 +94,54 @@ function ClientPage(props: Props) {
                 setShowContent(!showContent)
                 setShowObjective(false)
               }}
-              className="text"
+              className="text-inherit no-underline hover:no-underline focus:no-underline active:no-underline"
             >
-              <h2 className="text-lg font-bold">Contenu</h2>
+              <h2 className="text-lg font-bold text-foreground">Contenu</h2>
             </Button>
-            <hr className="border text-card" />
           </div>
-
-          {showObjective && (
-            <div className="flex flex-col gap-4">
-              <div
-                className={
-                  showMoreObjective
-                    ? 'flex flex-wrap gap-4 overflow-hidden'
-                    : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-                }
-              >
-                <div>{parse(data.objectif_formation)}</div>
-              </div>
-
-              <Button
-                onClick={() => setMoreShowObjective(!showMoreObjective)}
-                className="p-0 text-sm text-foreground no-underline"
-                variant="link"
-              >
-                {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
-              </Button>
-            </div>
-          )}
-          {showContent && (
-            <div className="flex flex-col gap-4">
-              <div
-                className={
-                  showMoreContent
-                    ? 'flex flex-wrap gap-4 overflow-hidden'
-                    : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-                }
-              >
-                {parse(data.contenu_formation)}
-              </div>
-              <Button
-                onClick={() => setMoreShowContent(!showMoreContent)}
-                className="p-0 text-sm text-foreground no-underline"
-                variant="link"
-              >
-                {showMoreContent ? <ButtonMinus /> : <ButtonPlus />}
-              </Button>
-            </div>
-          )}
         </div>
+
+        {showObjective && (
+          <div className="flex flex-col gap-4">
+            <div
+              className={
+                showMoreObjective
+                  ? 'flex flex-wrap gap-4 overflow-hidden'
+                  : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
+              }
+            >
+              <div>{parse(data.objectif_formation)}</div>
+            </div>
+
+            <Button
+              onClick={() => setMoreShowObjective(!showMoreObjective)}
+              className="p-0 text-sm text-foreground no-underline"
+              variant="link"
+            >
+              {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
+            </Button>
+          </div>
+        )}
+        {showContent && (
+          <div className="flex flex-col gap-4">
+            <div
+              className={
+                showMoreContent
+                  ? 'flex flex-wrap gap-4 overflow-hidden'
+                  : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
+              }
+            >
+              {parse(data.contenu_formation)}
+            </div>
+            <Button
+              onClick={() => setMoreShowContent(!showMoreContent)}
+              className="p-0 text-sm text-foreground no-underline"
+              variant="link"
+            >
+              {showMoreContent ? <ButtonMinus /> : <ButtonPlus />}
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   )
