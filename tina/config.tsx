@@ -9,6 +9,7 @@ import { FormationsPagesCollections } from './collections/formationsPage'
 import { IndexationPageCollection } from './collections/indexation'
 import { BlogCollection } from './collections/blog'
 import { CityCollection } from './collections/city'
+import { RSSCollection } from './collections/fluxRss'
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true'
 
@@ -35,6 +36,7 @@ export default defineConfig({
       ...FormationsPagesCollections,
       BlogCollection,
       CityCollection,
+      RSSCollection,
     ],
   },
 })

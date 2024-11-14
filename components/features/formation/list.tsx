@@ -3,7 +3,6 @@
 import { FormationsResponseModel } from '@/model/formation'
 import { createContext, useContext, useState } from 'react'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
-import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import Link from 'next/link'
@@ -124,7 +123,6 @@ function Tabs() {
   const { total_count } = props!.data
   const totalCount = total_count
   const { filterParams } = useFilterSearchParams()
-  const router = useRouter()
 
   const currentPage = filterParams.pageNumber
     ? Number(filterParams.pageNumber)
