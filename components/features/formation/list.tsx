@@ -74,7 +74,7 @@ function FormationsCard() {
               )}
               {formation.frais_ttc_tot_max && (
                 <p className="flex items-center gap-2">
-                  💲 {formation.frais_ttc_tot_mean} €
+                  💲 {formation.frais_ttc_tot_mean.toFixed(2)} €
                 </p>
               )}
               {formation.code_rncp && (
