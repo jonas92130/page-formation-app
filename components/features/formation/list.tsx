@@ -16,6 +16,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
+import { PaginationWithLinks } from '@/components/ui/pagination-with-links'
 
 interface Props {
   data: FormationsResponseModel
@@ -163,7 +164,7 @@ function Tabs() {
 
   return (
     <div className="mx-auto mb-5 flex w-10/12 flex-wrap gap-1 overflow-scroll">
-      <Pagination>
+      {/* <Pagination>
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious href="" />
@@ -188,7 +189,13 @@ function Tabs() {
             <PaginationNext href={''} />
           </PaginationItem>
         </PaginationContent>
-      </Pagination>
+      </Pagination> */}
+
+      <PaginationWithLinks
+        page={currentPage}
+        pageSize={limit}
+        totalCount={totalPages}
+      />
     </div>
   )
 }
