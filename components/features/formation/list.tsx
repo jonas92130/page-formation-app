@@ -127,7 +127,7 @@ function Tabs() {
   const currentPage = filterParams.pageNumber
     ? Number(filterParams.pageNumber)
     : 1
-  const limit = filterParams.limit ? Number(filterParams.limit) : 20
+  const limit = filterParams.limit ? Number(filterParams.limit) : 14
 
   const totalPages = Math.ceil(totalCount / limit)
 
