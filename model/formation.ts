@@ -5,7 +5,7 @@ export interface Formation {
   nom_region: string
   type_referentiel: string
   code_inventaire: string
-  code_rncp: string
+  code_rncp: number
   intitule_certification: string
   libelle_niveau_sortie_formation: string | null
   code_formacode_1: string
