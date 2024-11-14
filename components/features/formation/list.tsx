@@ -38,8 +38,8 @@ function FormationsCard() {
 
   return (
     <div>
-      {results?.map((formation) => (
-        <Link href={`/formation/${formation.numero_formation}`}>
+      {results?.map((formation, index) => (
+        <Link href={`/formation/${formation.numero_formation}`} key={index}>
           <Card
             key={formation.numero_formation}
             className="my-10 flex flex-col gap-5 border p-5"
