@@ -12,11 +12,10 @@ import {
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
-  PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-import { PaginationWithLinks } from '@/components/ui/pagination-with-links'
+
 interface Props {
   data: FormationsResponseModel
   children: React.ReactNode
@@ -137,7 +136,7 @@ function Tabs() {
 
     while (i <= totalPages) {
       if (
-        i <= 2 ||
+        i <= 3 ||
         i >= totalPages - 2 ||
         (i >= currentPage - 1 && i <= currentPage + 1)
       ) {
@@ -154,15 +153,15 @@ function Tabs() {
   const pagination = paginationDots()
 
   return (
-    <div className="mx-auto mb-5 flex w-10/12 flex-wrap gap-1 overflow-scroll">
+    <div className="mx-auto mb-5 flex w-10/12 flex-wrap justify-center gap-1 md:w-8/12 lg:w-6/12">
       <Pagination>
-        <PaginationContent>
+        <PaginationContent className="flex flex-wrap justify-center gap-2">
           <PaginationItem>
             <PaginationPrevious href="" />
           </PaginationItem>
           {pagination.map((value, index) => {
             if (value === '...') {
-              return <PaginationEllipsis />
+              return <PaginationEllipsis key={`ellipsis-${index}`} />
             }
             const newParams = {
               ...filterParams,
@@ -171,9 +170,8 @@ function Tabs() {
             const url = '?' + new URLSearchParams(newParams).toString()
 
             return (
-              <PaginationItem>
+              <PaginationItem key={index}>
                 <Button
-                  key={index}
                   size={'sm'}
                   variant={currentPage === value ? 'pagination' : 'ghost'}
                   asChild
@@ -183,7 +181,6 @@ function Tabs() {
               </PaginationItem>
             )
           })}
-
           <PaginationItem>
             <PaginationNext href={''} />
           </PaginationItem>
@@ -192,6 +189,7 @@ function Tabs() {
     </div>
   )
 }
+
 
 export {
   FormationList as FormationListContainer,

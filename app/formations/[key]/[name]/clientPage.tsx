@@ -8,7 +8,6 @@ import {
 } from '@/components/features/formation/list'
 import React from 'react'
 import SearchBar from '@/components/features/searchBar'
-import ActualityHome from '@/app/actualites/actualityHome'
 
 interface Props {
   data: FormationsResponseModel
