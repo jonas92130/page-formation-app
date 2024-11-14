@@ -1,7 +1,7 @@
 'use client'
 
 import { FormationsResponseModel } from '@/model/formation'
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext } from 'react'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
@@ -17,7 +17,6 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination'
 import { PaginationWithLinks } from '@/components/ui/pagination-with-links'
-
 interface Props {
   data: FormationsResponseModel
   children: React.ReactNode
@@ -132,16 +131,6 @@ function Tabs() {
 
   const totalPages = Math.ceil(totalCount / limit)
 
-  const handlePageChange = (page: number) => {
-    const newParams = {
-      ...filterParams,
-      pageNumber: page,
-    }
-    const url = '?' + new URLSearchParams(newParams).toString()
-
-    router.push(url)
-  }
-
   const pagination = () => {
     let pg = [],
       i = 1
@@ -164,38 +153,48 @@ function Tabs() {
 
   return (
     <div className="mx-auto mb-5 flex w-10/12 flex-wrap gap-1 overflow-scroll">
-      {/* <Pagination>
+      <Pagination>
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious href="" />
           </PaginationItem>
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <PaginationItem>
-              <PaginationLink
-                key={index}
-                size={'sm'}
-                onClick={() => handlePageChange(index + 1)}
-                className={
-                  currentPage === index + 1
-                    ? 'bg-primary text-primary-foreground hover:bg-primary/90'
-                    : 'hover:bg-accent hover:text-accent-foreground'
-                }
-              >
-                {index + 1}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
+          {Array.from({ length: totalPages }).map((_, index) => {
+            const newParams = {
+              ...filterParams,
+              pageNumber: index + 1,
+            }
+            const url = '?' + new URLSearchParams(newParams).toString()
+            return (
+              <PaginationItem>
+                <Button
+                  key={index}
+                  size={'sm'}
+                  // className={
+                  // currentPage === index + 1
+                  // ? 'text-foreground hover:bg-primary/90'
+                  // : 'hover:bg-accent hover:text-accent-foreground'
+                  // }
+                  variant={currentPage === index + 1 ? 'pagination' : 'ghost'}
+                  asChild
+                >
+                  <Link href={url} className="bg-white text-foreground">
+                    {index + 1}
+                  </Link>
+                </Button>
+              </PaginationItem>
+            )
+          })}
           <PaginationItem>
             <PaginationNext href={''} />
           </PaginationItem>
         </PaginationContent>
-      </Pagination> */}
+      </Pagination>
 
-      <PaginationWithLinks
+      {/* <PaginationWithLinks
         page={currentPage}
         pageSize={limit}
         totalCount={totalPages}
-      />
+      /> */}
     </div>
   )
 }

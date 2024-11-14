@@ -19,6 +19,8 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         list: 'h-auto text-ellipsis whitespace-normal break-words rounded-full w-fit text-sm sm:text-base lg:text-lg text-foreground drop-shadow-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl',
+        pagination:
+          'bg-none text-foreground underline decoration-2 underline-offset-4',
       },
       size: {
         default: 'h-10 px-4 py-2',
