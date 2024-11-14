@@ -5,9 +5,6 @@ import { Formation } from '@/model/formation'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { TiPlus } from 'react-icons/ti'
-import { FaRegClock } from 'react-icons/fa6'
-import { FaEuroSign } from 'react-icons/fa6'
-import { FaLocationDot } from 'react-icons/fa6'
 import { TiMinus } from 'react-icons/ti'
 import { Button } from '@/components/ui/button'
 import parse from 'html-react-parser'
@@ -74,19 +71,23 @@ function ClientPage(props: Props) {
           <div>{parse(data.points_forts)}</div>
         </Card>
 
-        <div className="mt-8 flex flex-col items-baseline gap-4">
-          <div className="flex justify-between">
+        <div className="mt-8 flex flex-col justify-center gap-4">
+          <div className="relative flex justify-between border-b border-gray-300">
             <Button
               variant="link"
               onClick={() => {
                 setShowObjective(!showObjective)
                 setShowContent(false)
               }}
-              className="text-inherit no-underline hover:no-underline focus:no-underline active:no-underline"
+              className="p-0 text-inherit no-underline hover:no-underline focus:no-underline active:no-underline"
             >
-              <h2 className="m-0 text-lg font-bold text-foreground">
-                Objectif
-              </h2>
+              <h3
+                className={`m-0 text-lg font-bold text-foreground transition-colors duration-300 ${
+                  showObjective && 'text-primary'
+                }`}
+              >
+                Les objectif
+              </h3>
             </Button>
             <Button
               variant="link"
@@ -94,54 +95,70 @@ function ClientPage(props: Props) {
                 setShowContent(!showContent)
                 setShowObjective(false)
               }}
-              className="text-inherit no-underline hover:no-underline focus:no-underline active:no-underline"
+              className="p-0 text-inherit no-underline hover:no-underline focus:no-underline active:no-underline"
             >
-              <h2 className="text-lg font-bold text-foreground">Contenu</h2>
+              <h3
+                className={`text-lg font-bold text-foreground transition-colors duration-300 ${
+                  showContent && 'text-primary'
+                }`}
+              >
+                Le contenu
+              </h3>
             </Button>
+
+            <div
+              className={`absolute bottom-0 h-0.5 bg-primary transition-all duration-300 ${
+                showObjective
+                  ? 'left-0 w-1/2'
+                  : showContent
+                    ? 'left-1/2 w-1/2'
+                    : ''
+              }`}
+            ></div>
           </div>
+
+          {showObjective && (
+            <div className="flex flex-col gap-4">
+              <div
+                className={
+                  showMoreObjective
+                    ? 'flex flex-wrap gap-4 overflow-hidden'
+                    : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
+                }
+              >
+                <div>{parse(data.objectif_formation)}</div>
+              </div>
+
+              <Button
+                onClick={() => setMoreShowObjective(!showMoreObjective)}
+                className="p-0 text-sm text-foreground no-underline"
+                variant="link"
+              >
+                {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
+              </Button>
+            </div>
+          )}
+          {showContent && (
+            <div className="flex flex-col gap-4">
+              <div
+                className={
+                  showMoreContent
+                    ? 'flex flex-wrap gap-4 overflow-hidden'
+                    : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
+                }
+              >
+                {parse(data.contenu_formation)}
+              </div>
+              <Button
+                onClick={() => setMoreShowContent(!showMoreContent)}
+                className="p-0 text-sm text-foreground no-underline"
+                variant="link"
+              >
+                {showMoreContent ? <ButtonMinus /> : <ButtonPlus />}
+              </Button>
+            </div>
+          )}
         </div>
-
-        {showObjective && (
-          <div className="flex flex-col gap-4">
-            <div
-              className={
-                showMoreObjective
-                  ? 'flex flex-wrap gap-4 overflow-hidden'
-                  : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-              }
-            >
-              <div>{parse(data.objectif_formation)}</div>
-            </div>
-
-            <Button
-              onClick={() => setMoreShowObjective(!showMoreObjective)}
-              className="p-0 text-sm text-foreground no-underline"
-              variant="link"
-            >
-              {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
-            </Button>
-          </div>
-        )}
-        {showContent && (
-          <div className="flex flex-col gap-4">
-            <div
-              className={
-                showMoreContent
-                  ? 'flex flex-wrap gap-4 overflow-hidden'
-                  : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-              }
-            >
-              {parse(data.contenu_formation)}
-            </div>
-            <Button
-              onClick={() => setMoreShowContent(!showMoreContent)}
-              className="p-0 text-sm text-foreground no-underline"
-              variant="link"
-            >
-              {showMoreContent ? <ButtonMinus /> : <ButtonPlus />}
-            </Button>
-          </div>
-        )}
       </div>
     </div>
   )
