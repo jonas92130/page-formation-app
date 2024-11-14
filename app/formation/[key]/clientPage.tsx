@@ -71,17 +71,23 @@ function ClientPage(props: Props) {
           <div>{parse(data.points_forts)}</div>
         </Card>
 
-        <div className="mt-8 flex flex-col items-baseline gap-4">
-          <div className="flex justify-between">
+        <div className="mt-8 flex flex-col justify-center gap-4">
+          <div className="relative flex justify-between border-b border-gray-300">
             <Button
               variant="link"
               onClick={() => {
                 setShowObjective(!showObjective)
                 setShowContent(false)
               }}
-              className="text"
+              className="p-0 text-inherit no-underline hover:no-underline focus:no-underline active:no-underline"
             >
-              <h2 className="m-0 text-lg font-bold">Objectif</h2>
+              <h3
+                className={`m-0 text-lg font-bold text-foreground transition-colors duration-300 ${
+                  showObjective && 'text-primary'
+                }`}
+              >
+                Les objectif
+              </h3>
             </Button>
             <Button
               variant="link"
@@ -89,11 +95,26 @@ function ClientPage(props: Props) {
                 setShowContent(!showContent)
                 setShowObjective(false)
               }}
-              className="text"
+              className="p-0 text-inherit no-underline hover:no-underline focus:no-underline active:no-underline"
             >
-              <h2 className="text-lg font-bold">Contenu</h2>
+              <h3
+                className={`text-lg font-bold text-foreground transition-colors duration-300 ${
+                  showContent && 'text-primary'
+                }`}
+              >
+                Le contenu
+              </h3>
             </Button>
-            <hr className="border text-card" />
+
+            <div
+              className={`absolute bottom-0 h-0.5 bg-primary transition-all duration-300 ${
+                showObjective
+                  ? 'left-0 w-1/2'
+                  : showContent
+                    ? 'left-1/2 w-1/2'
+                    : ''
+              }`}
+            ></div>
           </div>
 
           {showObjective && (
