@@ -3,7 +3,6 @@
 import { FormationsResponseModel } from '@/model/formation'
 import { createContext, useContext } from 'react'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
-import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import Link from 'next/link'
@@ -115,7 +114,6 @@ function Tabs() {
   const { total_count } = props!.data
   const totalCount = total_count
   const { filterParams } = useFilterSearchParams()
-  const router = useRouter()
 
   const currentPage = filterParams.pageNumber
     ? Number(filterParams.pageNumber)
@@ -124,28 +122,23 @@ function Tabs() {
 
   const totalPages = Math.ceil(totalCount / limit)
 
-  const handlePageChange = (page: number) => {
-    const newParams = {
-      ...filterParams,
-      pageNumber: page,
-    }
-    const url = '?' + new URLSearchParams(newParams).toString()
-
-    router.push(url)
-  }
-
   return (
     <div className="mx-auto mb-5 flex w-10/12 flex-wrap gap-1">
-      {Array.from({ length: totalPages }).map((_, index) => (
-        <Button
-          key={index}
-          size={'sm'}
-          onClick={() => handlePageChange(index + 1)}
-          variant={currentPage === index + 1 ? 'default' : 'ghost'}
-        >
-          {index + 1}
-        </Button>
-      ))}
+      {Array.from({ length: totalPages }).map((_, index) => {
+        const params = {
+          ...filterParams,
+          pageNumber: index + 1,
+        }
+        const url = '?' + new URLSearchParams(params).toString()
+        return (
+          <Button
+            asChild
+            variant={currentPage === index + 1 ? 'default' : 'outline'}
+          >
+            <Link href={url}>{index + 1}</Link>
+          </Button>
+        )
+      })}
     </div>
   )
 }
