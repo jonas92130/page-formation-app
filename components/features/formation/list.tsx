@@ -15,6 +15,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
+import page from '@/app/formation/[key]/page'
 
 interface Props {
   data: FormationsResponseModel
@@ -131,7 +132,7 @@ function Tabs() {
   const totalPages = Math.ceil(totalCount / limit)
 
   const paginationDots = () => {
-    let pg: (string | number)[] = [],
+    let pg: ('...' | number)[] = [],
       i = 1
 
     while (i <= totalPages) {
@@ -152,22 +153,36 @@ function Tabs() {
 
   const pagination = paginationDots()
 
+  const createUrl = (pageNumber: number) => {
+    const newParams = {
+      ...filterParams,
+      pageNumber: pageNumber,
+    }
+    const url = '?' + new URLSearchParams(newParams).toString()
+
+    return url
+  }
+
+  const previousUrl = createUrl(currentPage - 1)
+  const nextUrl = createUrl(currentPage + 1)
+
+  console.log(previousUrl)
   return (
     <div className="mx-auto mb-5 flex w-10/12 flex-wrap justify-center gap-1 md:w-8/12 lg:w-6/12">
       <Pagination>
         <PaginationContent className="flex flex-wrap justify-center gap-2">
-          <PaginationItem>
-            <PaginationPrevious href="" />
-          </PaginationItem>
+          {currentPage > 1 && (
+            <PaginationItem>
+              <PaginationPrevious href={`${previousUrl}`} />
+            </PaginationItem>
+          )}
+
           {pagination.map((value, index) => {
             if (value === '...') {
               return <PaginationEllipsis key={`ellipsis-${index}`} />
             }
-            const newParams = {
-              ...filterParams,
-              pageNumber: value,
-            }
-            const url = '?' + new URLSearchParams(newParams).toString()
+
+            const url = createUrl(value)
 
             return (
               <PaginationItem key={index}>
@@ -181,15 +196,16 @@ function Tabs() {
               </PaginationItem>
             )
           })}
-          <PaginationItem>
-            <PaginationNext href={''} />
-          </PaginationItem>
+          {currentPage < totalPages && (
+            <PaginationItem>
+              <PaginationNext href={`${nextUrl}`} />
+            </PaginationItem>
+          )}
         </PaginationContent>
       </Pagination>
     </div>
   )
 }
-
 
 export {
   FormationList as FormationListContainer,
