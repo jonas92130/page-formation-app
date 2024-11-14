@@ -131,15 +131,15 @@ function Tabs() {
 
   const totalPages = Math.ceil(totalCount / limit)
 
-  const pagination = () => {
-    let pg = [],
+  const paginationDots = () => {
+    let pg: (string | number)[] = [],
       i = 1
 
     while (i <= totalPages) {
       if (
-        i <= 3 ||
+        i <= 2 ||
         i >= totalPages - 2 ||
-        (i >= currentPage - 1 && currentPage + 1)
+        (i >= currentPage - 1 && i <= currentPage + 1)
       ) {
         pg.push(i)
         i++
@@ -151,6 +151,8 @@ function Tabs() {
     return pg
   }
 
+  const pagination = paginationDots()
+
   return (
     <div className="mx-auto mb-5 flex w-10/12 flex-wrap gap-1 overflow-scroll">
       <Pagination>
@@ -158,43 +160,35 @@ function Tabs() {
           <PaginationItem>
             <PaginationPrevious href="" />
           </PaginationItem>
-          {Array.from({ length: totalPages }).map((_, index) => {
+          {pagination.map((value, index) => {
+            if (value === '...') {
+              return <PaginationEllipsis />
+            }
             const newParams = {
               ...filterParams,
-              pageNumber: index + 1,
+              pageNumber: value,
             }
             const url = '?' + new URLSearchParams(newParams).toString()
+
             return (
               <PaginationItem>
                 <Button
                   key={index}
                   size={'sm'}
-                  // className={
-                  // currentPage === index + 1
-                  // ? 'text-foreground hover:bg-primary/90'
-                  // : 'hover:bg-accent hover:text-accent-foreground'
-                  // }
-                  variant={currentPage === index + 1 ? 'pagination' : 'ghost'}
+                  variant={currentPage === value ? 'pagination' : 'ghost'}
                   asChild
                 >
-                  <Link href={url} className="bg-white text-foreground">
-                    {index + 1}
-                  </Link>
+                  <Link href={url}>{value}</Link>
                 </Button>
               </PaginationItem>
             )
           })}
+
           <PaginationItem>
             <PaginationNext href={''} />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
-
-      {/* <PaginationWithLinks
-        page={currentPage}
-        pageSize={limit}
-        totalCount={totalPages}
-      /> */}
     </div>
   )
 }
