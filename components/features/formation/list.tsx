@@ -8,6 +8,15 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination'
 
 interface Props {
   data: FormationsResponseModel
@@ -135,17 +144,33 @@ function Tabs() {
   }
 
   return (
-    <div className="mx-auto mb-5 flex w-10/12 flex-wrap gap-1">
-      {Array.from({ length: totalPages }).map((_, index) => (
-        <Button
-          key={index}
-          size={'sm'}
-          onClick={() => handlePageChange(index + 1)}
-          variant={currentPage === index + 1 ? 'default' : 'ghost'}
-        >
-          {index + 1}
-        </Button>
-      ))}
+    <div className="mx-auto mb-5 flex w-10/12 flex-wrap gap-1 overflow-scroll">
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href={''} />
+          </PaginationItem>
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <PaginationItem>
+              <PaginationLink
+                key={index}
+                size={'sm'}
+                onClick={() => handlePageChange(index + 1)}
+                className={
+                  currentPage === index + 1
+                    ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+                    : 'hover:bg-accent hover:text-accent-foreground'
+                }
+              >
+                {index + 1}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+          <PaginationItem>
+            <PaginationNext href={''} />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   )
 }
