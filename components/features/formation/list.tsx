@@ -15,7 +15,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-import page from '@/app/formation/[key]/page'
 
 interface Props {
   data: FormationsResponseModel

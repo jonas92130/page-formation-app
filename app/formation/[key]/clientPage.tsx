@@ -134,7 +134,7 @@ function ClientPage(props: Props) {
                 className="p-0 text-sm text-foreground no-underline"
                 variant="link"
               >
-                {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
+                {showMoreObjective  ? <ButtonMinus /> : <ButtonPlus />}
               </Button>
             </div>
           )}
