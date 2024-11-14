@@ -48,7 +48,7 @@ function ClientPage(props: Props) {
           {data.frais_ttc_tot_max && (
             <p className="flex flex-col gap-1">
               <span className="flex items-center gap-2 font-bold">💲 Prix</span>
-              {data.frais_ttc_tot_max} €
+              {data.frais_ttc_tot_max.toFixed(2)} €
             </p>
           )}
           {data.nom_departement && data.code_departement && (
