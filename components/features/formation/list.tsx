@@ -1,7 +1,7 @@
 'use client'
 
 import { FormationsResponseModel } from '@/model/formation'
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useState } from 'react'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -143,12 +143,32 @@ function Tabs() {
     router.push(url)
   }
 
+  const pagination = () => {
+    let pg = [],
+      i = 1
+
+    while (i <= totalPages) {
+      if (
+        i <= 3 ||
+        i >= totalPages - 2 ||
+        (i >= currentPage - 1 && currentPage + 1)
+      ) {
+        pg.push(i)
+        i++
+      } else {
+        pg.push('...')
+        i = i < currentPage ? currentPage - 1 : totalPages - 2
+      }
+    }
+    return pg
+  }
+
   return (
     <div className="mx-auto mb-5 flex w-10/12 flex-wrap gap-1 overflow-scroll">
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious href={''} />
+            <PaginationPrevious href="" />
           </PaginationItem>
           {Array.from({ length: totalPages }).map((_, index) => (
             <PaginationItem>
