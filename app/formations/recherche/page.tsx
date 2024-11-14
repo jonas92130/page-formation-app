@@ -1,24 +1,23 @@
-'use server'
+import DataList from './dataList'
+import SearchBar from '@/components/features/searchBar'
+import React from 'react'
 
-import { CPFApiHandler } from '@/back/CPFApiHandler'
-import { MongoDBHandler } from '@/back/MongoDBHandler'
-import ClientPage from './clientPage'
-import { createQueryMongoParams } from '@/lib/filter'
-
-async function Page(props) {
-  const { searchParams } = props
-
-  const params = createQueryMongoParams(searchParams)
-  const api = new MongoDBHandler()
-  const results = await api.getFormations(params)
-  const count = await api.getFormationsCount(params)
-
-  const dataFormated = {
-    results,
-    total_count: count[0]?.total_count,
-  }
-
-  return <ClientPage data={JSON.parse(JSON.stringify(dataFormated))} />
+interface Props {
+  searchParams: any
 }
 
-export default Page
+function ClientPage(props: Props) {
+  const { searchParams } = props
+
+  return (
+    <div>
+      {/* <h1>CLIENT</h1> */}
+      <div className="bg-primary p-10">
+        <SearchBar />
+      </div>
+      <DataList searchParams={searchParams} />
+    </div>
+  )
+}
+
+export default ClientPage
