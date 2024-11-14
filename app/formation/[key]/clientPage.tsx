@@ -134,7 +134,7 @@ function ClientPage(props: Props) {
                 className="p-0 text-sm text-foreground no-underline"
                 variant="link"
               >
-                {showMoreObjective  ? <ButtonMinus /> : <ButtonPlus />}
+                {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
               </Button>
             </div>
           )}
@@ -167,10 +167,8 @@ function ClientPage(props: Props) {
 function Badges() {
   return (
     <div className="flex gap-5">
-      <Badge className="rounded-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
-        Eligible CPF
-      </Badge>
-      <Badge className="rounded-md border border-primary bg-background text-primary transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+      <Badge className="rounded-md">Eligible CPF</Badge>
+      <Badge className="rounded-md border border-primary bg-background text-primary">
         A distance
       </Badge>
     </div>
