@@ -55,10 +55,8 @@ function FormationsCard() {
               </div>
 
               <div className="flex gap-6 py-3">
-                <Badge className="rounded-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
-                  Eligible CPF
-                </Badge>
-                <Badge className="rounded-md border border-primary bg-background text-primary transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+                <Badge className="rounded-md">Eligible CPF</Badge>
+                <Badge className="rounded-md border border-primary bg-background text-primary">
                   A distance
                 </Badge>
               </div>
