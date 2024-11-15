@@ -35,7 +35,6 @@ const FormationListContext = createContext<Props | null>(null)
 function FormationsCard() {
   const props = useContext(FormationListContext)
   const { results } = props!.data
-
   return (
     <div>
       {results?.map((formation, index) => (

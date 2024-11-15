@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Formation } from '@/model/formation'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
@@ -19,6 +19,25 @@ function ClientPage(props: Props) {
   const [showMoreContent, setMoreShowContent] = useState(false)
   const [showObjective, setShowObjective] = useState(true)
   const [showContent, setShowContent] = useState(false)
+
+  const [isObjectiveOverflowing, setIsObjectiveOverflowing] = useState(false)
+  const [isContentOverflowing, setIsContentOverflowing] = useState(false)
+
+  const objectiveRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (objectiveRef.current) {
+      setIsObjectiveOverflowing(
+        objectiveRef.current.scrollHeight > objectiveRef.current.clientHeight
+      )
+    }
+    if (contentRef.current) {
+      setIsContentOverflowing(
+        contentRef.current.scrollHeight > contentRef.current.clientHeight
+      )
+    }
+  }, [data, showMoreObjective, showMoreContent])
 
   return (
     <div className="background-image">
@@ -120,42 +139,47 @@ function ClientPage(props: Props) {
           {showObjective && (
             <div className="flex flex-col gap-4">
               <div
-                className={
+                ref={objectiveRef}
+                className={`${
                   showMoreObjective
-                    ? 'flex flex-wrap gap-4 overflow-hidden'
+                    ? 'flex flex-wrap gap-4'
                     : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-                }
+                }`}
               >
                 <div>{parse(data.objectif_formation)}</div>
               </div>
-
-              <Button
-                onClick={() => setMoreShowObjective(!showMoreObjective)}
-                className="p-0 text-sm text-foreground no-underline"
-                variant="link"
-              >
-                {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
-              </Button>
+              {isObjectiveOverflowing && (
+                <Button
+                  onClick={() => setMoreShowObjective(!showMoreObjective)}
+                  className="p-0 text-sm text-foreground no-underline"
+                  variant="link"
+                >
+                  {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
+                </Button>
+              )}
             </div>
           )}
           {showContent && (
             <div className="flex flex-col gap-4">
               <div
-                className={
+                ref={contentRef}
+                className={`${
                   showMoreContent
-                    ? 'flex flex-wrap gap-4 overflow-hidden'
+                    ? 'flex flex-wrap gap-4'
                     : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-                }
+                }`}
               >
                 {parse(data.contenu_formation)}
               </div>
-              <Button
-                onClick={() => setMoreShowContent(!showMoreContent)}
-                className="p-0 text-sm text-foreground no-underline"
-                variant="link"
-              >
-                {showMoreContent ? <ButtonMinus /> : <ButtonPlus />}
-              </Button>
+              {isContentOverflowing && (
+                <Button
+                  onClick={() => setMoreShowContent(!showMoreContent)}
+                  className="p-0 text-sm text-foreground no-underline"
+                  variant="link"
+                >
+                  {showMoreContent ? <ButtonMinus /> : <ButtonPlus />}
+                </Button>
+              )}
             </div>
           )}
         </div>
@@ -177,27 +201,31 @@ function Badges() {
 
 function ButtonPlus() {
   return (
-    <>
-      <p className="m-0 flex flex-row items-center font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
-        <span className="text-lg font-extrabold">
-          <TiPlus />
-        </span>
-        Afficher plus
-      </p>
-    </>
+    <p className="m-0 flex flex-row items-center font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+      <span className="text-lg font-extrabold">
+        <TiPlus />
+      </span>
+      Afficher plus
+    </p>
   )
 }
 
 function ButtonMinus() {
   return (
-    <>
-      <p className="m-0 flex flex-row items-center font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
-        <span className="text-lg font-extrabold">
-          <TiMinus />
-        </span>
-        Afficher moins
-      </p>
-    </>
+    <p className="m-0 flex flex-row items-center font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
+      <span className="text-lg font-extrabold">
+        <TiMinus />
+      </span>
+      Afficher moins
+    </p>
+  )
+}
+
+function suggestedFormations() {
+  return (
+    <div>
+      <h4>Ces formations peuvent vous intéresser</h4>
+    </div>
   )
 }
 
