@@ -8,7 +8,8 @@ export default async function handler(req, res) {
 
   const params = createQueryMongoParams(searchParams)
   const api = new MongoDBHandler()
-  const promises = [api.getFormations(params), api.getFormationsCount(params)]
+  const api2 = new MongoDBHandler()
+  const promises = [api.getFormations(params), api2.getFormationsCount(params)]
   const [results, count] = await Promise.all(promises)
 
   const dataFormated = {

@@ -21,7 +21,11 @@ function ClientPage(props: Props) {
       <div className="bg-primary p-10">
         <SearchBar />
       </div>
-      <FormationListContainer data={data}>
+      <FormationListContainer
+        data={data}
+        results={data.results}
+        totalCount={data.total_count}
+      >
         <FormationList />
         <FormationTabs />
       </FormationListContainer>

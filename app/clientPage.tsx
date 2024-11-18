@@ -1,7 +1,7 @@
 import { FormationFacetsResponseModel } from '@/model/formation'
 import LinkList from '@/components/features/linkList'
 import React from 'react'
-import Formation from './test-ui/formation/formation'
+import Formation from './formationCard'
 import ActualityHome from './actualites/actualityHome'
 import CitiesServerList from '@/components/features/linkList/citiesServerList'
 import SearchBarBanner from '@/app/SearchBarBanner'

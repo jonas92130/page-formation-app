@@ -8,17 +8,22 @@ import { TiPlus } from 'react-icons/ti'
 import { TiMinus } from 'react-icons/ti'
 import { Button } from '@/components/ui/button'
 import parse from 'html-react-parser'
+import { Organization } from '@/model/organization'
+import { FaStar } from 'react-icons/fa'
+import { cn } from '@/lib/utils'
 
 type Props = {
   data: Formation
+  organization: Organization | null
 }
 
 function ClientPage(props: Props) {
-  const { data } = props
-  const [showMoreObjective, setMoreShowObjective] = useState(false)
-  const [showMoreContent, setMoreShowContent] = useState(false)
+  const { data, organization } = props
   const [showObjective, setShowObjective] = useState(true)
   const [showContent, setShowContent] = useState(false)
+
+  const GoalParse = parse(data.objectif_formation)
+  const ContentParse = parse(data.contenu_formation)
 
   return (
     <div className="background-image">
@@ -32,10 +37,10 @@ function ClientPage(props: Props) {
       </div>
       <div className="mx-auto flex w-[90%] max-w-[1200px] flex-col gap-7">
         <Badges />
-        <p className="flex flex-row items-center gap-1 text-base">
+        {/* <p className="flex flex-row items-center gap-1 text-base">
           <TiPlus className="text-2xl font-extrabold" />
           Voir des formations similaires
-        </p>
+        </p> */}
         <Card className="flex flex-col gap-5 border px-4 py-3 shadow-sm">
           {data.nombre_heures_total_max > 0 && (
             <p className="flex flex-col gap-2">
@@ -60,9 +65,24 @@ function ClientPage(props: Props) {
             </p>
           )}
         </Card>
-        {data ? (
+        {organization?.score &&
+        organization.score.notes &&
+        organization.score.notes.global ? (
           <Card className="bg-primary/20 px-5 py-6">
-            <p className="text-xl">4,3 ⭐️⭐️⭐️⭐️⭐️ 100 avis{data.avis}</p>
+            <p className="flex items-center gap-2 text-xl">
+              {organization.score.notes?.global} / 5
+              {[...Array(5)].map((_, index) => (
+                <FaStar
+                  key={index}
+                  className={cn(
+                    index <= (organization.score?.notes?.global ?? 0) &&
+                      'text-yellow-500'
+                  )}
+                />
+              ))}
+              {organization.score.nb_avis} avis
+              {data.avis}
+            </p>
           </Card>
         ) : null}
 
@@ -119,48 +139,70 @@ function ClientPage(props: Props) {
 
           {showObjective && (
             <div className="flex flex-col gap-4">
-              <div
-                className={
-                  showMoreObjective
-                    ? 'flex flex-wrap gap-4 overflow-hidden'
-                    : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-                }
-              >
-                <div>{parse(data.objectif_formation)}</div>
-              </div>
-
-              <Button
-                onClick={() => setMoreShowObjective(!showMoreObjective)}
-                className="p-0 text-sm text-foreground no-underline"
-                variant="link"
-              >
-                {showMoreObjective ? <ButtonMinus /> : <ButtonPlus />}
-              </Button>
+              <div className={'gap-4 overflow-hidden'}>{GoalParse}</div>
             </div>
           )}
+
           {showContent && (
             <div className="flex flex-col gap-4">
-              <div
-                className={
-                  showMoreContent
-                    ? 'flex flex-wrap gap-4 overflow-hidden'
-                    : 'flex max-h-[30dvh] flex-wrap gap-4 overflow-hidden'
-                }
-              >
-                {parse(data.contenu_formation)}
-              </div>
-              <Button
-                onClick={() => setMoreShowContent(!showMoreContent)}
-                className="p-0 text-sm text-foreground no-underline"
-                variant="link"
-              >
-                {showMoreContent ? <ButtonMinus /> : <ButtonPlus />}
-              </Button>
+              <div className={'gap-4 overflow-hidden'}>{ContentParse}</div>
             </div>
           )}
         </div>
+        {organization && <OrganizationCard organization={organization} />}
       </div>
     </div>
+  )
+}
+
+function OrganizationCard(props: { organization: Organization }) {
+  const { organization } = props
+
+  return (
+    <Card className="flex flex-col gap-3 px-5 py-4">
+      <h2 className="m-0 text-lg font-bold">Organisation</h2>
+      <p className="m-0">{organization.raison_sociale}</p>
+      {organization.lieux_de_formation && (
+        <div>
+          <p className="m-0">Lieux de formation:</p>
+          {organization.lieux_de_formation.map((location, index) => (
+            <p key={index} className="m-0">
+              {location.nom && <span>{location.nom} - </span>}
+              {location.adresse.ville} ({location.adresse.code_postal})
+            </p>
+          ))}
+        </div>
+      )}
+      {organization.score && (
+        <div className="flex flex-col gap-2">
+          <p className="m-0"></p>
+          <p className="m-0">Nombre d'avis: {organization.score.nb_avis}</p>
+          {organization.score.notes && (
+            <div className="flex flex-col gap-2">
+              <p className="m-0">Notes:</p>
+              <p className="m-0">Accueil: {organization.score.notes.accueil}</p>
+              <p className="m-0">
+                Contenu de la formation:{' '}
+                {organization.score.notes.contenu_formation}
+              </p>
+              <p className="m-0">
+                Equipe de formateurs:{' '}
+                {organization.score.notes.equipe_formateurs}
+              </p>
+              <p className="m-0">
+                Moyen matériel: {organization.score.notes.moyen_materiel}
+              </p>
+              <p className="m-0">
+                Accompagnement: {organization.score.notes.accompagnement}
+              </p>
+              <p className="m-0">
+                Note globale: {organization.score.notes.global}
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+    </Card>
   )
 }
 

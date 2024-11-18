@@ -7,6 +7,8 @@ import {
   FormationList,
   FormationTabs,
 } from '@/components/features/formation/list'
+import { Form } from 'tinacms'
+import { FormationsResponseModel } from '@/model/formation'
 
 const fetcher = async (url) => {
   const response = await axios.get(url)
@@ -24,7 +26,7 @@ function DataList(props: Props) {
 
   const params = new URLSearchParams(searchParams)
 
-  const { data, isLoading, error } = useSWR(
+  const { data, isLoading, error } = useSWR<FormationsResponseModel>(
     ['/api/formations/list' + '?' + params.toString()],
     fetcher
   )
@@ -37,7 +39,10 @@ function DataList(props: Props) {
         </div>
       )}
       {data && (
-        <FormationListContainer data={data}>
+        <FormationListContainer
+          results={data.results}
+          totalCount={data.total_count}
+        >
           <FormationList />
           <FormationTabs />
         </FormationListContainer>

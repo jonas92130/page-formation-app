@@ -5,6 +5,7 @@ export class MongoDBHandler {
   private client: MongoClient = new MongoClient(process.env.MONGODB_URI ?? '')
   private db = this.client.db('page_formation')
   private formationsDB = this.db.collection('formations')
+  private organizationsDB = this.db.collection('organizations')
 
   constructor() {}
 
@@ -23,6 +24,11 @@ export class MongoDBHandler {
     const resultPipeline = [
       { $skip: skip ?? 0 },
       { $limit: limit ?? 20 },
+      {
+        $project: {
+          _id: 0,
+        },
+      },
     ] as any[]
     const countPipeline = [{ $count: 'total_count' }] as any[]
 
@@ -73,6 +79,21 @@ export class MongoDBHandler {
       ])
 
       return await cursorResult.toArray()
+    })
+  }
+
+  public async getOrganization(id: string) {
+    return await this.wrapFunction(async () => {
+      const cursorResult = this.organizationsDB.findOne(
+        { id: id },
+        {
+          projection: {
+            _id: 0,
+          },
+        }
+      )
+
+      return await cursorResult
     })
   }
 }
