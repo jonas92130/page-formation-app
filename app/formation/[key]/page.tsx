@@ -3,10 +3,10 @@ import { MongoDBHandler } from '@/back/MongoDBHandler'
 import { createQueryMongoParams } from '@/lib/filter'
 import ClientPage from './clientPage'
 import { Formation } from '@/model/formation'
-import Footer from '@/components/features/footer'
 import OtherFormations from './otherFormations'
 import { Organization } from '@/model/organization'
 import NavBar from '@/components/navBar'
+import Parser from 'html-react-parser'
 
 type Props = {
   params: { key: string }
@@ -63,7 +63,6 @@ async function page(props: Props) {
         />
         <OtherFormations data={otherFormations} />
       </div>
-      <Footer />
     </>
   )
 }

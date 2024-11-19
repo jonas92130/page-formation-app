@@ -3,6 +3,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { headers } from 'next/headers'
 import { client } from '@/tina/__generated__/databaseClient'
+import Footer from '@/components/features/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -40,8 +41,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <>
+      <html lang="en">
+        <body className={inter.className}>
+          {children} <Footer />
+        </body>
+      </html>
+    </>
   )
 }

@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Organization } from '@/model/organization'
 import { FaStar } from 'react-icons/fa'
 import { cn } from '@/lib/utils'
-import { Divide } from 'lucide-react'
+import { Parser } from 'html-to-react'
 
 type Props = {
   data: Formation
@@ -37,11 +37,10 @@ function ClientPage(props: Props) {
       </div>
       <div className="mx-auto w-[90%] max-w-[1100px]">
         <div className="flex w-full flex-col gap-7 lg:w-[60%]">
-          <Badges isDistance={data.nb_session_a_distance > 0} />
-          {/* <p className="flex flex-row items-center gap-1 text-base">
-          <TiPlus className="text-2xl font-extrabold" />
-          Voir des formations similaires
-        </p> */}
+          <Badges
+            isDistance={data.nb_session_a_distance > 0}
+            isCertification={data.type_referentiel === 'RNCP'}
+          />
           <Card className="flex flex-col gap-5 border px-4 py-3 shadow-sm">
             {data.nombre_heures_total_max > 0 && (
               <p className="flex flex-col gap-2">
@@ -241,15 +240,28 @@ function OrganizationCard(props: { organization: Organization }) {
   )
 }
 
-function Badges(props: { isDistance?: boolean; isCPF?: boolean }) {
-  const { isDistance } = props
+function Badges(props: {
+  isDistance?: boolean
+  isCPF?: boolean
+  isCertification?: boolean
+}) {
+  const { isDistance, isCertification, isCPF = true } = props
 
   return (
     <div className="flex gap-5 lg:mt-4">
-      <Badge className="rounded-md md:text-base xl:text-lg">Eligible CPF</Badge>
+      {isCPF && (
+        <Badge className="rounded-md md:text-base xl:text-lg">
+          Eligible CPF
+        </Badge>
+      )}
       {isDistance && (
         <Badge className="rounded-md border border-primary bg-background text-primary md:text-base xl:text-lg">
           A distance
+        </Badge>
+      )}
+      {isCertification && (
+        <Badge className="rounded-md border border-primary bg-background text-primary md:text-base xl:text-lg">
+          RNCP
         </Badge>
       )}
     </div>

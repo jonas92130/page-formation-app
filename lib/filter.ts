@@ -2,13 +2,14 @@ export const FilterConnector = {
   lieu: 'nom_departement',
   domain: 'libelle_nsf_1',
   id: 'numero_formation',
+  certification: 'type_referentiel',
 }
 
 export interface QueryMongoParamsModel {
   skip?: number
   limit?: number
   query?: Record<string, any>
-  match?: { $match: Record<string, string> }
+  match?: { $match: Record<string, any> }
 }
 
 export const createQueryMongoParams = (
@@ -20,10 +21,10 @@ export const createQueryMongoParams = (
     skip: 0,
   } as QueryMongoParamsModel
 
-  let match = {} as Record<string, string>
+  let match = {} as Record<string, any>
 
   for (const [key, value] of Object.entries(searchParams)) {
-    if (!value) continue
+    if (!value || value === '') continue
 
     if (key === 'pageNumber') {
       console.log('pageNumber:', value)
@@ -33,6 +34,28 @@ export const createQueryMongoParams = (
 
     if (key === 'limit') {
       params.limit = limit
+      continue
+    }
+
+    if (key === 'duration') {
+      if (value === 'courte') {
+        match['nombre_heures_total_mean'] = { $lte: 70 }
+      }
+
+      if (value === 'moyenne') {
+        match['nombre_heures_total_mean'] = { $gte: 70, $lte: 560 }
+      }
+
+      if (value === 'longue') {
+        match['nombre_heures_total_mean'] = { $gt: 560 }
+      }
+
+      continue
+    }
+
+    if (key === 'learningType') {
+      const filter = value === 'distanciel' ? { $gte: 1 } : { $eq: 0 }
+      match['nb_session_a_distance'] = filter
       continue
     }
 
@@ -50,6 +73,17 @@ export const createQueryMongoParams = (
       }
       continue
     }
+
+    if (key === 'priceMin') {
+      match['frais_ttc_tot_min'] = { $gte: Number(value) }
+      continue
+    }
+
+    if (key === 'priceMax') {
+      match['frais_ttc_tot_max'] = { $lte: Number(value) }
+      continue
+    }
+
     if (!FilterConnector[key]) continue
 
     match[FilterConnector[key]] = String(value)
@@ -70,4 +104,9 @@ export const filtersAvailable = [
   'query',
   'lieu',
   'domain',
+  'duration',
+  'learningType',
+  'priceMin',
+  'priceMax',
+  'certification',
 ]

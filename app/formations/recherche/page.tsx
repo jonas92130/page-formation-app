@@ -1,3 +1,4 @@
+import ActualityHome from '@/app/actualites/actualityHome'
 import DataList from './dataList'
 import SearchBar from '@/components/features/searchBar'
 import React from 'react'
@@ -16,6 +17,7 @@ function ClientPage(props: Props) {
         <SearchBar />
       </div>
       <DataList searchParams={searchParams} />
+      <ActualityHome className="mt-10" />
     </div>
   )
 }
