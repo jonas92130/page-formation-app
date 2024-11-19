@@ -54,7 +54,6 @@ function ClientPage(props: Props) {
           backgroundColor="bg-secondary/15 text-primary-background"
         />
       </div>
-      <Footer />
     </main>
   )
 }

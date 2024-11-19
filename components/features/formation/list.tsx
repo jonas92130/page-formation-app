@@ -1,7 +1,8 @@
 'use client'
 
 import { Formation, FormationsResponseModel } from '@/model/formation'
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import useFilterSearchParams from '@/hook/useFilterSearchParams'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
@@ -15,6 +16,83 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
+import { DialogHeader, DialogFooter } from '@/components/ui/dialog'
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+} from '@/components/ui/dialog'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Slider } from '@/components/ui/slider'
+
+const AVAILABLE_FILTER = [
+  {
+    name: 'price',
+    label: 'Prix de la formation',
+    type: 'range',
+    min: 0,
+    max: 20000,
+  },
+  {
+    name: 'duration',
+    label: 'Durée de la formation',
+    type: 'select',
+    options: [
+      {
+        value: 'courte',
+        label: 'Courte (< 2 semaines )',
+      },
+      {
+        value: 'moyenne',
+        label: 'Moyenne (2 semaines - 4 mois)',
+      },
+      {
+        value: 'longue',
+        label: 'Longue (> 4 mois)',
+      },
+    ],
+  },
+  {
+    name: 'learningType',
+    label: "Type d'enseignement",
+    type: 'select',
+    options: [
+      {
+        value: 'présentiel',
+        label: 'Présentiel',
+      },
+      {
+        value: 'distanciel',
+        label: 'A distance',
+      },
+    ],
+  },
+  {
+    name: 'certification',
+    label: 'Certification',
+    type: 'select',
+    options: [
+      {
+        value: 'RS',
+        label: 'Formation certifiante',
+      },
+
+      {
+        value: 'RNCP',
+        label: 'Formation diplômante',
+      },
+    ],
+  },
+]
 
 interface Props {
   results: Formation[]
@@ -24,10 +102,10 @@ interface Props {
 }
 
 function FormationList(props: Props) {
-  const {} = props
+  const { children } = props
   return (
     <FormationListContext.Provider value={props}>
-      {props.children}
+      {children}
     </FormationListContext.Provider>
   )
 }
@@ -58,9 +136,16 @@ function FormationsCards() {
 
               <div className="flex gap-6 py-3">
                 <Badge className="rounded-md">Eligible CPF</Badge>
-                <Badge className="rounded-md border border-primary bg-background text-primary">
-                  A distance
-                </Badge>
+                {formation.nb_session_a_distance > 0 && (
+                  <Badge className="rounded-md border border-primary bg-background text-primary">
+                    A distance
+                  </Badge>
+                )}
+                {formation.type_referentiel === 'RNCP' && (
+                  <Badge className="rounded-md border border-primary bg-background text-primary">
+                    RNCP
+                  </Badge>
+                )}
               </div>
               {formation.nombre_heures_total_max > 0 && (
                 <p className="flex items-center gap-2">
@@ -77,9 +162,9 @@ function FormationsCards() {
                   💲 {formation.frais_ttc_tot_mean.toFixed(2)} €
                 </p>
               )}
-              {formation.code_rncp > 0 && (
+              {formation.intitule_certification && (
                 <p className="flex items-center gap-2">
-                  🎓 Certification RNCP : {formation.code_rncp}
+                  🎓 {formation.intitule_certification}{' '}
                 </p>
               )}
             </CardContent>
@@ -100,19 +185,19 @@ function List() {
   const totalCount = props?.totalCount
 
   return (
-    <div className="mx-auto flex w-[90%] max-w-[1100px] flex-col">
-      <div className="flex items-center gap-3 pt-4">
-        <Badge className="rounded-md border border-primary bg-background p-2 text-base text-primary transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
-          Filtrer
-        </Badge>
-        <p>
-          <span className="font-bold text-red-500">{totalCount} </span>
-          formations trouvées
-        </p>
+    <div className="relative mx-auto w-[90%] max-w-[1100px]">
+      <div className="flex flex-col">
+        <div className="flex items-center gap-3 pt-8 lg:mt-8 lg:pt-0">
+          <Filter />
+          <p className="md:text-lg lg:text-xl">
+            <span className="font-bold text-red-500">{totalCount} </span>
+            formations trouvées
+          </p>
+        </div>
+        <ul className="mt-2 flex flex-col lg:mt-0 lg:w-[60%]">
+          <FormationsCards />
+        </ul>
       </div>
-      <ul className="mt-2 flex flex-col">
-        <FormationsCards />
-      </ul>
     </div>
   )
 }
@@ -164,7 +249,6 @@ function Tabs() {
   const previousUrl = createUrl(currentPage - 1)
   const nextUrl = createUrl(currentPage + 1)
 
-  console.log(previousUrl)
   return (
     <div className="mx-auto mb-5 flex w-10/12 flex-wrap justify-center gap-1 md:w-8/12 lg:w-6/12">
       <Pagination>
@@ -202,6 +286,164 @@ function Tabs() {
         </PaginationContent>
       </Pagination>
     </div>
+  )
+}
+
+function Filter() {
+  const { filterParams } = useFilterSearchParams()
+  const [open, setOpen] = useState(false)
+  const router = useRouter()
+
+  const handleOptionClick = (name: string, value: string) => {
+    setOpen(false)
+
+    if (filterParams[name] === value) {
+      const newParams = {
+        ...filterParams,
+        [name]: '',
+      }
+      const url = '?' + new URLSearchParams(newParams).toString()
+      router.push(url)
+      return
+    }
+
+    const newParams = {
+      ...filterParams,
+      [name]: value,
+    }
+
+    const url = '?' + new URLSearchParams(newParams).toString()
+
+    router.push(url)
+  }
+
+  const removeAllFilters = () => {
+    const {
+      priceMin,
+      priceMax,
+      duration,
+      learningType,
+      certification,
+      ...newParams
+    } = filterParams
+
+    const url = '?' + new URLSearchParams(newParams).toString()
+
+    console.log('url', url)
+    setOpen(false)
+    router.push(url)
+  }
+
+  const handleRangeChange = (values: number[], name: string) => {
+    const newParams = {
+      ...filterParams,
+      [name + 'Min']: values[0],
+      [name + 'Max']: values[1],
+    }
+
+    const url = '?' + new URLSearchParams(newParams).toString()
+
+    router.push(url)
+    setOpen(false)
+  }
+
+  const Content = () => {
+    return (
+      <Accordion
+        type="multiple"
+        defaultValue={AVAILABLE_FILTER.map((filter) => filter.name)}
+      >
+        {AVAILABLE_FILTER.map((filter, index) => (
+          <AccordionItem key={index} value={filter.name}>
+            <AccordionTrigger>{filter.label}</AccordionTrigger>
+            <AccordionContent>
+              {filter.type === 'range' &&
+              (filter.min || filter.min === 0) &&
+              filter.max ? (
+                <div className="h-fit w-full py-2 pl-2 pr-14">
+                  <Slider
+                    min={filter.min}
+                    max={filter.max}
+                    minStepsBetweenThumbs={1}
+                    step={100}
+                    value={[
+                      filterParams[filter.name + 'Min'] || filter.min,
+                      filterParams[filter.name + 'Max'] || filter.max,
+                    ]}
+                    onValueChange={(values) =>
+                      handleRangeChange(values, filter.name)
+                    }
+                  />
+                </div>
+              ) : null}
+              {filter.type === 'select' ? (
+                <div>
+                  {filter.options?.map((option, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <Checkbox
+                        id={`${filter.name}-${option.value}`}
+                        checked={filterParams[filter.name] === option.value}
+                        onClick={() =>
+                          handleOptionClick(filter.name, option.value)
+                        }
+                      />
+                      <label htmlFor={`${filter.name}-${option.value}`}>
+                        {option.label}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    )
+  }
+
+  return (
+    <>
+      <Dialog open={open} onOpenChange={(o) => setOpen(o)}>
+        <DialogTrigger asChild>
+          <Button variant={'outline'} className="text-primary lg:hidden">
+            Filtrer
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="flex h-fit min-w-[90%] flex-col justify-between lg:hidden">
+          <DialogHeader>
+            <DialogTitle>Filtres</DialogTitle>
+            <DialogDescription>
+              Ajustez les filtres pour affiner les résultats.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="">
+            <Content />
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant={'link'} onClick={removeAllFilters}>
+                Tout effacer
+              </Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button>Annuler</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <div className="absolute right-0 top-20 hidden w-[35%] flex-col gap-2 lg:flex">
+        <p className="w-full border-b pb-4 font-bold text-primary">Filter</p>
+        <Content />
+        <Button
+          onClick={removeAllFilters}
+          className="mt-4 self-start"
+          variant={'link'}
+          size={'lg'}
+        >
+          Tout effacer
+        </Button>
+      </div>
+    </>
   )
 }
 

@@ -29,7 +29,7 @@ export interface Formation {
   siret_of: string
   numero_formation: string
   intitule_formation: string
-  points_forts: string
+  points_forts: string | Element | Element[]
   objectif_formation: string
   contenu_formation: string
   resultats_attendus_formation: string
