@@ -26,7 +26,7 @@ export interface Formation {
   code_nsf_2: string | null
   code_nsf_3: string | null
   code_certifinfo: string
-  siret: string
+  siret_of: string
   numero_formation: string
   intitule_formation: string
   points_forts: string

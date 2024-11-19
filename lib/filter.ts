@@ -1,7 +1,7 @@
 export const FilterConnector = {
   lieu: 'nom_departement',
   domain: 'libelle_nsf_1',
-  id: 'numero_formation'
+  id: 'numero_formation',
 }
 
 export interface QueryMongoParamsModel {
@@ -12,7 +12,7 @@ export interface QueryMongoParamsModel {
 }
 
 export const createQueryMongoParams = (
-  searchParams: Record<string, string>
+  searchParams: Record<string, string | number>
 ) => {
   const limit = searchParams.limit ? Number(searchParams.limit) : 20
   let params = {
@@ -52,7 +52,7 @@ export const createQueryMongoParams = (
     }
     if (!FilterConnector[key]) continue
 
-    match[FilterConnector[key]] = value
+    match[FilterConnector[key]] = String(value)
   }
 
   console.log('match:', match)

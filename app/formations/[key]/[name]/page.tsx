@@ -8,6 +8,7 @@ import { client } from '@/tina/__generated__/databaseClient'
 import RSSFeed from '@/components/rssFeed'
 
 import ActualityHome from '@/app/actualites/actualityHome'
+import { Formation } from '@/model/formation'
 type Props = {
   searchParams: Record<string, string>
   params: { key: string; name: string }
@@ -25,7 +26,7 @@ async function Page(props: Props) {
 
   const paramsFormatted = createQueryMongoParams(newParams)
   const api = new MongoDBHandler()
-  const results = await api.getFormations(paramsFormatted)
+  const results = (await api.getFormations(paramsFormatted)) as Formation[]
   const count = await api.getFormationsCount(paramsFormatted)
 
   const { data } = await client.queries.rssConnection()
@@ -44,8 +45,8 @@ async function Page(props: Props) {
   return (
     <>
       <ClientPage data={JSON.parse(JSON.stringify(dataFormated))} />
-      {rssUrl && <RSSFeed url={rssUrl} />}
       <ActualityHome />
+      {rssUrl && <RSSFeed url={rssUrl} />}
     </>
   )
 }

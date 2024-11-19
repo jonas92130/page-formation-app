@@ -2,6 +2,11 @@ import React from 'react'
 import { MongoDBHandler } from '@/back/MongoDBHandler'
 import { createQueryMongoParams } from '@/lib/filter'
 import ClientPage from './clientPage'
+import { Formation } from '@/model/formation'
+import Footer from '@/components/features/footer'
+import OtherFormations from './otherFormations'
+import { Organization } from '@/model/organization'
+import NavBar from '@/components/navBar'
 
 type Props = {
   params: { key: string }
@@ -16,11 +21,51 @@ async function page(props: Props) {
   const paramsFormatted = createQueryMongoParams(newParams)
   const results = await api.getFormations(paramsFormatted)
 
-  const DataFormatted = {
-    result: results && results.length > 0 ? results[0] : null,
+  console.log('results', results)
+
+  if (!results || results.length === 0) {
+    return <div>404</div>
   }
 
-  return <ClientPage data={JSON.parse(JSON.stringify(DataFormatted.result))} />
+  const DataFormatted = {
+    result: results[0],
+  } as {
+    result: Formation
+  }
+
+  const otherFormationsParams = {
+    limit: 6,
+    query: DataFormatted.result.libelle_code_formacode_principal,
+  }
+
+  const siret = DataFormatted.result.siret_of
+
+  console.log('siret', siret)
+
+  const otherFormationsFormatted = createQueryMongoParams(otherFormationsParams)
+
+  const organization = (await api.getOrganization(
+    siret
+  )) as unknown as Organization | null
+
+  console.log('organization', organization)
+  const otherFormations = (await api.getFormations(
+    otherFormationsFormatted
+  )) as Formation[]
+
+  return (
+    <>
+      <NavBar />
+      <div className="background-image">
+        <ClientPage
+          data={JSON.parse(JSON.stringify(DataFormatted.result))}
+          organization={organization}
+        />
+        <OtherFormations data={otherFormations} />
+      </div>
+      <Footer />
+    </>
+  )
 }
 
 export default page
