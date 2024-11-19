@@ -6,6 +6,7 @@ import { Formation } from '@/model/formation'
 import Footer from '@/components/features/footer'
 import OtherFormations from './otherFormations'
 import { Organization } from '@/model/organization'
+import NavBar from '@/components/navBar'
 
 type Props = {
   params: { key: string }
@@ -54,11 +55,14 @@ async function page(props: Props) {
 
   return (
     <>
-      <ClientPage
-        data={JSON.parse(JSON.stringify(DataFormatted.result))}
-        organization={organization}
-      />
-      <OtherFormations data={otherFormations} />
+      <NavBar />
+      <div className="background-image">
+        <ClientPage
+          data={JSON.parse(JSON.stringify(DataFormatted.result))}
+          organization={organization}
+        />
+        <OtherFormations data={otherFormations} />
+      </div>
       <Footer />
     </>
   )

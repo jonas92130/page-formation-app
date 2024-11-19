@@ -100,7 +100,7 @@ function List() {
   const totalCount = props?.totalCount
 
   return (
-    <div className="mx-auto flex w-[90%] max-w-[1200px] flex-col">
+    <div className="mx-auto flex w-[90%] max-w-[1100px] flex-col">
       <div className="flex items-center gap-3 pt-4">
         <Badge className="rounded-md border border-primary bg-background p-2 text-base text-primary transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
           Filtrer

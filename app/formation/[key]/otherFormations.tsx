@@ -13,13 +13,15 @@ function OtherFormations(props: Props) {
   const { data } = props
 
   return (
-    <div>
-      <h2 className="text-lg font-bold">
-        D'autres formations qui peuvent vous intéresser
-      </h2>
-      <FormationListContainer results={data}>
-        <FormationsCards />
-      </FormationListContainer>
+    <div className="mx-auto mt-16 w-[90%] max-w-[1100px]">
+      <div className="flex w-full flex-col lg:w-[60%]">
+        <h2 className="text-lg font-bold md:text-xl">
+          Ces formations peuvent vous intéresser
+        </h2>
+        <FormationListContainer results={data}>
+          <FormationsCards />
+        </FormationListContainer>
+      </div>
     </div>
   )
 }
