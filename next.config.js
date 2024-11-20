@@ -3,21 +3,24 @@ module.exports = {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
-      use: ["@svgr/webpack"],
-    });
+      use: ['@svgr/webpack'],
+    })
 
-    return config;
+    return config
+  },
+  images: {
+    dangerouslyAllowSVG: true,
   },
   async rewrites() {
     return [
       {
-        source: "/",
-        destination: "/home",
+        source: '/',
+        destination: '/home',
       },
       {
-        source: "/admin",
-        destination: "/admin/index.html",
+        source: '/admin',
+        destination: '/admin/index.html',
       },
-    ];
+    ]
   },
-};
+}

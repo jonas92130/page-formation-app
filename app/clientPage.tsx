@@ -5,7 +5,6 @@ import Formation from './formationCard'
 import ActualityHome from './actualites/actualityHome'
 import CitiesServerList from '@/components/features/linkList/citiesServerList'
 import SearchBarBanner from '@/app/SearchBarBanner'
-import Footer from '@/components/features/footer'
 
 interface Props {
   data: any
@@ -18,43 +17,48 @@ function ClientPage(props: Props) {
   const {} = props
 
   return (
-    <main className="background-image">
-      <div>
-        <SearchBarBanner />
-      </div>
-      <div className="mx-auto flex w-[90%] flex-col md:w-[90%] lg:w-[85%] lg:max-w-[1400px]">
-        <div className="flex flex-col items-center justify-center gap-12 pt-16 lg:flex-row lg:gap-24">
-          <Formation
-            title="Formations CPF"
-            label="Se former avec son compte personnel de formation"
-            backgroundColor="bg-secondary"
+    <>
+      <SearchBarBanner />
+      <main className="background-image pb-10">
+        <div className="mx-auto flex w-[90%] max-w-[1100px] flex-col">
+          <div className="mt-10 flex flex-col items-stretch justify-center gap-6 md:flex-row md:gap-14 lg:gap-32">
+            <Formation
+              title="Formations CPF"
+              label="Se former avec son compte personnel de formation"
+              backgroundColor="bg-secondary"
+              link="formations/type/CPF"
+            />
+            <Formation
+              title="Formations en ligne"
+              label="Se former de chez soi et à son rythme"
+              backgroundColor="bg-primary"
+              isArrow={true}
+              link="formations/type/enline"
+            />
+          </div>
+          <LinkList
+            name="domain"
+            label="Quels domaines vous interesses ?"
+            backgroundColor="bg-card"
+            className="mt-10"
           />
-          <Formation
-            title="Formations en ligne"
-            label="Se former de chez soi et à son rythme"
-            backgroundColor="bg-primary"
-            isArrow={true}
+          <ActualityHome className="mt-10" />
+          <LinkList
+            name="domain"
+            label="Les domaines professionnels"
+            backgroundColor="bg-primary/85 text-primary-foreground"
+            className="mt-10"
+          />
+          <CitiesServerList className="mt-10" />
+          <LinkList
+            name="domain"
+            label="Les métiers populaires"
+            backgroundColor="bg-secondary/15 text-primary-background"
+            className="mt-10"
           />
         </div>
-        <LinkList
-          name="domain"
-          label="Quels domaines vous interesses ?"
-          backgroundColor="bg-card"
-        />
-        <ActualityHome />
-        <LinkList
-          name="domain"
-          label="Les domaines professionnels"
-          backgroundColor="bg-primary/85 text-primary-foreground"
-        />
-        <CitiesServerList />
-        <LinkList
-          name="domain"
-          label="Les métiers populaires"
-          backgroundColor="bg-secondary/15 text-primary-background"
-        />
-      </div>
-    </main>
+      </main>
+    </>
   )
 }
 

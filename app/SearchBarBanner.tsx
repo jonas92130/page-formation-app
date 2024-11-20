@@ -9,69 +9,84 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import Image from 'next/image'
+
+const CATEGORIES = [
+  'Agriculture & Peche',
+  'Anglais',
+  'Secrétariat',
+  'Esthétique',
+  'Informatique',
+  'Management',
+  'Marketing',
+  'Ressources Humaines',
+]
+
+const CategoriesButton = () => {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button
+          variant="list"
+          className="h-8 bg-secondary px-3 text-background"
+        >
+          Toutes les catégories
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogTitle>Dialog Titre</DialogTitle>
+        <DialogDescription>Dialog Description</DialogDescription>
+      </DialogContent>
+    </Dialog>
+  )
+}
 
 export default function SearchBarBanner() {
   return (
-    <div className="relative flex justify-center pb-12 lg:pt-[50px]">
-      <div
-        className="absolute bottom-0 left-0 right-0 top-0 bg-primary max-[465px]:mb-[-45px] lg:w-[100%]"
-        style={{ clipPath: 'circle(85% at 50% 0)' }}
-      ></div>
-      <div className="visible max-[768px]:hidden sm:relative lg:w-1/3">
-        <img src="/searchbar.png" alt="Search Bar" />
-      </div>
-      <div className="relative flex w-[80%] flex-col gap-6 lg:w-2/3">
-        <h1 className="m-0 hidden pt-5 text-background lg:block">
-          Comparez, choisissez, progressez.
-        </h1>
-        <h3 className="m-0 mt-5 block text-base font-extralight uppercase text-background lg:hidden lg:font-semibold">
-          388 867 formations,
-          <br /> et forcément la vôtre
-        </h3>
-        <h3 className="m-0 hidden text-background lg:block">
-          <span className="text-secondary">388 867 formations</span> à comparer
-          pour trouver celle <br /> qui vous correspond vraiment.
-        </h3>
-        <div className="">
-          <SearchBar />
+    <div className="relative bg-primary p-0 text-primary-foreground">
+      <div className="mx-auto flex w-[90%] max-w-[1100px] items-center lg:flex-row xl:justify-end 2xl:relative">
+        <div className="2xl hidden w-[40%] max-w-[550px] lg:block lg:self-end xl:absolute xl:-bottom-2 xl:left-[2%] 2xl:-left-[13%] 2xl:w-[550px]">
+          <img src="/searchbar.png" alt="Search Bar" />
         </div>
-        <div className="hidden flex-wrap items-center gap-x-5 gap-y-6 pt-4 lg:flex lg:w-[62%]">
-          <Button variant="list" className="bg-card p-5">
-            <Link href="">Agriculture & Peche</Link>
-          </Button>
-          <Button variant="list" className="bg-card p-5">
-            <Link href="">Anglais</Link>
-          </Button>
-          <Button variant="list" className="bg-card p-5">
-            <Link href="">Secrétariat</Link>
-          </Button>
-          <Button variant="list" className="bg-card p-5">
-            <Link href="">Esthétique</Link>
-          </Button>
-          <Button variant="list" className="bg-card p-5">
-            <Link href="">Anglais</Link>
-          </Button>
-          <Button variant="list" className="bg-card p-5">
-            <Link href="">VAE</Link>
-          </Button>
-        </div>
-
-        <div className="hidden gap-2 max-[768px]:hidden lg:flex">
-          <Dialog>
-            <DialogTrigger asChild>
+        <div className="flex w-full flex-col pb-12 pt-8 lg:w-[60%]">
+          <div className="flex w-full flex-col">
+            <h1 className="text-2xl font-bold text-background md:text-3xl">
+              Comparez, choisissez, progressez.
+            </h1>
+            <p className="-mt-2 max-w-[500px] text-base font-semibold text-background md:-mt-1 md:text-lg">
+              <span className="text-secondary">388 867 formations</span> à
+              comparer pour trouver celle qui vous correspond vraiment.
+            </p>
+          </div>
+          <div className="mt-4 w-full md:mt-8">
+            <SearchBar />
+          </div>
+          <div className="mt-8 hidden flex-wrap items-center gap-x-6 gap-y-4 md:flex">
+            {CATEGORIES.map((category) => (
               <Button
+                key={category}
+                asChild
                 variant="list"
-                className="bg-secondary px-4 py-5 text-background"
+                className="h-8 bg-card px-3 text-primary"
               >
-                Toutes les catégories
+                <Link href={`/formations/recherche?query=${category}`}>
+                  {category}
+                </Link>
               </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogTitle>Dialog Titre</DialogTitle>
-              <DialogDescription>Dialog Description</DialogDescription>
-            </DialogContent>
-          </Dialog>
+            ))}
+            <div className="w-full">
+              <CategoriesButton />
+            </div>
+          </div>
         </div>
+      </div>
+      <div className="absolute -bottom-0 left-0 right-0 lg:-bottom-0.5">
+        <Image
+          src={'/bottom-header.svg '}
+          alt="bottom-header"
+          width={1920}
+          height={94}
+        />
       </div>
     </div>
   )

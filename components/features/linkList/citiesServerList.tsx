@@ -2,12 +2,14 @@ import React from 'react'
 import client from '@/tina/__generated__/databaseClient'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
-export default async function CitiesServerList() {
+export default async function CitiesServerList(props: { className?: string }) {
   const { data } = await client.queries.cityConnection()
+  const { className } = props
 
   return (
-    <div className="mt-20 pt-6 lg:flex-row">
+    <div className={cn('lg:flex-row', className)}>
       <div className="mb-8">
         <h3 className="mb-3 font-bold lg:text-3xl">Les formations par ville</h3>
       </div>
@@ -15,6 +17,7 @@ export default async function CitiesServerList() {
         <div className="lg:w-3/5">
           <div className="gap-4 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2">
             {data.cityConnection.edges?.map((city) => {
+              if (!city || !city.node) return null
               return (
                 <div
                   key={city.node.title}

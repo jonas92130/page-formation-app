@@ -5,14 +5,17 @@ interface Props {
   name: string
   label?: string
   backgroundColor: string
+  className?: string
 }
 
 function LinkList(props: Props) {
-  const { name, label, backgroundColor } = props
+  const { name, label, backgroundColor, className } = props
 
   return (
-    <div className="mt-20">
-      <h3 className="flex text-base font-bold lg:text-3xl">{label ?? name}</h3>
+    <div className={className}>
+      <h2 className="flex text-lg font-bold md:text-xl lg:text-3xl">
+        {label ?? name}
+      </h2>
       <ul className="flex flex-wrap gap-3">
         <ServerListLink name={name} backgroundColor={`${backgroundColor}`} />
       </ul>
