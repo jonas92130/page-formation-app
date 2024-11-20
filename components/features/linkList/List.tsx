@@ -21,8 +21,8 @@ export default function List(props: Props) {
       <div
         className={
           showList
-            ? 'my-5 flex flex-wrap gap-5 overflow-hidden'
-            : 'my-5 flex max-h-[58dvh] flex-wrap gap-5 overflow-hidden'
+            ? 'flex flex-wrap gap-5 overflow-hidden'
+            : 'flex max-h-[58dvh] flex-wrap gap-5 overflow-hidden'
         }
       >
         {facets.map((facet) => (
@@ -47,14 +47,14 @@ export default function List(props: Props) {
       >
         <div>
           {showList ? (
-            <h4 className="m-0 flex flex-row items-center">
+            <h4 className="flex flex-row items-center">
               <span className="text-lg font-extrabold">
                 <TiMinus />
               </span>
               Afficher moins de catégories
             </h4>
           ) : (
-            <h4 className="m-0 flex flex-row items-center font-bold">
+            <h4 className="flex flex-row items-center font-bold">
               <span className="text-lg font-extrabold">
                 <TiPlus />
               </span>

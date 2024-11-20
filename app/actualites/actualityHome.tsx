@@ -15,8 +15,8 @@ export default async function ActualityHome({
   const { data } = await client.queries.blogConnection()
 
   return (
-    <div className={cn('mx-auto mt-20 w-[90%] max-w-[1100px]', className)}>
-      <h3 className="my-5 flex justify-start lg:text-3xl">Actualités</h3>
+    <div className={cn('w-full', className)}>
+      <h3 className="flex justify-start lg:text-3xl">Actualités</h3>
       <div className="flex flex-col items-center justify-center gap-6 pt-5 md:flex-row lg:flex-row lg:gap-16">
         {data.blogConnection.edges?.slice(0, 3).map((blog) => {
           return (
@@ -30,7 +30,7 @@ export default async function ActualityHome({
           )
         })}
       </div>
-      <Button className="mt-8 items-center rounded-full p-6" asChild>
+      <Button className="mt-8 items-center rounded-full" asChild>
         <Link href="actualites/">Voir toutes les actualités</Link>
       </Button>
     </div>
