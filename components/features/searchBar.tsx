@@ -76,23 +76,20 @@ function SearchBar(props: Props) {
 
   return (
     <Form {...form}>
-      <form
-        className="flex w-full flex-col gap-5"
-        onSubmit={form.handleSubmit(handleSubmit)}
-      >
-        <div className="flex flex-col items-center gap-3 lg:flex-row">
+      <form className="w-full" onSubmit={form.handleSubmit(handleSubmit)}>
+        <div className="flex w-full flex-col items-center gap-4 md:flex-row md:flex-wrap">
           <FormField
             control={form.control}
             name="query"
             defaultValue={queryParams}
             render={(fields) => (
-              <FormItem>
+              <FormItem className="md:w-[50%]">
                 <FormLabel />
                 <FormControl>
                   <Input
                     {...fields.field}
                     placeholder="Métier, Certification, formation"
-                    className=""
+                    className="w-full"
                   />
                 </FormControl>
                 <FormDescription />
@@ -105,7 +102,7 @@ function SearchBar(props: Props) {
             name="lieu"
             defaultValue={cityParams}
             render={(fields) => (
-              <FormItem>
+              <FormItem className="md:w-[35%]">
                 <FormLabel />
                 <FormControl>
                   <AutoComplete
@@ -114,7 +111,7 @@ function SearchBar(props: Props) {
                     value={fields.field.value}
                     isLoading={isLoading}
                     placeholder="ville, lieu,..."
-                    className="text-xs"
+                    className="w-full"
                   />
                 </FormControl>
                 <FormDescription />
@@ -122,27 +119,25 @@ function SearchBar(props: Props) {
               </FormItem>
             )}
           />
-          <div className="flex flex-col gap-5">
-            <div className="flex items-center gap-2">
-              <Checkbox id="formation-cpf" />
-              <label
-                htmlFor="formation-cpf"
-                className="text-xs font-thin text-background lg:text-base"
-              >
-                Formations financées par le CPF
-              </label>
-            </div>
-            <div className="flex justify-center">
-              <Button
-                className="flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-3 transition-transform duration-300 ease-in-out hover:scale-95 hover:bg-secondary hover:shadow-xl"
-                type="submit"
-              >
-                <FaSearch className="text-background" />
-                <p className="visible px-8 text-sm font-semibold text-white lg:hidden">
-                  Trouver ma formation
-                </p>
-              </Button>
-            </div>
+          <div className="flex justify-center">
+            <Button
+              className="flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-3 transition-transform duration-300 ease-in-out hover:scale-95 hover:bg-secondary hover:shadow-xl"
+              type="submit"
+            >
+              <FaSearch className="text-background" />
+              <p className="visible px-8 text-sm font-semibold text-white md:hidden">
+                Trouver ma formation
+              </p>
+            </Button>
+          </div>
+          <div className="flex items-center justify-start gap-2">
+            <Checkbox id="formation-cpf" />
+            <label
+              htmlFor="formation-cpf"
+              className="text-xs text-background lg:text-base"
+            >
+              Formations financées par le CPF
+            </label>
           </div>
         </div>
       </form>
