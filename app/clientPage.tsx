@@ -33,7 +33,7 @@ function ClientPage(props: Props) {
               label="Se former de chez soi et à son rythme"
               backgroundColor="bg-primary"
               isArrow={true}
-              link="formations/type/enline"
+              link="formations/learningType/distanciel"
             />
           </div>
           <LinkList

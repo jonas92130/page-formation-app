@@ -409,7 +409,7 @@ function Filter() {
             Filtrer
           </Button>
         </DialogTrigger>
-        <DialogContent className="flex h-fit min-w-[90%] flex-col justify-between lg:hidden">
+        <DialogContent className="flex h-fit max-h-[90dvh] min-w-[90%] flex-col justify-between overflow-auto lg:hidden">
           <DialogHeader>
             <DialogTitle>Filtres</DialogTitle>
             <DialogDescription>
