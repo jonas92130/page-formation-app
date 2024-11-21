@@ -33,6 +33,7 @@ import {
 } from '@/components/ui/accordion'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Slider } from '@/components/ui/slider'
+import { cn } from '@/lib/utils'
 
 const AVAILABLE_FILTER = [
   {
@@ -112,23 +113,27 @@ function FormationList(props: Props) {
 
 const FormationListContext = createContext<Props | null>(null)
 
-function FormationsCards() {
+function FormationsCards({ className }: { className?: string }) {
   const props = useContext(FormationListContext)
   const results = props!.results
 
   return (
-    <div>
+    <div className={cn('my-10 flex w-full flex-col gap-10', className)}>
       {results?.map((formation, index) => (
-        <Link href={`/formation/${formation.numero_formation}`} key={index}>
+        <Link
+          href={`/formation/${formation.numero_formation}`}
+          key={index}
+          className="h-full"
+        >
           <Card
             key={formation.numero_formation}
-            className="my-10 flex flex-col gap-5 border p-5"
+            className="flex h-full flex-col gap-5 border p-5"
           >
-            <CardContent className="flex flex-col gap-3 p-0">
-              <div className="flex flex-col gap-2">
-                <h2 className="m-0 text-lg font-bold">
+            <CardContent className="flex flex-col gap-2 p-0 text-sm">
+              <div className="flex flex-col gap-1">
+                <h3 className="m-0 text-base font-bold">
                   {formation.intitule_formation}
-                </h2>
+                </h3>
                 {formation.nom_of && (
                   <p className="text-xs font-extralight">{formation.nom_of}</p>
                 )}
@@ -168,7 +173,7 @@ function FormationsCards() {
                 </p>
               )}
             </CardContent>
-            <CardFooter className="p-0">
+            <CardFooter className="mt-auto p-0">
               <Button className="rounded-full px-14 font-bold transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-xl">
                 En savoir plus
               </Button>

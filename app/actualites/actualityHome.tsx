@@ -16,7 +16,7 @@ export default async function ActualityHome({
 
   return (
     <div className={cn('w-full', className)}>
-      <h3 className="flex justify-start lg:text-3xl">Actualités</h3>
+      <h2 className="flex text-2xl lg:text-3xl">Actualités</h2>
       <div className="flex flex-col items-center justify-center gap-6 pt-5 md:flex-row lg:flex-row lg:gap-16">
         {data.blogConnection.edges?.slice(0, 3).map((blog) => {
           return (
