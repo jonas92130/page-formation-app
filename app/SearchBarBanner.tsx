@@ -80,7 +80,7 @@ export default function SearchBarBanner() {
           </div>
         </div>
       </div>
-      <div className="absolute -bottom-0 left-0 right-0 lg:-bottom-0.5">
+      <div className="absolute -bottom-0.5 left-0 right-0">
         <Image
           src={'/bottom-header.svg '}
           alt="bottom-header"

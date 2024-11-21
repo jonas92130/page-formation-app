@@ -47,6 +47,8 @@ export class MongoDBHandler {
   public async getFormations(params: QueryMongoParamsModel) {
     const { resultPipeline } = this.getPipelines(params)
 
+    console.log('resultPipeline:', resultPipeline)
+
     return await this.wrapFunction(async () => {
       const cursorResult = this.formationsDB.aggregate(resultPipeline)
 
