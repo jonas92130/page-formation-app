@@ -23,7 +23,9 @@ import axios from 'axios'
 import { FormationFacetsResponseModel } from '@/model/formation'
 import { FilterConnector } from '@/lib/filter'
 
-interface Props {}
+interface Props {
+  isCpfShow?: boolean
+}
 
 interface FormDataModel {
   query?: string
@@ -34,7 +36,7 @@ interface FormDataModel {
 }
 
 function SearchBar(props: Props) {
-  const {} = props
+  const { isCpfShow = true } = props
 
   const form = useForm<FormDataModel>()
   const { filterParams } = useFilterSearchParams()
@@ -77,7 +79,7 @@ function SearchBar(props: Props) {
   return (
     <Form {...form}>
       <form className="w-full" onSubmit={form.handleSubmit(handleSubmit)}>
-        <div className="flex w-full flex-col items-center gap-4 md:flex-row md:flex-wrap">
+        <div className="flex w-full flex-col items-center gap-4 text-foreground md:flex-row md:flex-wrap">
           <FormField
             control={form.control}
             name="query"
@@ -130,15 +132,17 @@ function SearchBar(props: Props) {
               </p>
             </Button>
           </div>
-          <div className="flex items-center justify-start gap-2">
-            <Checkbox id="formation-cpf" />
-            <label
-              htmlFor="formation-cpf"
-              className="text-xs text-background lg:text-base"
-            >
-              Formations financées par le CPF
-            </label>
-          </div>
+          {isCpfShow && (
+            <div className="flex items-center justify-start gap-2">
+              <Checkbox id="formation-cpf" />
+              <label
+                htmlFor="formation-cpf"
+                className="text-xs text-background lg:text-base"
+              >
+                Formations financées par le CPF
+              </label>
+            </div>
+          )}
         </div>
       </form>
     </Form>

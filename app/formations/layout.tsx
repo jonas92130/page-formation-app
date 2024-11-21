@@ -1,3 +1,4 @@
+import SearchBar from '@/components/features/searchBar'
 import NavBar from '@/components/navBar'
 import React from 'react'
 
@@ -11,7 +12,15 @@ function Layout(props: Props) {
   return (
     <>
       <NavBar />
-      <div className="background-image mt-10">{children}</div>
+      <main className="background-image mt-14 lg:mt-20">
+        <div className="bg-primary py-8 md:hidden">
+          <div className="mx-auto w-[90%]">
+            <SearchBar />
+          </div>
+        </div>
+
+        {children}
+      </main>
     </>
   )
 }

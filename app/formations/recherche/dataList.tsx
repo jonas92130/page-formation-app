@@ -7,7 +7,6 @@ import {
   FormationList,
   FormationTabs,
 } from '@/components/features/formation/list'
-import { Form } from 'tinacms'
 import { FormationsResponseModel } from '@/model/formation'
 
 const fetcher = async (url) => {
