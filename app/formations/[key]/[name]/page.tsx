@@ -3,12 +3,11 @@
 import ClientPage from './clientPage'
 import { createQueryMongoParams } from '@/lib/filter'
 import { MongoDBHandler } from '@/back/MongoDBHandler'
-
 import { client } from '@/tina/__generated__/databaseClient'
 import RSSFeed from '@/components/rssFeed'
-
 import ActualityHome from '@/app/actualites/actualityHome'
 import { Formation } from '@/model/formation'
+
 type Props = {
   searchParams: Record<string, string>
   params: { key: string; name: string }

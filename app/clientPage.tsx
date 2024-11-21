@@ -5,6 +5,7 @@ import Formation from './formationCard'
 import ActualityHome from './actualites/actualityHome'
 import CitiesServerList from '@/components/features/linkList/citiesServerList'
 import SearchBarBanner from '@/app/SearchBarBanner'
+import ClientNavbar from './clientNavbar'
 
 interface Props {
   data: any
@@ -18,6 +19,7 @@ function ClientPage(props: Props) {
 
   return (
     <>
+      <ClientNavbar />
       <SearchBarBanner />
       <main className="background-image pb-10">
         <div className="mx-auto flex w-[90%] max-w-[1100px] flex-col">
