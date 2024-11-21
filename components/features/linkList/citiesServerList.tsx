@@ -11,7 +11,7 @@ export default async function CitiesServerList(props: { className?: string }) {
   return (
     <div className={cn('lg:flex-row', className)}>
       <div className="mb-8">
-        <h3 className="mb-3 font-bold lg:text-3xl">Les formations par ville</h3>
+        <h2 className="mb-3 text-2xl lg:text-3xl">Les formations par ville</h2>
       </div>
       <div className="items-center lg:flex">
         <div className="lg:w-3/5">

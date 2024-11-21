@@ -6,7 +6,6 @@ import { Formation } from '@/model/formation'
 import OtherFormations from './otherFormations'
 import { Organization } from '@/model/organization'
 import NavBar from '@/components/navBar'
-import Parser from 'html-react-parser'
 
 type Props = {
   params: { key: string }

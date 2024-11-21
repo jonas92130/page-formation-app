@@ -13,9 +13,7 @@ function LinkList(props: Props) {
 
   return (
     <div className={className}>
-      <h2 className="flex text-lg font-bold md:text-xl lg:text-3xl">
-        {label ?? name}
-      </h2>
+      <h2 className="text-2xl lg:text-3xl">{label ?? name}</h2>
       <ul className="flex flex-wrap gap-3">
         <ServerListLink name={name} backgroundColor={`${backgroundColor}`} />
       </ul>
