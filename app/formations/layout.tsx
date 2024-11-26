@@ -1,6 +1,8 @@
 import SearchBar from '@/components/features/searchBar'
 import NavBar from '@/components/navBar'
 import React from 'react'
+import Actuality from '../actualites/page'
+import ActualityHome from '../actualites/actualityHome'
 
 interface Props {
   children: React.ReactNode
@@ -20,6 +22,7 @@ function Layout(props: Props) {
         </div>
 
         {children}
+        <ActualityHome className="mx-auto my-10 w-[90%] max-w-[1100px]" />
       </main>
     </>
   )

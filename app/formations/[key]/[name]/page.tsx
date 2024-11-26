@@ -5,7 +5,6 @@ import { createQueryMongoParams } from '@/lib/filter'
 import { MongoDBHandler } from '@/back/MongoDBHandler'
 import { client } from '@/tina/__generated__/databaseClient'
 import RSSFeed from '@/components/rssFeed'
-import ActualityHome from '@/app/actualites/actualityHome'
 import { Formation } from '@/model/formation'
 
 type Props = {
@@ -44,7 +43,6 @@ async function Page(props: Props) {
   return (
     <>
       <ClientPage data={JSON.parse(JSON.stringify(dataFormated))} />
-      <ActualityHome />
       {rssUrl && <RSSFeed url={rssUrl} />}
     </>
   )

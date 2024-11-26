@@ -48,5 +48,10 @@ export const BlogCollection: Collection = {
       label: 'Image alternative',
       type: 'string',
     },
+    {
+      name: 'metaDescritpion',
+      label: 'Meta description',
+      type: 'string',
+    },
   ],
 }

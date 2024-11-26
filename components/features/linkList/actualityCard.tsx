@@ -17,11 +17,11 @@ export default async function ActualityCard(props: Props) {
     <>
       <Card
         className={cn(
-          'flex h-28 w-[100%] transform items-center overflow-hidden rounded-[12px] shadow-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-lg md:max-w-[80%] lg:h-[26vh] lg:w-[75%]'
+          'h-[24dvh] w-[100%] transform items-center overflow-hidden rounded-[12px] shadow-md transition-transform duration-300 ease-in-out hover:scale-95 hover:shadow-lg'
         )}
       >
-        <div className="flex h-full w-full items-center">
-          <div className="h-full w-2/4">
+        <div className="flex h-full w-full flex-col items-center">
+          <div className="h-3/4 w-full">
             <img
               src={image}
               className="h-full w-full object-cover"
@@ -29,12 +29,10 @@ export default async function ActualityCard(props: Props) {
             />
           </div>
 
-          <div className="w-2/3 p-4">
+          <div className="h-1/4 p-4">
             <CardHeader className="p-0">
               <Link href={`/actualites/${filename}`}>
-                <h3 className="m-0 line-clamp-2 max-[465px]:text-xs">
-                  {title}
-                </h3>
+                <h3 className="m-0 line-clamp-2 text-base">{title}</h3>
               </Link>
             </CardHeader>
           </div>
