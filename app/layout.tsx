@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import { headers } from 'next/headers'
 import { client } from '@/tina/__generated__/databaseClient'
 import Footer from '@/components/features/footer'
+import { Scroll } from 'lucide-react'
+import ScrollToTop from '@/components/ui/scrollToTop'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,7 +46,9 @@ export default function RootLayout({
     <>
       <html lang="en">
         <body className={inter.className}>
-          {children} <Footer />
+          {children}
+          <Footer />
+          <ScrollToTop />
         </body>
       </html>
     </>

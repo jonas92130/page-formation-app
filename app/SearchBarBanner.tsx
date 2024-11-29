@@ -45,7 +45,7 @@ export default function SearchBarBanner() {
   return (
     <div className="relative bg-primary p-0 pt-10 text-primary-foreground md:p-4 md:pt-0">
       <div className="mx-auto flex w-[90%] max-w-[1100px] items-center lg:flex-row xl:justify-end 2xl:relative">
-        <div className="2xl hidden w-[40%] max-w-[550px] lg:block lg:self-end xl:absolute xl:-bottom-5 xl:left-[2%] 2xl:-left-[13%] 2xl:w-[550px]">
+        <div className="2xl hidden w-[40%] max-w-[550px] lg:block lg:self-end xl:absolute xl:-bottom-4 xl:left-[2%] 2xl:-left-[13%] 2xl:w-[550px]">
           <img src="/searchbar.png" alt="Search Bar" />
         </div>
         <div className="flex w-full flex-col pb-12 pt-8 lg:w-[60%]">

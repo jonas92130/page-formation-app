@@ -1,13 +1,12 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Document } from 'mongodb'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { TiPlus, TiMinus } from 'react-icons/ti'
 
 interface Props {
-  facets: Document[]
+  facets: string[]
   backgroundColor?: string
   name: string
 }
@@ -26,14 +25,14 @@ export default function List(props: Props) {
         }
       >
         {facets.map((facet) => (
-          <div key={facet.value}>
+          <div key={facet}>
             <li>
               <Button variant="list" className={`${backgroundColor} p-5`}>
                 <Link
-                  href={`/formations/${name}/${facet.value}`}
+                  href={`/formations/${name}/${facet}`}
                   className="lg:text-base"
                 >
-                  {facet.value}
+                  {facet}
                 </Link>
               </Button>
             </li>

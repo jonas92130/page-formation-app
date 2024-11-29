@@ -65,9 +65,14 @@ export const createQueryMongoParams = (
           index: 'default',
           text: {
             query: value,
-            path: {
-              wildcard: '*',
-            },
+            path: [
+              'intitule_formation',
+              'intitule_certification',
+              'libelle_code_formacode_principal',
+              'contenu_formation',
+              'nom_region',
+              'nom_departement',
+            ],
           },
         },
       }

@@ -27,7 +27,7 @@ async function HomeFormations(props: Props) {
       </h2>
       <Suspense fallback={<div>Chargement...</div>}>
         <FormationListContainer results={data}>
-          <FormationsCards className="mb-0 mt-4 grid items-center justify-stretch justify-items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3" />
+          <FormationsCards className="mb-0 mt-4 grid items-center justify-stretch justify-items-stretch gap-6 md:mt-8 md:grid-cols-2 md:gap-8 lg:mt-12 lg:grid-cols-3 lg:gap-10" />
         </FormationListContainer>
       </Suspense>
     </div>
