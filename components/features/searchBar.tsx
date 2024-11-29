@@ -85,7 +85,7 @@ function SearchBar(props: Props) {
             name="query"
             defaultValue={queryParams}
             render={(fields) => (
-              <FormItem className="md:w-[50%]">
+              <FormItem className="md:w-[45%]">
                 <FormLabel />
                 <FormControl>
                   <Input
