@@ -11,6 +11,9 @@ module.exports = {
   images: {
     dangerouslyAllowSVG: true,
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
   async rewrites() {
     return [
       {

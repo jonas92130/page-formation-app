@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Button } from '../components/ui/button'
 import SearchBar from '@/components/features/searchBar'
 import Link from 'next/link'
@@ -59,7 +59,9 @@ export default function SearchBarBanner() {
             </p>
           </div>
           <div className="mt-4 w-full md:mt-8">
-            <SearchBar />
+            <Suspense fallback={<div>Chargement...</div>}>
+              <SearchBar />
+            </Suspense>
           </div>
           <div className="mt-8 hidden flex-wrap items-center gap-x-6 gap-y-4 md:flex lg:mt-12">
             {CATEGORIES.map((category) => (

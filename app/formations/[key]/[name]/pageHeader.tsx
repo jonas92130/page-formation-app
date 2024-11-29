@@ -1,4 +1,3 @@
-import Container from '@/components/ui/container'
 import React from 'react'
 
 interface Props {
@@ -15,7 +14,7 @@ function PageHeader(props: Props) {
   return (
     <div className="mx-auto w-[90%] max-w-[1100px] pt-10">
       <div className="rounded-lg bg-primary px-4 pb-8 pt-6 text-primary-foreground">
-        {keyName === 'professionnel' ? (
+        {keyName !== 'professionnel' ? (
           <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
             Formations{' '}
             <span className="text-2xl md:text-3xl lg:text-4xl">
