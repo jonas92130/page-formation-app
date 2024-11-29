@@ -4,6 +4,35 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
+const CITIES = [
+  'Toulouse',
+  'Nice',
+  'Nantes',
+  'Montpellier',
+  'Strasbourg',
+  'Lille',
+  'Rennes',
+  'Reims',
+  'Toulon',
+  'Saint-Étienne',
+  'Le Havre',
+  'Grenoble',
+  'Dijon',
+  'Angers',
+  'Villeurbanne',
+  'Saint-Denis',
+  'Nîmes',
+  'Clermont-Ferrand',
+  'Aix-en-Provence',
+  'Brest',
+  'Limoges',
+  'Tours',
+  'Amiens',
+  'Perpignan',
+  'Metz',
+  'Besançon',
+]
+
 export default async function CitiesServerList(props: { className?: string }) {
   const { data } = await client.queries.cityConnection()
   const { className } = props
@@ -19,33 +48,36 @@ export default async function CitiesServerList(props: { className?: string }) {
             {data.cityConnection.edges?.map((city) => {
               if (!city || !city.node) return null
               return (
-                <div
+                <Link
                   key={city.node.title}
-                  className="relative my-5 h-[21vh] w-full rounded-lg bg-cover bg-center shadow-lg md:max-w-[90%] lg:h-[24vh]"
-                  style={{
-                    backgroundImage: `url(${city.node.image})`,
-                  }}
+                  href={
+                    city.node.title === 'Paris'
+                      ? '/formations/lieu/Paris'
+                      : `/formations/ville/${city.node.title}`
+                  }
                 >
-                  <div className="absolute inset-0 flex items-center justify-center rounded-lg">
-                    <h3 className="text-3xl font-bold text-white">
-                      {city.node.title}
-                    </h3>
+                  <div
+                    key={city.node.title}
+                    className="relative my-5 h-[21vh] w-full rounded-lg bg-cover bg-center shadow-lg md:max-w-[90%] lg:h-[24vh]"
+                    style={{
+                      backgroundImage: `url(${city.node.image})`,
+                    }}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center rounded-lg">
+                      <p className="text-3xl font-bold text-white">
+                        {city.node.title}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               )
             })}
           </div>
         </div>
 
         <div className="lg:w-3/5">
-          <div className="mb-4 flex justify-center text-sm font-bold lg:mb-6 lg:mt-8 lg:text-lg">
+          <div className="flex justify-center text-sm font-bold lg:mt-8">
             <CityLink />
-          </div>
-
-          <div className="relative flex justify-start lg:left-[110px] lg:mt-28">
-            <Button className="rounded-full bg-primary px-8 py-3 font-bold text-white shadow-md">
-              <Link href="/city">Voir toutes les villes</Link>
-            </Button>
           </div>
         </div>
       </div>
@@ -55,51 +87,18 @@ export default async function CitiesServerList(props: { className?: string }) {
 
 function CityLink() {
   return (
-    <div>
-      <div className="mb-3 flex gap-2 text-sm md:text-lg lg:gap-4 lg:text-xl">
-        <Link href="">Lille</Link>
-        <Link href="">Nantes</Link>
-        <Link href="">Nice</Link>
-        <Link href="">Strasbourg</Link>
-        <Link href="">Rennes</Link>
-      </div>
-      <div className="visible text-xs max-[1020px]:hidden lg:text-xl">
-        <div className="mb-3 flex gap-2 lg:gap-4">
-          <Link href="">Lille</Link>
-          <Link href="">Nantes</Link>
-          <Link href="">Nice</Link>
-          <Link href="">Strasbourg</Link>
-          <Link href="">Rennes</Link>
-        </div>
-        <div className="mb-3 flex gap-2 lg:gap-4">
-          <Link href="">Lille</Link>
-          <Link href="">Nantes</Link>
-          <Link href="">Nice</Link>
-          <Link href="">Strasbourg</Link>
-          <Link href="">Rennes</Link>
-        </div>
-        <div className="mb-3 flex gap-2 lg:gap-4">
-          <Link href="">Lille</Link>
-          <Link href="">Nantes</Link>
-          <Link href="">Nice</Link>
-          <Link href="">Strasbourg</Link>
-          <Link href="">Rennes</Link>
-        </div>
-        <div className="mb-3 flex gap-2 lg:gap-4">
-          <Link href="">Lille</Link>
-          <Link href="">Nantes</Link>
-          <Link href="">Nice</Link>
-          <Link href="">Strasbourg</Link>
-          <Link href="">Rennes</Link>
-        </div>
-        <div className="mb-3 flex gap-2 lg:gap-4">
-          <Link href="">Lille</Link>
-          <Link href="">Nantes</Link>
-          <Link href="">Nice</Link>
-          <Link href="">Strasbourg</Link>
-          <Link href="">Rennes</Link>
-        </div>
-      </div>
+    <div className="">
+      {CITIES.map((city) => (
+        <Button
+          key={city}
+          asChild
+          variant="link"
+          size={'lg'}
+          className="bg-card px-3 text-base font-bold text-foreground md:text-lg"
+        >
+          <Link href={`/formations/ville/${city}`}>{city}</Link>
+        </Button>
+      ))}
     </div>
   )
 }

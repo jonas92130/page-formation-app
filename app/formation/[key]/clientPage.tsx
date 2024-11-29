@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button'
 import { Organization } from '@/model/organization'
 import { FaStar } from 'react-icons/fa'
 import { cn } from '@/lib/utils'
-import { Parser } from 'html-to-react'
 
 type Props = {
   data: Formation

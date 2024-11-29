@@ -5,7 +5,7 @@ import {
 } from '@/components/features/formation/list'
 import { createQueryMongoParams } from '@/lib/filter'
 import { Formation } from '@/model/formation'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 interface Props {}
 
@@ -21,13 +21,15 @@ async function HomeFormations(props: Props) {
   const data = (await api.getFormations(formationFormatted)) as Formation[]
 
   return (
-    <div className="mt-8">
+    <div className="">
       <h2 className="text-2xl lg:text-3xl">
         Nos formations les plus recherchées
       </h2>
-      <FormationListContainer results={data}>
-        <FormationsCards className="mb-0 mt-4 grid items-center justify-stretch justify-items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3" />
-      </FormationListContainer>
+      <Suspense fallback={<div>Chargement...</div>}>
+        <FormationListContainer results={data}>
+          <FormationsCards className="mb-0 mt-4 grid items-center justify-stretch justify-items-stretch gap-6 md:mt-8 md:grid-cols-2 md:gap-8 lg:mt-12 lg:grid-cols-3 lg:gap-10" />
+        </FormationListContainer>
+      </Suspense>
     </div>
   )
 }

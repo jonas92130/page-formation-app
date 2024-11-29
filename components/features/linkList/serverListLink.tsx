@@ -11,7 +11,7 @@ interface Props {
 }
 
 async function ServerListLink(props: Props) {
-  const { name, backgroundColor } = props
+  const { name } = props
 
   const api = new MongoDBHandler()
   const filterName = FilterConnector[name] ?? ''
@@ -20,11 +20,11 @@ async function ServerListLink(props: Props) {
 
   return (
     <>
-      <List
+      {/* <List
         facets={facets}
         backgroundColor={`${backgroundColor}`}
         name={name}
-      />
+      /> */}
     </>
   )
 }

@@ -6,20 +6,25 @@ import { MongoDBHandler } from '@/back/MongoDBHandler'
 import { client } from '@/tina/__generated__/databaseClient'
 import RSSFeed from '@/components/rssFeed'
 import { Formation } from '@/model/formation'
+import PageHeader from './pageHeader'
 
 type Props = {
   searchParams: Record<string, string>
   params: { key: string; name: string }
 }
 
+const queryKeyName = ['ville', 'domaine', 'professionnel', 'metier']
 async function Page(props: Props) {
   const { searchParams, params } = props
   const { key, name } = params
   const decodedKey = decodeURIComponent(key)
+
   const decodedName = decodeURIComponent(name)
+
+  console.log('decodedName:', decodedName)
   const newParams = {
     ...searchParams,
-    [decodedKey]: decodedName,
+    [queryKeyName.includes(decodedKey) ? 'query' : decodedKey]: decodedName,
   }
 
   const paramsFormatted = createQueryMongoParams(newParams)
@@ -35,14 +40,19 @@ async function Page(props: Props) {
 
   console.log('rssUrl:', rssUrl)
 
-  const dataFormated = {
+  const dataFormatted = {
     results,
     total_count: count[0]?.total_count,
   }
 
   return (
     <>
-      <ClientPage data={JSON.parse(JSON.stringify(dataFormated))} />
+      <PageHeader
+        name={decodedName}
+        keyName={decodedKey}
+        totalCount={dataFormatted.total_count}
+      />
+      <ClientPage data={JSON.parse(JSON.stringify(dataFormatted))} />
       {rssUrl && <RSSFeed url={rssUrl} />}
     </>
   )

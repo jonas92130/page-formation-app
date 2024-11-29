@@ -185,7 +185,7 @@ function FormationsCards({ className }: { className?: string }) {
   )
 }
 
-function List() {
+function List({ showTotalCount = true }: { showTotalCount?: boolean }) {
   const props = useContext(FormationListContext)
   const totalCount = props?.totalCount
 
@@ -194,10 +194,12 @@ function List() {
       <div className="flex flex-col">
         <div className="flex items-center gap-3 pt-8 lg:mt-8 lg:pt-0">
           <Filter />
-          <p className="md:text-lg lg:text-xl">
-            <span className="font-bold text-red-500">{totalCount} </span>
-            formations trouvées
-          </p>
+          {showTotalCount && (
+            <p className="md:text-lg lg:text-xl">
+              <span className="font-bold text-red-500">{totalCount} </span>
+              formations trouvées
+            </p>
+          )}
         </div>
         <ul className="mt-2 flex flex-col lg:mt-0 lg:w-[60%]">
           <FormationsCards />

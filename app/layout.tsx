@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import { headers } from 'next/headers'
 import { client } from '@/tina/__generated__/databaseClient'
 import Footer from '@/components/features/footer'
+import { Scroll } from 'lucide-react'
+import ScrollToTop from '@/components/ui/scrollToTop'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const pathName = headerList.get('referer')
   const hostName = headerList.get('x-forwarded-host')
   const decodedPath = decodeURIComponent(pathName!)
-  const formatedPathName = decodedPath
+  const formattedPathName = decodedPath
     .split(hostName ?? '//')[1]
     ?.toLowerCase()
     ?.trim()
@@ -22,9 +24,9 @@ export async function generateMetadata(): Promise<Metadata> {
   })
   const pagesMetadata = indexationRes.data.indexation.pages
   const currentMetadata = pagesMetadata?.find(
-    (page) => page?.name === formatedPathName
+    (page) => page?.name === formattedPathName
   )
-  console.log('currentMetadata,', currentMetadata, formatedPathName)
+  console.log('currentMetadata,', currentMetadata, formattedPathName)
 
   return {
     robots: currentMetadata?.isNotIndexed
@@ -44,7 +46,9 @@ export default function RootLayout({
     <>
       <html lang="en">
         <body className={inter.className}>
-          {children} <Footer />
+          {children}
+          <Footer />
+          <ScrollToTop />
         </body>
       </html>
     </>

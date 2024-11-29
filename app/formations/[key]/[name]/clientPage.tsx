@@ -1,5 +1,3 @@
-'use client'
-
 import { FormationsResponseModel } from '@/model/formation'
 import {
   FormationListContainer,
@@ -22,7 +20,7 @@ function ClientPage(props: Props) {
         results={data.results}
         totalCount={data.total_count}
       >
-        <FormationList />
+        <FormationList showTotalCount={false} />
         <FormationTabs />
       </FormationListContainer>
     </>

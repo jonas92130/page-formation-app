@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils'
 
 export default async function ActualityHome({
   className,
-  ...props
 }: {
   className?: string
 }) {
@@ -17,7 +16,7 @@ export default async function ActualityHome({
   return (
     <div className={cn('w-full', className)}>
       <h2 className="flex text-2xl lg:text-3xl">Actualités</h2>
-      <div className="flex flex-col items-center justify-center gap-6 pt-5 md:flex-row lg:flex-row lg:gap-16">
+      <div className="mt-6 flex flex-col items-center justify-center gap-6 md:mt-10 md:flex-row md:items-stretch lg:mt-14 lg:flex-row lg:gap-16">
         {data.blogConnection.edges?.slice(0, 3).map((blog) => {
           return (
             <ActualityCard
@@ -30,7 +29,7 @@ export default async function ActualityHome({
           )
         })}
       </div>
-      <Button className="mt-8 items-center rounded-full" asChild>
+      <Button className="mt-8 items-center rounded-full md:mt-12" asChild>
         <Link href="actualites/">Voir toutes les actualités</Link>
       </Button>
     </div>
