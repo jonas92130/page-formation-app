@@ -7,6 +7,7 @@ import CitiesServerList from '@/components/features/linkList/citiesServerList'
 import SearchBarBanner from '@/app/SearchBarBanner'
 import ClientNavbar from './clientNavbar'
 import HomeFormations from './homeFormations'
+import Container from '@/components/ui/container'
 
 interface Props {}
 
@@ -17,9 +18,9 @@ function ClientPage(props: Props) {
     <>
       <ClientNavbar />
       <SearchBarBanner />
-      <main className="background-image pb-10">
-        <div className="mx-auto flex w-[90%] max-w-[1100px] flex-col">
-          <div className="mt-10 flex flex-col items-stretch justify-center gap-6 md:flex-row md:gap-14 lg:gap-32">
+      <main className="">
+        <Container>
+          <div className="flex flex-col items-stretch justify-center gap-6 pt-8 md:flex-row md:gap-14 lg:gap-32">
             <Formation
               title="Formations CPF"
               label="Se former avec son compte personnel de formation"
@@ -34,28 +35,40 @@ function ClientPage(props: Props) {
               link="formations/learningType/distanciel"
             />
           </div>
+        </Container>
+        <Container>
           <HomeFormations />
+        </Container>
+        <Container>
           <LinkList
             name="domain"
             label="Quels domaines vous interesses ?"
             backgroundColor="bg-card"
-            className="mt-10"
+            className=""
           />
-          <ActualityHome className="mt-10" />
+        </Container>
+        <Container>
+          <ActualityHome className="" />
+        </Container>
+        <Container>
           <LinkList
             name="domain"
             label="Les domaines professionnels"
             backgroundColor="bg-primary/85 text-primary-foreground"
-            className="mt-10"
+            className=""
           />
-          <CitiesServerList className="mt-10" />
+        </Container>
+        <Container>
+          <CitiesServerList className="" />
+        </Container>
+        <Container>
           <LinkList
             name="domain"
             label="Les métiers populaires"
             backgroundColor="bg-secondary/15 text-primary-background"
-            className="mt-10"
+            className=""
           />
-        </div>
+        </Container>
       </main>
     </>
   )

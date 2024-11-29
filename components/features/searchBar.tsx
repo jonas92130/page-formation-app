@@ -121,7 +121,7 @@ function SearchBar(props: Props) {
               </FormItem>
             )}
           />
-          <div className="flex justify-center">
+          <div className="flex justify-center md:w-[40px]">
             <Button
               className="flex w-fit items-center gap-2 rounded-full bg-secondary px-4 py-3 transition-transform duration-300 ease-in-out hover:scale-95 hover:bg-secondary hover:shadow-xl"
               type="submit"

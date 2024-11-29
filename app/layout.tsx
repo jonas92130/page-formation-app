@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const pathName = headerList.get('referer')
   const hostName = headerList.get('x-forwarded-host')
   const decodedPath = decodeURIComponent(pathName!)
-  const formatedPathName = decodedPath
+  const formattedPathName = decodedPath
     .split(hostName ?? '//')[1]
     ?.toLowerCase()
     ?.trim()
@@ -22,9 +22,9 @@ export async function generateMetadata(): Promise<Metadata> {
   })
   const pagesMetadata = indexationRes.data.indexation.pages
   const currentMetadata = pagesMetadata?.find(
-    (page) => page?.name === formatedPathName
+    (page) => page?.name === formattedPathName
   )
-  console.log('currentMetadata,', currentMetadata, formatedPathName)
+  console.log('currentMetadata,', currentMetadata, formattedPathName)
 
   return {
     robots: currentMetadata?.isNotIndexed
