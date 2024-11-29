@@ -5,7 +5,6 @@ import Link from 'next/link'
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -25,24 +24,22 @@ export default async function PostPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div>
-      <h1 className="max-[465px]:mx-2 max-[465px]:my-5">Mon actualité</h1>
+    <div className="">
+      <h1 className="prose prose-sm md:prose-base xl:prose-xl max-[465px]:mx-2 max-[465px]:my-5">
+        Mon actualité
+      </h1>
       <Breadcrumb className="font-italic max-[465px]:mx-4 max-[465px]:my-7">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink>
-              <Link href="/" className="max-[465px]:text-xs">
-                Accueil
-              </Link>
-            </BreadcrumbLink>
+            <Link href="/" className="max-[465px]:text-xs">
+              Accueil
+            </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink>
-              <Link href="/actualites" className="max-[465px]:text-xs">
-                Actualités
-              </Link>
-            </BreadcrumbLink>
+            <Link href="/actualites" className="max-[465px]:text-xs">
+              Actualités
+            </Link>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -71,14 +68,14 @@ export default async function PostPage({ params }: { params: { id: string } }) {
       </div>
       <div className="p-5 text-left">
         <p>{data.data.blog.description}</p>
-        <div>
+        <div className="">
           <TinaMarkdown components={{ Cta }} content={data.data.blog.content} />
         </div>
       </div>
       <div className="my-5 flex justify-center">
-        <Link href="/actualites">
-          <Button className="bg-blue-400">Voir toutes les actualités</Button>
-        </Link>
+        <Button asChild>
+          <Link href="/actualites">Voir toutes les actualités</Link>
+        </Button>
       </div>
     </div>
   )

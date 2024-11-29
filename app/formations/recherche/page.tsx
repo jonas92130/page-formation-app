@@ -12,7 +12,6 @@ function ClientPage(props: Props) {
   return (
     <>
       <DataList searchParams={searchParams} />
-      <ActualityHome className="mt-10" />
     </>
   )
 }
